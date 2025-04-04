@@ -1,0 +1,51 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Store Control Panel</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container" id="dashboard-section">
+            <div class="header">
+                <h1>Business Control Dashboard</h1>
+                <div class="auth-buttons">
+                    <button id="login-btn" class="btn btn-primary">Sign In</button>
+                    <button id="logout-btn" class="btn btn-secondary hidden">Sign Out</button>
+                </div>
+            </div>
+            
+            <div class="auth-status">
+                <p id="auth-status-message">Status: Not authenticated</p>
+            </div>
+            
+            <div class="modules-container">
+                <h2>Actions</h2>
+                <div class="module-cards" id="module-cards">
+                    <!-- Authentication card -->
+                    <div class="card">
+                        <h3>Authentication</h3>
+                        <p>Current status: <span id="auth-status">Not authenticated</span></p>
+                    </div>
+                    
+                    <!-- Locked cards (only available when authenticated) -->
+                    <div class="card locked" data-requires-auth="true">
+                        <h3>Product Management</h3>
+                        <p>Change prices, update inventory</p>
+                        <p class="auth-required-message">Authentication required</p>
+                        <button class="btn btn-primary action-btn hidden">Manage Products</button>
+                    </div>
+                    
+                    <!-- Additional modules will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

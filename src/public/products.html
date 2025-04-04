@@ -1,0 +1,60 @@
+<!-- public/products.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management - Business Store Control Panel</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <div class="header">
+                <h1>Product Management</h1>
+                <div class="header-buttons">
+                    <button id="login-btn" class="btn btn-primary">Sign In</button>
+                    <button id="logout-btn" class="btn btn-secondary hidden">Sign Out</button>
+                    <a href="/" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            </div>
+            
+            <div class="auth-status">
+                <p id="auth-status-message">Status: Not authenticated</p>
+            </div>
+            
+            <div class="product-actions" style="margin: 20px 0;">
+                <button id="load-products-btn" class="btn btn-primary">Load Products</button>
+                <div class="loader hidden" id="loader" style="display: inline-block; margin-left: 10px;"></div>
+                <span id="products-count" style="margin-left: 10px;">0 products</span>
+                <small style="display: block; margin-top: 5px; color: #666;">Products will be stored in browser cache</small>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Name (AZ)</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">SKU/MPN</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Price</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Old Price</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Stock</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Category</th>
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <tr>
+                            <td colspan="8" style="text-align: center; padding: 20px;">No products loaded. Click "Load Products" to start.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/products.js"></script>
+</body>
+</html>
