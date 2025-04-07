@@ -13,9 +13,115 @@ document.addEventListener("DOMContentLoaded", function () {
     loadProductsBtn.addEventListener("click", loadAllProducts);
   }
 
+  setupModalEvents();
+  setupBulkPriceButtons();
+
   // Check if we have products in localStorage and display them
   loadProductsFromLocalStorage();
 });
+
+function setupModalEvents() {
+  // Close modal buttons
+  document.getElementById("close-modal")?.addEventListener("click", closeUpdateModal);
+  document.getElementById("modal-cancel")?.addEventListener("click", closeUpdateModal);
+
+  // Save changes button
+  document.getElementById("modal-save")?.addEventListener("click", saveProductChanges);
+}
+
+function openUpdateModal(uuid, name, retailPrice, oldPrice, qty) {
+  // Get modal elements
+  const modal = document.getElementById("update-modal");
+  const productNameEl = document.getElementById("modal-product-name");
+  const retailPriceInput = document.getElementById("modal-retail-price");
+  const oldPriceInput = document.getElementById("modal-old-price");
+  const qtyInput = document.getElementById("modal-qty");
+  const uuidInput = document.getElementById("modal-product-uuid");
+
+  // Set values
+  if (productNameEl) productNameEl.textContent = name;
+  if (retailPriceInput) retailPriceInput.value = retailPrice.toFixed(2);
+  if (oldPriceInput) oldPriceInput.value = oldPrice > 0 ? oldPrice.toFixed(2) : "";
+  if (qtyInput) qtyInput.value = qty.toString();
+  if (uuidInput) uuidInput.value = uuid;
+
+  // Show modal
+  if (modal) modal.style.display = "block";
+}
+
+function closeUpdateModal() {
+    const modal = document.getElementById('update-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+/**
+ * Save the product changes
+ */
+async function saveProductChanges() {
+    // Get values from form
+    const uuid = document.getElementById('modal-product-uuid').value;
+    const retailPrice = parseFloat(document.getElementById('modal-retail-price').value);
+    const oldPriceInput = document.getElementById('modal-old-price');
+    const qtyInput = document.getElementById('modal-qty');
+    
+    // Validate inputs
+    if (!uuid || isNaN(retailPrice)) {
+        showMessage('Invalid product or price', false);
+        return;
+    }
+    
+    // Prepare update data
+    const updateData = {
+        retail_price: retailPrice
+    };
+    
+    // Add old price if provided
+    if (oldPriceInput && oldPriceInput.value.trim() !== '') {
+        updateData.old_price = parseFloat(oldPriceInput.value);
+    }
+    
+    // Add quantity if provided
+    if (qtyInput && qtyInput.value.trim() !== '') {
+        updateData.qty = parseInt(qtyInput.value);
+    }
+    
+    try {
+        // Show loading
+        showLoader();
+        
+        // Make API request
+        const response = await fetch(`/api/products/${uuid}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateData)
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            
+            if (data.success) {
+                // Close modal
+                closeUpdateModal();
+                
+                // Refresh products
+                await fetchProducts();
+                
+                showMessage('Product updated successfully', true);
+            } else {
+                showMessage(data.message || 'Failed to update product', false);
+            }
+        } else {
+            showMessage('Failed to update product', false);
+        }
+    } catch (error) {
+        console.error('Error updating product:', error);
+        showMessage('Error updating product', false);
+    } finally {
+        hideLoader();
+    }
+}
 
 /**
  * Load products from localStorage if available
@@ -165,10 +271,10 @@ function renderProductsTable(products) {
 
   if (products.length === 0) {
     tableBody.innerHTML = `
-            <tr>
-                <td colspan="8" style="text-align: center; padding: 20px;">No products found.</td>
-            </tr>
-        `;
+          <tr>
+              <td colspan="8" style="text-align: center; padding: 20px;">No products found.</td>
+          </tr>
+      `;
     return;
   }
 
@@ -178,17 +284,23 @@ function renderProductsTable(products) {
 
     const row = document.createElement("tr");
     row.innerHTML = `
-            <td style="border: 1px solid #ddd; padding: 8px;">${product.id}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${attributes.product.name_az}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${attributes.mpn || "N/A"}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">${attributes.retail_price.toFixed(2)}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-decoration: line-through;">${attributes.old_price ? attributes.old_price.toFixed(2) : "-"}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${attributes.qty}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${attributes.product.category_name_az}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">
-                <button class="btn btn-primary" style="padding: 5px 10px; font-size: 14px;">Update Price</button>
-            </td>
-        `;
+          <td style="border: 1px solid #ddd; padding: 8px;">${product.id}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${attributes.product.name_az}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${attributes.mpn || "N/A"}</td>
+          <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">${attributes.retail_price.toFixed(2)}</td>
+          <td style="border: 1px solid #ddd; padding: 8px; text-decoration: line-through;">${attributes.old_price ? attributes.old_price.toFixed(2) : "-"}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${attributes.qty}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">${attributes.product.category_name_az}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">
+              <button 
+                  class="btn btn-primary" 
+                  style="padding: 5px 10px; font-size: 14px;"
+                  onclick="openUpdateModal('${product.id}', '${attributes.product.name_az.replace(/'/g, "\\'")}', ${attributes.retail_price}, ${attributes.old_price || 0}, ${attributes.qty})"
+              >
+                  Update Price
+              </button>
+          </td>
+      `;
 
     tableBody.appendChild(row);
   });
@@ -254,5 +366,82 @@ function hideLoader() {
   const loadBtn = document.getElementById("load-products-btn");
   if (loadBtn) {
     loadBtn.disabled = false;
+  }
+}
+
+function setupBulkPriceButtons() {
+  const increaseBtn = document.getElementById('increase-all-prices');
+  const decreaseBtn = document.getElementById('decrease-all-prices');
+  
+  if (increaseBtn) {
+      increaseBtn.addEventListener('click', function() {
+          bulkUpdatePrices(true);
+      });
+  }
+  
+  if (decreaseBtn) {
+      decreaseBtn.addEventListener('click', function() {
+          bulkUpdatePrices(false);
+      });
+  }
+}
+
+
+async function bulkUpdatePrices(isIncrease) {
+  // Get adjustment amount
+  const adjustmentInput = document.getElementById('price-adjustment');
+  if (!adjustmentInput) return;
+  
+  let adjustment = parseFloat(adjustmentInput.value);
+  if (isNaN(adjustment)) {
+      showMessage('Please enter a valid adjustment amount', false);
+      return;
+  }
+  
+  // Make adjustment negative if decreasing
+  if (!isIncrease) {
+      adjustment = -adjustment;
+  }
+  
+  // Confirm with user
+  const action = isIncrease ? 'increase' : 'decrease';
+  const confirmMsg = `Are you sure you want to ${action} all product prices by ${Math.abs(adjustment)}?`;
+  
+  if (!confirm(confirmMsg)) {
+      return;
+  }
+  
+  // Show loading
+  showLoader();
+  
+  try {
+      // Make API request
+      const response = await fetch('/api/products/bulk-update-prices', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ adjustment })
+      });
+      
+      if (response.ok) {
+          const data = await response.json();
+          
+          if (data.success) {
+              // Refresh products
+              await fetchProducts();
+              
+              showMessage(data.message, true);
+          } else {
+              showMessage(data.message || 'Failed to update prices', false);
+          }
+      } else {
+          showMessage('Failed to update prices', false);
+      }
+  } catch (error) {
+      console.error('Error updating prices:', error);
+      showMessage('Error updating prices', false);
+  } finally {
+      hideLoader();
   }
 }

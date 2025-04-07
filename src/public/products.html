@@ -1,60 +1,109 @@
 <!-- public/products.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Management - Business Store Control Panel</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="dashboard-container">
-            <div class="header">
-                <h1>Product Management</h1>
-                <div class="header-buttons">
-                    <button id="login-btn" class="btn btn-primary">Sign In</button>
-                    <button id="logout-btn" class="btn btn-secondary hidden">Sign Out</button>
-                    <a href="/" class="btn btn-secondary">Back to Dashboard</a>
-                </div>
-            </div>
-            
-            <div class="auth-status">
-                <p id="auth-status-message">Status: Not authenticated</p>
-            </div>
-            
-            <div class="product-actions" style="margin: 20px 0;">
-                <button id="load-products-btn" class="btn btn-primary">Load Products</button>
-                <div class="loader hidden" id="loader" style="display: inline-block; margin-left: 10px;"></div>
-                <span id="products-count" style="margin-left: 10px;">0 products</span>
-                <small style="display: block; margin-top: 5px; color: #666;">Products will be stored in browser cache</small>
-            </div>
-            
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                    <thead>
-                        <tr>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Name (AZ)</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">SKU/MPN</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Price</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Old Price</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Stock</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Category</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="products-table-body">
-                        <tr>
-                            <td colspan="8" style="text-align: center; padding: 20px;">No products loaded. Click "Load Products" to start.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      <div class="dashboard-container">
+        <div class="header">
+          <h1>Product Management</h1>
+          <div class="header-buttons">
+            <button id="login-btn" class="btn btn-primary">Sign In</button>
+            <button id="logout-btn" class="btn btn-secondary hidden">Sign Out</button>
+            <a href="/" class="btn btn-secondary">Back to Dashboard</a>
+          </div>
         </div>
+
+        <div class="auth-status">
+          <p id="auth-status-message">Status: Not authenticated</p>
+        </div>
+
+        <div class="product-actions" style="margin: 20px 0">
+          <button id="load-products-btn" class="btn btn-primary">Load Products</button>
+          <div class="loader hidden" id="loader" style="display: inline-block; margin-left: 10px"></div>
+          <span id="products-count" style="margin-left: 10px">0 products</span>
+          <small style="display: block; margin-top: 5px; color: #666">Products will be stored in browser cache</small>
+        </div>
+
+        <div style="background-color: #f8f9fa; padding: 15px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ddd">
+          <h3 style="margin-top: 0">Bulk Price Update</h3>
+          <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px">
+            <label for="price-adjustment" style="margin-bottom: 0">Adjustment Amount:</label>
+            <input type="number" id="price-adjustment" step="0.01" value="0.01" style="width: 100px; padding: 5px" />
+
+            <button id="decrease-all-prices" class="btn btn-danger" style="margin-left: 10px">Decrease All Prices</button>
+
+            <button id="increase-all-prices" class="btn btn-success">Increase All Prices</button>
+          </div>
+          <p style="font-size: 12px; color: #666; margin-top: 8px">This will update all displayed products. The operation might take some time if you have many products.</p>
+        </div>
+
+        <div style="overflow-x: auto">
+          <table style="width: 100%; border-collapse: collapse; margin-top: 20px">
+            <thead>
+              <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">ID</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Name (AZ)</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">SKU/MPN</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Price</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Old Price</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Stock</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Category</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-table-body">
+              <tr>
+                <td colspan="8" style="text-align: center; padding: 20px">No products loaded. Click "Load Products" to start.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price Update Modal -->
+    <div style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 100" id="update-modal">
+      <div style="background-color: white; width: 90%; max-width: 500px; margin: 100px auto; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px">
+          <h2 style="margin: 0">Update Product</h2>
+          <button style="background: none; border: none; font-size: 24px; cursor: pointer" id="close-modal">&times;</button>
+        </div>
+
+        <div style="margin-bottom: 15px">
+          <p><strong>Product:</strong> <span id="modal-product-name"></span></p>
+        </div>
+
+        <div style="margin-bottom: 15px">
+          <label for="modal-retail-price" style="display: block; margin-bottom: 5px">Retail Price:</label>
+          <input type="number" id="modal-retail-price" step="0.01" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
+        </div>
+
+        <div style="margin-bottom: 15px">
+          <label for="modal-old-price" style="display: block; margin-bottom: 5px">Old Price:</label>
+          <input type="number" id="modal-old-price" step="0.01" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
+        </div>
+
+        <div style="margin-bottom: 15px">
+          <label for="modal-qty" style="display: block; margin-bottom: 5px">Quantity:</label>
+          <input type="number" id="modal-qty" step="1" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
+        </div>
+
+        <input type="hidden" id="modal-product-uuid" />
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px">
+          <button style="padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-cancel">Cancel</button>
+          <button style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-save">Save Changes</button>
+        </div>
+      </div>
     </div>
 
     <script src="/js/auth.js"></script>
     <script src="/js/products.js"></script>
-</body>
+  </body>
 </html>
