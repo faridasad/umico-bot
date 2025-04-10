@@ -16,7 +16,7 @@ export async function authRoutes(
         password: config.auth.password
       };
       
-      const authData = await AuthService.signIn(credentials);
+      const authData = await AuthService.signIn();
       return reply.code(200).send({
         success: true,
         message: 'Authentication successful',

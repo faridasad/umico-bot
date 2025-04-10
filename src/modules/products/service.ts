@@ -1,6 +1,9 @@
 // src/modules/products/service.ts
+import axios from "axios";
 import { HttpClient } from "../../utils/http-client";
 import { wait } from "../../utils/time";
+import { AuthService } from "../auth/service";
+import { AuthStoreService } from "../auth/store";
 import { ProductStoreService } from "./store";
 import { ProductResponse } from "./types";
 
@@ -55,7 +58,7 @@ export class ProductsService {
    */
   private static async fetchProductPage(page: number): Promise<ProductResponse> {
     // Build URL with query parameters
-    const url = `${this.API_URL}?page=${page}&per_page=${this.MAX_PER_PAGE}&q[s]=updated_at+desc&q[merchant_uuid_eq]=${this.MERCHANT_UUID}`;
+    const url = `${this.API_URL}?page=${page}&per_page=${this.MAX_PER_PAGE}&q[s]=updated_at+desc&q[merchant_uuid_eq]=${this.MERCHANT_UUID}&q[active_eq]=true`;
 
     try {
       return await HttpClient.get<ProductResponse>(url);
@@ -119,58 +122,256 @@ export class ProductsService {
   }
 
   /**
-   * Update multiple products' prices
+   * Update multiple products' prices with retry mechanism
    * @param adjustment The amount to adjust prices by (positive = increase, negative = decrease)
    * @param productIds Optional array of product IDs to update (if not provided, updates all products)
+   * @param maxRetries Maximum number of retry attempts for failed updates
+   * @param retryDelay Base delay between retries in milliseconds (will increase with backoff)
    */
-  static async bulkUpdatePrices(adjustment: number, productIds?: string[]): Promise<{ success: number; failed: number; total: number }> {
+  static async bulkUpdatePrices(
+    adjustment: number,
+    productIds?: string[],
+    maxRetries: number = 4,
+    retryDelay: number = 500
+  ): Promise<{ success: number; failed: number; total: number; failedIds: string[] }> {
     try {
       // If no product IDs provided, use all products in the store
       const products = ProductStoreService.getOffers();
+      const initialIds = productIds || products.map((p) => p.id);
+      console.log("Initial products to evaluate:", initialIds.length);
 
-      const idsToUpdate = productIds || products.map((p) => p.id);
+      // Pre-filter products from store 1044 (Velosport)
+      const idsToUpdate: string[] = [];
+      const skippedIds: string[] = [];
 
-      console.log("Products to update:", idsToUpdate);
-
-      // Track success/failure
+      // Track success/failure and failed IDs
       const result = {
         success: 0,
         failed: 0,
-        total: idsToUpdate.length,
+        skipped: 0,
+        total: initialIds.length,
+        failedIds: [] as string[],
       };
 
-      // Process each product
-      for (const id of idsToUpdate) {
+      // Pre-process to filter out products from store 1044
+      for (const id of initialIds) {
         try {
           // Find the product
           const product = products.find((p) => p.id === id);
           if (!product) {
             result.failed++;
+            result.failedIds.push(id);
+            console.log(`Product ${id} not found in local store`);
             continue;
           }
 
-          // Calculate new prices
-          const currentPrice = product.attributes.retail_price;
+          const globalProductId = product.attributes.product.id;
+          if (!globalProductId) {
+            console.log(`No global product ID found for product ${id}, skipping`);
+            result.skipped++;
+            skippedIds.push(id);
+            continue;
+          }
 
-          console.log(currentPrice, adjustment);
+          // Fetch global product details to check if it's from Velosport and get price
+          console.log(`Fetching global product details for ID ${globalProductId}`);
+          const productDetailsUrl = `https://mp-catalog.umico.az/api/v1/products/${globalProductId}`;
 
-          const newPrice = Math.max(0, currentPrice + adjustment); // Ensure price doesn't go below 0
+          try {
+            const productDetails: any = await HttpClient.get(productDetailsUrl);
 
-          // Prepare update data
-          const updateData = {
-            retail_price: newPrice,
-          };
+            // Store the global product details for later use during batch processing
+            // This prevents having to make the same API call twice
+            product.globalDetails = productDetails;
 
-          // Update the product
-          await this.updateProduct(id, updateData);
-          result.success++;
-          console.log(`Product ${id} updated successfully with new price ${newPrice} (old price: ${currentPrice}) - success: ${result.success}, failed: ${result.failed}`);
-          await wait(200);
+            if (!productDetails.default_offer || !productDetails.default_offer.retail_price) {
+              console.log(`No retail price found in global data for product ${id}, skipping update`);
+              result.skipped++;
+              skippedIds.push(id);
+              continue;
+            }
+
+            if (productDetails.default_offer && productDetails.default_offer.seller && productDetails.default_offer.seller.marketing_name) {
+              const marketingName = productDetails.default_offer.seller.marketing_name;
+
+              if (marketingName.id === 1044) {
+                console.log(`Product ${id} (global ID: ${globalProductId}) is from Velosport, skipping update`);
+                result.skipped++;
+                skippedIds.push(id);
+                continue;
+              } else {
+                console.log(`Product ${id} (global ID: ${globalProductId}) is NOT from Velosport (${marketingName.name}), will update price`);
+                // Log the current price from global data
+                console.log(`Current global price for product ${id}: ${productDetails.default_offer.retail_price}`);
+                idsToUpdate.push(id);
+              }
+            } else {
+              console.log(`Product ${id} (global ID: ${globalProductId}) doesn't have expected seller info, will update price`);
+              idsToUpdate.push(id);
+            }
+          } catch (detailsError) {
+            console.error(`Failed to fetch product details for global ID ${globalProductId}:`, detailsError);
+            // If we can't determine the store, include it in the update
+            console.log(`Unable to verify store for product ${id}, will include in update`);
+            idsToUpdate.push(id);
+          }
         } catch (error) {
-          console.error(`Failed to update product ${id}:`, error);
+          console.error(`Error preprocessing product ${id}:`, error);
           result.failed++;
+          result.failedIds.push(id);
         }
       }
+
+      console.log(`After filtering: ${idsToUpdate.length} products to update, ${skippedIds.length} products skipped, ${result.failed} products failed preliminary checks`);
+
+      const batchSize = 10;
+      const start = new Date();
+      for (let batchIndex = 0; batchIndex < idsToUpdate.length; batchIndex += batchSize) {
+        console.log(`Processing batch ${Math.floor(batchIndex / batchSize) + 1} of ${Math.ceil(idsToUpdate.length / batchSize)}`);
+
+        // Get current batch
+        const batch = idsToUpdate.slice(batchIndex, batchIndex + batchSize);
+
+        // Process each product in the batch
+        for (const id of batch) {
+          let retryCount = 0;
+          let success = false;
+
+          while (!success && retryCount <= maxRetries) {
+            try {
+              // Find the product
+              const product = products.find((p) => p.id === id);
+              if (!product) {
+                result.failed++;
+                result.failedIds.push(id);
+                console.log(`Product ${id} not found in local store`);
+                break;
+              }
+
+              // Use the global product details that we cached during pre-processing
+              let productDetails = product.globalDetails;
+
+              // If we don't have the cached global details for some reason, fetch them
+              if (!productDetails) {
+                const globalProductId = product.attributes.product.id;
+                if (!globalProductId) {
+                  result.failed++;
+                  result.failedIds.push(id);
+                  console.log(`No global product ID found for product ${id}`);
+                  break;
+                }
+
+                // Fetch global product details
+                console.log(`No cached global details, fetching details for ID ${globalProductId}`);
+                const productDetailsUrl = `https://mp-catalog.umico.az/api/v1/products/${globalProductId}`;
+                productDetails = await HttpClient.get(productDetailsUrl);
+              }
+
+              // Extract current price from global product data
+              const currentPrice = productDetails.default_offer.retail_price;
+              if (!currentPrice) {
+                result.failed++;
+                result.failedIds.push(id);
+                console.log(`No retail price found in global data for product ${id}`);
+                break;
+              }
+
+              console.log(`Current global price for product ${id}: ${currentPrice}`);
+              const newPrice = currentPrice + adjustment;
+
+              // Prepare update data
+              const updateData = {
+                retail_price: newPrice,
+              };
+
+              // Update the product
+              await this.updateProduct(id, updateData);
+              result.success++;
+              success = true;
+              console.log(
+                `Product ${id} updated successfully with new price ${newPrice} (old price: ${currentPrice}) - success: ${result.success}, failed: ${result.failed}, skipped: ${result.skipped}`
+              );
+
+              // Short wait between individual product updates
+              // await wait(100);
+            } catch (error: any) {
+              // The HttpClient now handles 429 errors internally
+              // But we still check here in case the error gets through
+              if (error.response && error.response.status === 429) {
+                console.log("Rate limit reached (HTTP 429). Attempting to refresh access token...");
+                try {
+                  // Log the current token before refresh
+                  const oldToken = AuthStoreService.getStore().accessToken;
+                  console.log("Current access token:", oldToken ? oldToken.slice(-10) : "none");
+
+                  // First try to refresh token if available
+                  const refreshResult = await AuthService.refreshToken();
+
+                  // If refresh failed or wasn't available, try a full sign-in
+                  if (!refreshResult) {
+                    console.log("Token refresh failed or unavailable, attempting full sign-in...");
+                    await AuthService.signIn();
+                  }
+
+                  // Get the new token after authentication
+                  const newToken = AuthStoreService.getStore().accessToken;
+                  console.log("New access token:", newToken ? newToken.slice(-10) : "none");
+
+                  // Explicitly update the token in the Axios instance
+                  if (newToken) {
+                    HttpClient.updateToken(newToken);
+                    console.log("HTTP client headers updated with new token");
+
+                    // Wait a moment to ensure everything is updated
+                    await wait(1000);
+
+                    // Continue processing without counting this as a retry
+                    continue;
+                  } else {
+                    throw new Error("Authentication succeeded but no token was returned");
+                  }
+                } catch (error) {
+                  console.error("Failed to refresh token:", error);
+                  // Continue with normal retry logic
+                }
+              }
+
+              retryCount++;
+              console.warn(`Attempt ${retryCount}/${maxRetries} failed for product ${id}:`, error);
+
+              if (retryCount <= maxRetries) {
+                // Exponential backoff: wait longer between each retry
+                const backoffDelay = retryDelay * Math.pow(2, retryCount - 1);
+                console.log(`Retrying after ${backoffDelay}ms...`);
+                await wait(backoffDelay);
+              } else {
+                // Max retries exceeded
+                result.failed++;
+                result.failedIds.push(id);
+                console.error(`Failed to update product ${id} after ${maxRetries} retries`);
+              }
+            }
+          }
+        }
+
+        // Wait between batches to avoid rate limiting
+        if (batchIndex + batchSize < idsToUpdate.length) {
+          const batchWaitTime = 3000; // 3 seconds between batches
+          console.log(`Batch complete. Waiting ${batchWaitTime / 1000} seconds before processing next batch...`);
+          await wait(batchWaitTime);
+        }
+      }
+
+      // Log summary
+      console.log(`Bulk update complete. Success: ${result.success}, Failed: ${result.failed}, Total: ${result.total}`);
+      if (result.failedIds.length > 0) {
+        console.log(`Failed IDs: ${result.failedIds.join(", ")}`);
+      }
+
+      // human readable time taken to locale string
+      const timeTaken = new Date().getTime() - start.getTime();
+      const timeTakenString = new Date(timeTaken).toLocaleString();
+      console.log(`Time taken: ${timeTakenString}`);
 
       return result;
     } catch (error) {

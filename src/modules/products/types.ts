@@ -76,6 +76,7 @@ export interface ProductOffer {
   id: string;
   type: string;
   attributes: ProductAttributes;
+  globalDetails?: any;
 }
 
 export interface ProductResponse {

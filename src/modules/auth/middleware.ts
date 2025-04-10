@@ -1,5 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { AuthService } from './service';
+import { AuthStoreService } from './store';
 
 export async function requireAuth(request: FastifyRequest, reply: FastifyReply): Promise<void> {
   if (!AuthService.isAuthenticated()) {

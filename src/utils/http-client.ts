@@ -10,14 +10,17 @@ export class HttpClient {
     if (!this.instance) {
       this.instance = axios.create({
         baseURL: config.api.baseUrl,
-        timeout: 15000,
+        timeout: 30000,
       });
 
-      // Add request interceptor to automatically add auth headers
+      // Add request interceptor to dynamically get auth headers for each request
       this.instance.interceptors.request.use((config) => {
+        // Get fresh auth data for every request
         const authStore = AuthStoreService.getStore();
 
+        // Use the current token (not the one captured at instance creation)
         if (authStore.accessToken) {
+          console.log(`Using token: ${authStore.accessToken.slice(-10)}`);
           config.headers.Authorization = `Bearer ${authStore.accessToken}`;
         }
 
@@ -30,6 +33,33 @@ export class HttpClient {
     }
 
     return this.instance;
+  }
+
+  // Force creation of a new instance (useful after re-authentication)
+  static resetInstance(): void {
+    this.instance = undefined as any;
+    console.log("HTTP client instance reset - will use new token on next request");
+  }
+
+  static updateToken(token: string): void {
+    if (!token) {
+      console.warn("Attempted to update token with empty value");
+      return;
+    }
+
+    console.log(`Explicitly setting token in Axios headers: ${token.slice(-10)}`);
+
+    // Get the instance (creates one if it doesn't exist)
+    const instance = this.getInstance();
+
+    // Update the Authorization header in the default headers
+    instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+    // You can also update the header for specific methods if needed
+    instance.defaults.headers.get["Authorization"] = `Bearer ${token}`;
+    instance.defaults.headers.post["Authorization"] = `Bearer ${token}`;
+    instance.defaults.headers.put["Authorization"] = `Bearer ${token}`;
+    instance.defaults.headers.delete["Authorization"] = `Bearer ${token}`;
   }
 
   static async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {

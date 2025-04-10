@@ -21,3 +21,9 @@ export interface SignInResponse {
   password_changed_at: string;
   roles: string[];
 }
+
+export interface TokenRefreshResponse {
+  access_token: string;
+  refresh_token?: string; // May not always be returned
+  expires_in: number;
+}

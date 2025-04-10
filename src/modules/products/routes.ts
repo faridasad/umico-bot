@@ -2,6 +2,8 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import { ProductsService } from "./service";
 import { requireAuth } from "../auth/middleware";
+import { AuthService } from "../auth/service";
+import { AuthStoreService } from "../auth/store";
 
 export async function productRoutes(fastify: FastifyInstance, options: FastifyPluginOptions): Promise<void> {
   // Apply auth check to all product routes
@@ -11,6 +13,8 @@ export async function productRoutes(fastify: FastifyInstance, options: FastifyPl
   fastify.post("/load", async (request, reply) => {
     try {
       const products = await ProductsService.loadAllProducts();
+
+      console.log(products.offers.find((p) => p.id === "2326995"));
 
       return {
         success: true,
@@ -79,7 +83,7 @@ export async function productRoutes(fastify: FastifyInstance, options: FastifyPl
 
   fastify.post("/bulk-update-prices", async (request, reply) => {
     try {
-      const { adjustment, productIds } = request.body as {
+      /* const { adjustment, productIds } = request.body as {
         adjustment: number;
         productIds?: string[];
       };
@@ -103,7 +107,14 @@ export async function productRoutes(fastify: FastifyInstance, options: FastifyPl
       }
 
       // Perform bulk update
-      const result = await ProductsService.bulkUpdatePrices(adjustmentAmount, productIds);
+      const result = await ProductsService.bulkUpdatePrices(adjustmentAmount, productIds); */
+
+      const result = await ProductsService.updateProduct("2326995", {
+        retail_price: 6.48,
+      });
+
+      console.log(result);
+      
 
       return {
         success: true,
