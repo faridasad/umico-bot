@@ -14,8 +14,6 @@ export async function productRoutes(fastify: FastifyInstance, options: FastifyPl
     try {
       const products = await ProductsService.loadAllProducts();
 
-      console.log(products.offers.find((p) => p.id === "2326995"));
-
       return {
         success: true,
         message: `Loaded ${products.offers.length} products`,
@@ -83,7 +81,7 @@ export async function productRoutes(fastify: FastifyInstance, options: FastifyPl
 
   fastify.post("/bulk-update-prices", async (request, reply) => {
     try {
-      /* const { adjustment, productIds } = request.body as {
+      const { adjustment, productIds } = request.body as {
         adjustment: number;
         productIds?: string[];
       };
@@ -107,14 +105,7 @@ export async function productRoutes(fastify: FastifyInstance, options: FastifyPl
       }
 
       // Perform bulk update
-      const result = await ProductsService.bulkUpdatePrices(adjustmentAmount, productIds); */
-
-      const result = await ProductsService.updateProduct("2326995", {
-        retail_price: 6.48,
-      });
-
-      console.log(result);
-      
+      const result = await ProductsService.bulkUpdatePrices(adjustmentAmount, productIds);
 
       return {
         success: true,

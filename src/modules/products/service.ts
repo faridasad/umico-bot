@@ -131,10 +131,12 @@ export class ProductsService {
   static async bulkUpdatePrices(
     adjustment: number,
     productIds?: string[],
-    maxRetries: number = 4,
+    maxRetries: number = 3,
     retryDelay: number = 500
   ): Promise<{ success: number; failed: number; total: number; failedIds: string[] }> {
     try {
+      const start = new Date();
+
       // If no product IDs provided, use all products in the store
       const products = ProductStoreService.getOffers();
       const initialIds = productIds || products.map((p) => p.id);
@@ -224,8 +226,7 @@ export class ProductsService {
 
       console.log(`After filtering: ${idsToUpdate.length} products to update, ${skippedIds.length} products skipped, ${result.failed} products failed preliminary checks`);
 
-      const batchSize = 10;
-      const start = new Date();
+      const batchSize = 20;
       for (let batchIndex = 0; batchIndex < idsToUpdate.length; batchIndex += batchSize) {
         console.log(`Processing batch ${Math.floor(batchIndex / batchSize) + 1} of ${Math.ceil(idsToUpdate.length / batchSize)}`);
 
@@ -337,7 +338,7 @@ export class ProductsService {
               }
 
               retryCount++;
-              console.warn(`Attempt ${retryCount}/${maxRetries} failed for product ${id}:`, error);
+              console.warn(`Attempt ${retryCount}/${maxRetries} failed for product ${id}:`, error?.message);
 
               if (retryCount <= maxRetries) {
                 // Exponential backoff: wait longer between each retry
@@ -370,8 +371,7 @@ export class ProductsService {
 
       // human readable time taken to locale string
       const timeTaken = new Date().getTime() - start.getTime();
-      const timeTakenString = new Date(timeTaken).toLocaleString();
-      console.log(`Time taken: ${timeTakenString}`);
+      console.log(`Time taken: ${timeTaken} ms (${(timeTaken / 1000).toFixed(2)} seconds)`);
 
       return result;
     } catch (error) {

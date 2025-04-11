@@ -4,6 +4,7 @@ import path from "path"
 import { authRoutes } from './modules/auth/routes';
 import fastifyStatic from '@fastify/static';
 import { productRoutes } from './modules/products/routes';
+import { schedulerRoutes } from './modules/scheduler/routes';
 
 
 export function buildApp(): FastifyInstance {
@@ -23,6 +24,7 @@ export function buildApp(): FastifyInstance {
   // Register routes
   app.register(authRoutes, { prefix: '/auth' });
   app.register(productRoutes, { prefix: '/api/products' });
+  app.register(schedulerRoutes, { prefix: '/api/scheduler' });
 
   // Example of a protected route that requires authentication
   app.register(

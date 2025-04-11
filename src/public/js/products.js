@@ -15,9 +15,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setupModalEvents();
   setupBulkPriceButtons();
+  initSchedulerUI();
 
   // Check if we have products in localStorage and display them
   loadProductsFromLocalStorage();
+
+  const priceAdjustment = document.getElementById("price-adjustment");
+  if (priceAdjustment) {
+    priceAdjustment.addEventListener("change", function () {
+      updateScheduleAmountDisplay();
+      // Save settings when adjustment changes
+      saveScheduleSettings();
+    });
+  }
+
+  // Add event listeners for interval and action changes
+  const intervalInput = document.getElementById("update-interval");
+  if (intervalInput) {
+    intervalInput.addEventListener("change", saveScheduleSettings);
+  }
+
+  const radioButtons = document.getElementsByName("price-action");
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", saveScheduleSettings);
+  });
 });
 
 function setupModalEvents() {
@@ -50,77 +71,77 @@ function openUpdateModal(uuid, name, retailPrice, oldPrice, qty) {
 }
 
 function closeUpdateModal() {
-    const modal = document.getElementById('update-modal');
-    if (modal) modal.style.display = 'none';
+  const modal = document.getElementById("update-modal");
+  if (modal) modal.style.display = "none";
 }
 
 /**
  * Save the product changes
  */
 async function saveProductChanges() {
-    // Get values from form
-    const uuid = document.getElementById('modal-product-uuid').value;
-    const retailPrice = parseFloat(document.getElementById('modal-retail-price').value);
-    const oldPriceInput = document.getElementById('modal-old-price');
-    const qtyInput = document.getElementById('modal-qty');
-    
-    // Validate inputs
-    if (!uuid || isNaN(retailPrice)) {
-        showMessage('Invalid product or price', false);
-        return;
+  // Get values from form
+  const uuid = document.getElementById("modal-product-uuid").value;
+  const retailPrice = parseFloat(document.getElementById("modal-retail-price").value);
+  const oldPriceInput = document.getElementById("modal-old-price");
+  const qtyInput = document.getElementById("modal-qty");
+
+  // Validate inputs
+  if (!uuid || isNaN(retailPrice)) {
+    showMessage("Invalid product or price", false);
+    return;
+  }
+
+  // Prepare update data
+  const updateData = {
+    retail_price: retailPrice,
+  };
+
+  // Add old price if provided
+  if (oldPriceInput && oldPriceInput.value.trim() !== "") {
+    updateData.old_price = parseFloat(oldPriceInput.value);
+  }
+
+  // Add quantity if provided
+  if (qtyInput && qtyInput.value.trim() !== "") {
+    updateData.qty = parseInt(qtyInput.value);
+  }
+
+  try {
+    // Show loading
+    showLoader();
+
+    // Make API request
+    const response = await fetch(`/api/products/${uuid}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
+        // Close modal
+        closeUpdateModal();
+
+        // Refresh products
+        await fetchProducts();
+
+        showMessage("Product updated successfully", true);
+      } else {
+        showMessage(data.message || "Failed to update product", false);
+      }
+    } else {
+      showMessage("Failed to update product", false);
     }
-    
-    // Prepare update data
-    const updateData = {
-        retail_price: retailPrice
-    };
-    
-    // Add old price if provided
-    if (oldPriceInput && oldPriceInput.value.trim() !== '') {
-        updateData.old_price = parseFloat(oldPriceInput.value);
-    }
-    
-    // Add quantity if provided
-    if (qtyInput && qtyInput.value.trim() !== '') {
-        updateData.qty = parseInt(qtyInput.value);
-    }
-    
-    try {
-        // Show loading
-        showLoader();
-        
-        // Make API request
-        const response = await fetch(`/api/products/${uuid}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updateData)
-        });
-        
-        if (response.ok) {
-            const data = await response.json();
-            
-            if (data.success) {
-                // Close modal
-                closeUpdateModal();
-                
-                // Refresh products
-                await fetchProducts();
-                
-                showMessage('Product updated successfully', true);
-            } else {
-                showMessage(data.message || 'Failed to update product', false);
-            }
-        } else {
-            showMessage('Failed to update product', false);
-        }
-    } catch (error) {
-        console.error('Error updating product:', error);
-        showMessage('Error updating product', false);
-    } finally {
-        hideLoader();
-    }
+  } catch (error) {
+    console.error("Error updating product:", error);
+    showMessage("Error updating product", false);
+  } finally {
+    hideLoader();
+  }
 }
 
 /**
@@ -370,78 +391,491 @@ function hideLoader() {
 }
 
 function setupBulkPriceButtons() {
-  const increaseBtn = document.getElementById('increase-all-prices');
-  const decreaseBtn = document.getElementById('decrease-all-prices');
-  
+  const increaseBtn = document.getElementById("increase-all-prices");
+  const decreaseBtn = document.getElementById("decrease-all-prices");
+
   if (increaseBtn) {
-      increaseBtn.addEventListener('click', function() {
-          bulkUpdatePrices(true);
-      });
+    increaseBtn.addEventListener("click", function () {
+      bulkUpdatePrices(true);
+    });
   }
-  
+
   if (decreaseBtn) {
-      decreaseBtn.addEventListener('click', function() {
-          bulkUpdatePrices(false);
-      });
+    decreaseBtn.addEventListener("click", function () {
+      bulkUpdatePrices(false);
+    });
   }
 }
 
-
 async function bulkUpdatePrices(isIncrease) {
   // Get adjustment amount
-  const adjustmentInput = document.getElementById('price-adjustment');
+  const adjustmentInput = document.getElementById("price-adjustment");
   if (!adjustmentInput) return;
-  
+
   let adjustment = parseFloat(adjustmentInput.value);
   if (isNaN(adjustment)) {
-      showMessage('Please enter a valid adjustment amount', false);
-      return;
+    showMessage("Please enter a valid adjustment amount", false);
+    return;
   }
-  
+
   // Make adjustment negative if decreasing
   if (!isIncrease) {
-      adjustment = -adjustment;
+    adjustment = -adjustment;
   }
-  
+
   // Confirm with user
-  const action = isIncrease ? 'increase' : 'decrease';
+  const action = isIncrease ? "increase" : "decrease";
   const confirmMsg = `Are you sure you want to ${action} all product prices by ${Math.abs(adjustment)}?`;
-  
+
   if (!confirm(confirmMsg)) {
-      return;
+    return;
   }
-  
+
   // Show loading
   showLoader();
-  
+
   try {
-      // Make API request
-      const response = await fetch('/api/products/bulk-update-prices', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ adjustment })
-      });
-      
-      if (response.ok) {
-          const data = await response.json();
-          
-          if (data.success) {
-              // Refresh products
-              await fetchProducts();
-              
-              showMessage(data.message, true);
-          } else {
-              showMessage(data.message || 'Failed to update prices', false);
-          }
+    // Make API request
+    const response = await fetch("/api/products/bulk-update-prices", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ adjustment }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
+        // Refresh products
+        await fetchProducts();
+
+        showMessage(data.message, true);
       } else {
-          showMessage('Failed to update prices', false);
+        showMessage(data.message || "Failed to update prices", false);
       }
+    } else {
+      showMessage("Failed to update prices", false);
+    }
   } catch (error) {
-      console.error('Error updating prices:', error);
-      showMessage('Error updating prices', false);
+    console.error("Error updating prices:", error);
+    showMessage("Error updating prices", false);
   } finally {
-      hideLoader();
+    hideLoader();
+  }
+}
+
+const SCHEDULER_STATUS_CHECK_INTERVAL = 15000;
+let statusCheckInterval = null;
+let schedulePulseInterval = null;
+
+// Initialize scheduler UI
+function initSchedulerUI() {
+  // Show the status section initially hidden
+  const statusSection = document.getElementById("schedule-status");
+  if (statusSection) {
+    statusSection.style.display = "none";
+  }
+
+  loadScheduleSettings();
+
+  // Set up buttons
+  setupSchedulerButtons();
+
+  // Check initial status
+  checkScheduleStatus();
+}
+
+// Set up scheduler button handlers
+function setupSchedulerButtons() {
+  const startBtn = document.getElementById("start-schedule-btn");
+  const stopBtn = document.getElementById("stop-schedule-btn");
+
+  if (startBtn) {
+    startBtn.addEventListener("click", startSchedule);
+  }
+
+  if (stopBtn) {
+    stopBtn.addEventListener("click", stopSchedule);
+  }
+}
+
+function updateScheduleAmountDisplay() {
+  const adjustment = parseFloat(document.getElementById("price-adjustment").value) || 0.01;
+  const amountElement = document.getElementById("update-amount");
+
+  if (amountElement) {
+    amountElement.textContent = adjustment;
+  }
+}
+
+// Check the current schedule status
+async function checkScheduleStatus() {
+  try {
+    const response = await fetch("/api/scheduler/status");
+
+    if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
+        const hasActiveSchedule = data.hasActiveSchedule && data.schedule;
+        updateScheduleUI(data.schedule, hasActiveSchedule);
+
+        // Show or hide status section based on whether there's an active schedule
+        const statusSection = document.getElementById("schedule-status");
+        if (statusSection) {
+          statusSection.style.display = hasActiveSchedule ? "block" : "none";
+        }
+
+        // Start or stop regular status checks based on schedule state
+        if (hasActiveSchedule && !statusCheckInterval) {
+          statusCheckInterval = setInterval(checkScheduleStatus, SCHEDULER_STATUS_CHECK_INTERVAL);
+          startSchedulePulse();
+        } else if (!hasActiveSchedule && statusCheckInterval) {
+          clearInterval(statusCheckInterval);
+          statusCheckInterval = null;
+          stopSchedulePulse();
+        }
+      }
+    }
+  } catch (error) {
+    console.error("Error checking schedule status:", error);
+  }
+}
+
+// Start a schedule
+async function startSchedule() {
+  try {
+    // Get values from UI
+    const interval = parseInt(document.getElementById("update-interval").value) || 60;
+    const adjustment = parseFloat(document.getElementById("price-adjustment").value) || 0.01;
+
+    // Validate inputs
+    if (interval < 1 || interval > 1440) {
+      showMessage("Interval must be between 1 and 1440 minutes", false);
+      return;
+    }
+
+    if (adjustment <= 0) {
+      showMessage("Adjustment amount must be greater than zero", false);
+      return;
+    }
+
+    // Get selected action (increase or decrease)
+    let action = "increase";
+    const radioButtons = document.getElementsByName("price-action");
+    for (const radio of radioButtons) {
+      if (radio.checked) {
+        action = radio.value;
+        break;
+      }
+    }
+
+    // Confirm with user
+    if (!confirm(`Start scheduled ${action} of ${adjustment} every ${interval} minutes?\n\nThis will run until manually stopped.`)) {
+      return;
+    }
+
+    saveScheduleSettings();
+
+    // Show loading
+    showLoader();
+
+    // Send request to server
+    const response = await fetch("/api/scheduler/start", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        interval,
+        adjustment,
+        action,
+        runImmediately: true,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
+        showMessage(`Schedule started: ${data.message}`, true);
+
+        // Update schedule display
+        const amountElement = document.getElementById("update-amount");
+        const directionElement = document.getElementById("update-direction");
+
+        if (amountElement) amountElement.textContent = adjustment;
+        if (directionElement) directionElement.textContent = action;
+
+        checkScheduleStatus(); // Update UI
+      } else {
+        showMessage(data.message || "Failed to start schedule", false);
+      }
+    } else {
+      showMessage("Failed to start schedule", false);
+    }
+  } catch (error) {
+    console.error("Error starting schedule:", error);
+    showMessage("Error starting schedule", false);
+  } finally {
+    hideLoader();
+  }
+}
+
+// Stop a schedule
+async function stopSchedule() {
+  try {
+    // Confirm with user
+    if (!confirm("Stop the scheduled price updates?\n\nThis will cancel all future updates.")) {
+      return;
+    }
+
+    // Show loading
+    showLoader();
+
+    // Send request to server
+    const response = await fetch("/api/scheduler/stop", {
+      method: "POST",
+      body: JSON.stringify({}),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
+        showMessage(data.message, true);
+
+        // Hide the status section
+        const statusSection = document.getElementById("schedule-status");
+        if (statusSection) {
+          statusSection.style.display = "none";
+        }
+
+        checkScheduleStatus(); // Update UI
+      } else {
+        showMessage(data.message || "Failed to stop schedule", false);
+      }
+    } else {
+      showMessage("Failed to stop schedule", false);
+    }
+  } catch (error) {
+    console.error("Error stopping schedule:", error);
+    showMessage("Error stopping schedule", false);
+  } finally {
+    hideLoader();
+  }
+}
+
+// Update the UI based on schedule status
+function updateScheduleUI(schedule, isActive) {
+  const startBtn = document.getElementById("start-schedule-btn");
+  const stopBtn = document.getElementById("stop-schedule-btn");
+  const statusText = document.getElementById("schedule-status-text");
+  const nextUpdateEl = document.getElementById("next-update-time");
+  const lastUpdateEl = document.getElementById("last-update-time");
+  const bulkUpdateBtns = [document.getElementById("increase-all-prices"), document.getElementById("decrease-all-prices")];
+
+  // Update button states
+  if (startBtn) startBtn.disabled = isActive;
+  if (stopBtn) stopBtn.disabled = !isActive;
+
+  // Update bulk update buttons based on schedule state
+  bulkUpdateBtns.forEach((btn) => {
+    if (btn) btn.disabled = isActive;
+  });
+
+  // Update status text and timing information
+  if (isActive && schedule) {
+    // Status text
+    if (statusText) {
+      statusText.textContent = schedule.isCurrentlyExecuting ? `Active (Updating Now)` : `Active (${schedule.interval} min intervals)`;
+      statusText.style.color = "#28a745";
+    }
+
+    // Next update time
+    if (nextUpdateEl && schedule.nextRunTime) {
+      const nextTime = new Date(schedule.nextRunTime);
+      nextUpdateEl.textContent = formatDateTime(nextTime);
+
+      // Start countdown if not currently executing
+      if (!schedule.isCurrentlyExecuting) {
+        startCountdown(nextUpdateEl, nextTime);
+      } else {
+        nextUpdateEl.textContent += " (update in progress)";
+      }
+    } else if (nextUpdateEl) {
+      nextUpdateEl.textContent = "Calculating after current update completes...";
+    }
+
+    // Last update time
+    if (lastUpdateEl) {
+      if (schedule.lastRunTime) {
+        lastUpdateEl.textContent = formatDateTime(new Date(schedule.lastRunTime));
+      } else {
+        lastUpdateEl.textContent = "First update in progress...";
+      }
+    }
+  } else {
+    // Reset all fields for inactive state
+    if (statusText) {
+      statusText.textContent = "Not active";
+      statusText.style.color = "#6c757d";
+    }
+    if (nextUpdateEl) nextUpdateEl.textContent = "-";
+    if (lastUpdateEl) lastUpdateEl.textContent = "Never";
+  }
+}
+
+// Format date and time nicely
+function formatDateTime(date) {
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + " on " + date.toLocaleDateString([], { month: "short", day: "numeric" });
+}
+
+// Start a countdown display
+let countdownInterval = null;
+function startCountdown(element, targetTime) {
+  // Clear any existing countdown
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+  }
+
+  // Update immediately
+  updateCountdown();
+
+  // Update every second
+  countdownInterval = setInterval(updateCountdown, 1000);
+
+  function updateCountdown() {
+    const now = new Date();
+    const timeDiff = new Date(targetTime).getTime() - now.getTime();
+
+    if (timeDiff <= 0) {
+      // Time has passed
+      element.textContent = formatDateTime(new Date(targetTime)) + " (due now)";
+      clearInterval(countdownInterval);
+
+      // Check status again after a short delay to get updated time
+      setTimeout(checkScheduleStatus, 5000);
+      return;
+    }
+
+    // Calculate remaining time
+    const minutes = Math.floor(timeDiff / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+    // Display countdown with formatted target time
+    element.textContent = formatDateTime(new Date(targetTime)) + ` (in ${minutes}m ${seconds}s)`;
+  }
+}
+
+// Start pulse animation for active schedule
+function startSchedulePulse() {
+  const indicator = document.getElementById("schedule-indicator");
+  if (!indicator) return;
+
+  // Show indicator
+  indicator.style.display = "inline-block";
+
+  // Stop any existing pulse interval
+  if (schedulePulseInterval) {
+    clearInterval(schedulePulseInterval);
+  }
+
+  // Set up pulse animation
+  let pulseState = true;
+  schedulePulseInterval = setInterval(() => {
+    pulseState = !pulseState;
+    indicator.style.opacity = pulseState ? "1" : "0.3";
+  }, 1000);
+}
+
+// Stop pulse animation
+function stopSchedulePulse() {
+  if (schedulePulseInterval) {
+    clearInterval(schedulePulseInterval);
+    schedulePulseInterval = null;
+  }
+
+  const indicator = document.getElementById("schedule-indicator");
+  if (indicator) {
+    indicator.style.display = "none";
+  }
+}
+
+const SCHEDULE_SETTINGS_KEY = "price_schedule_settings";
+
+// Save schedule settings to localStorage
+function saveScheduleSettings() {
+  try {
+    const interval = parseInt(document.getElementById("update-interval").value) || 60;
+    const adjustment = parseFloat(document.getElementById("price-adjustment").value) || 0.01;
+
+    // Get selected action (increase or decrease)
+    let action = "increase";
+    const radioButtons = document.getElementsByName("price-action");
+    for (const radio of radioButtons) {
+      if (radio.checked) {
+        action = radio.value;
+        break;
+      }
+    }
+
+    // Create settings object
+    const settings = {
+      interval,
+      adjustment,
+      action,
+      lastSaved: new Date().toISOString(),
+    };
+
+    // Store in localStorage
+    localStorage.setItem(SCHEDULE_SETTINGS_KEY, JSON.stringify(settings));
+    console.log("Saved schedule settings to localStorage:", settings);
+  } catch (error) {
+    console.error("Error saving settings to localStorage:", error);
+  }
+}
+
+// Load schedule settings from localStorage
+function loadScheduleSettings() {
+  try {
+    const savedSettings = localStorage.getItem(SCHEDULE_SETTINGS_KEY);
+    if (!savedSettings) return false;
+
+    const settings = JSON.parse(savedSettings);
+    console.log("Loaded schedule settings from localStorage:", settings);
+
+    // Apply interval
+    const intervalInput = document.getElementById("update-interval");
+    if (intervalInput && settings.interval) {
+      intervalInput.value = settings.interval;
+    }
+
+    // Apply adjustment amount
+    const adjustmentInput = document.getElementById("price-adjustment");
+    if (adjustmentInput && settings.adjustment) {
+      adjustmentInput.value = settings.adjustment;
+    }
+
+    // Apply action (increase/decrease)
+    if (settings.action) {
+      const radioButtons = document.getElementsByName("price-action");
+      for (const radio of radioButtons) {
+        if (radio.value === settings.action) {
+          radio.checked = true;
+          break;
+        }
+      }
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error loading settings from localStorage:", error);
+    return false;
   }
 }

@@ -43,6 +43,47 @@
           <p style="font-size: 12px; color: #666; margin-top: 8px">This will update all displayed products. The operation might take some time if you have many products.</p>
         </div>
 
+        <div style="background-color: #f0f8ff; padding: 15px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #b8d8fb">
+          <h3 style="margin-top: 0">Scheduled Price Updates</h3>
+
+          <div id="schedule-setup" style="margin-top: 10px">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <label for="update-interval" style="margin-bottom: 0">Minutes between updates:</label>
+              <input type="number" id="update-interval" min="1" max="1440" step="1" value="60" style="width: 80px; padding: 5px" />
+            </div>
+
+            <div style="margin-top: 10px">
+              <label style="margin-right: 15px"> <input type="radio" name="price-action" value="increase" checked /> Increase prices </label>
+              <label> <input type="radio" name="price-action" value="decrease" /> Decrease prices </label>
+            </div>
+
+            <div style="margin-top: 15px">
+              <button id="start-schedule-btn" class="btn btn-primary">Start Schedule</button>
+              <button id="stop-schedule-btn" class="btn btn-danger" style="margin-left: 10px" disabled>Stop Schedule</button>
+            </div>
+          </div>
+
+          <div id="schedule-status" style="margin-top: 15px; padding: 10px; border-radius: 4px; background-color: #e9f5ff; display: none">
+            <div style="display: flex; justify-content: space-between; align-items: center">
+              <p style="margin: 0"><strong>Status:</strong> <span id="schedule-status-text">Not active</span></p>
+              <span id="schedule-indicator" style="display: none; width: 10px; height: 10px; border-radius: 50%; background-color: #28a745"></span>
+            </div>
+
+            <p style="margin: 8px 0 0 0"><strong>Last Update:</strong> <span id="last-update-time">Never</span></p>
+
+            <p style="margin: 8px 0 0 0"><strong>Next Update:</strong> <span id="next-update-time">-</span></p>
+
+            <p style="margin: 8px 0 0 0"><strong>Update Size:</strong> <span id="update-amount">0.01</span> (<span id="update-direction">increase</span>)</p>
+          </div>
+
+          <div style="margin-top: 10px; padding: 8px; background-color: #fff8e1; border-radius: 4px; font-size: 13px">
+            <p style="margin: 0">
+              <strong>Note:</strong> When a schedule is active, bulk price updates are disabled. The next update will occur after the specified minutes have passed from the completion of the previous
+              update.
+            </p>
+          </div>
+        </div>
+
         <div style="overflow-x: auto">
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px">
             <thead>
