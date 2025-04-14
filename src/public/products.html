@@ -6,6 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Management - Business Store Control Panel</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      .price-limit-changed {
+        background-color: #fff3cd;
+      }
+
+      .sort-icon {
+        font-size: 0.8em;
+        display: inline-block;
+        width: 10px;
+      }
+
+      .price-limit-cell {
+        position: relative;
+      }
+
+      .price-limit-input {
+        width: 100%;
+        padding: 6px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .quick-actions {
+        position: absolute;
+        display: none;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 5;
+        right: 10px;
+        top: 7px;
+      }
+
+      .price-limit-cell:hover .quick-actions {
+        display: flex;
+      }
+
+      .quick-action-btn {
+        background: none;
+        border: none;
+        padding: 3px;
+        margin: 0 2px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #007bff;
+      }
+
+      .quick-action-btn:hover {
+        color: #0056b3;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -57,7 +110,7 @@
               <label> <input type="radio" name="price-action" value="decrease" /> Decrease prices </label>
             </div>
 
-            <div style="margin-top: 15px">
+            <div style="margin-top: 15px; display: flex; align-items: center;">
               <button id="start-schedule-btn" class="btn btn-primary">Start Schedule</button>
               <button id="stop-schedule-btn" class="btn btn-danger" style="margin-left: 10px" disabled>Stop Schedule</button>
             </div>
@@ -84,7 +137,7 @@
           </div>
         </div>
 
-        <div style="overflow-x: auto">
+        <!-- <div style="overflow-x: auto">
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px">
             <thead>
               <tr>
@@ -92,7 +145,7 @@
                 <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Name (AZ)</th>
                 <th style="border: 1px solid #ddd; padding: 8px; text-align: left">SKU/MPN</th>
                 <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Price</th>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Old Price</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Min Price Limit</th>
                 <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Stock</th>
                 <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Category</th>
                 <th style="border: 1px solid #ddd; padding: 8px; text-align: left">Actions</th>
@@ -104,42 +157,112 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
       </div>
     </div>
 
-    <!-- Price Update Modal -->
+    <!-- Product Settings Modal -->
     <div style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 100" id="update-modal">
       <div style="background-color: white; width: 90%; max-width: 500px; margin: 100px auto; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px">
-          <h2 style="margin: 0">Update Product</h2>
+          <h2 style="margin: 0">Product Price Limits</h2>
           <button style="background: none; border: none; font-size: 24px; cursor: pointer" id="close-modal">&times;</button>
         </div>
 
         <div style="margin-bottom: 15px">
           <p><strong>Product:</strong> <span id="modal-product-name"></span></p>
+          <p><strong>Current Price:</strong> <span id="modal-current-price"></span></p>
         </div>
 
         <div style="margin-bottom: 15px">
-          <label for="modal-retail-price" style="display: block; margin-bottom: 5px">Retail Price:</label>
-          <input type="number" id="modal-retail-price" step="0.01" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
+          <label for="modal-min-price-limit" style="display: block; margin-bottom: 5px">Minimum Price Limit:</label>
+          <input type="number" id="modal-min-price-limit" step="0.01" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
+          <small style="color: #666; display: block; margin-top: 5px">Products won't be updated below this price during bulk price operations</small>
         </div>
 
         <div style="margin-bottom: 15px">
-          <label for="modal-old-price" style="display: block; margin-bottom: 5px">Old Price:</label>
-          <input type="number" id="modal-old-price" step="0.01" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
-        </div>
-
-        <div style="margin-bottom: 15px">
-          <label for="modal-qty" style="display: block; margin-bottom: 5px">Quantity:</label>
-          <input type="number" id="modal-qty" step="1" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
+          <button id="default-limit-btn" class="btn btn-secondary" style="font-size: 0.9em">Set to 90% of Current Price</button>
         </div>
 
         <input type="hidden" id="modal-product-uuid" />
+        <input type="hidden" id="modal-product-price" />
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px">
           <button style="padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-cancel">Cancel</button>
-          <button style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-save">Save Changes</button>
+          <button style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-save">Save Limit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- View JSON File Modal -->
+    <div style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 100" id="price-limits-modal">
+      <div
+        style="
+          background-color: white;
+          width: 90%;
+          max-width: 1000px;
+          margin: 50px auto;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          height: 80%;
+          display: flex;
+          flex-direction: column;
+        "
+      >
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px">
+          <h2 style="margin: 0">Manage All Price Limits</h2>
+          <button style="background: none; border: none; font-size: 24px; cursor: pointer" id="close-price-limits-modal">&times;</button>
+        </div>
+
+        <div style="margin-bottom: 15px">
+          <div style="display: flex; align-items: center; margin-bottom: 10px; gap: 10px">
+            <input type="text" id="price-limits-search" placeholder="Search by name or ID..." style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
+            <select id="price-limits-filter" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px">
+              <option value="all">All Products</option>
+              <option value="set">With Price Limits</option>
+              <option value="unset">Without Price Limits</option>
+            </select>
+            <button id="batch-update-90-percent" class="btn btn-secondary" style="white-space: nowrap">Set All to 90% of Price</button>
+            <button id="save-all-price-limits" class="btn btn-primary">Save All Changes</button>
+          </div>
+
+          <div style="background-color: #f8f9fa; padding: 10px; border-radius: 4px; font-size: 0.9em; margin-bottom: 10px">
+            <p style="margin: 0">
+              <strong>Tip:</strong> Modify multiple limits at once by editing the values in the table below. Changes are highlighted and will be saved when you click "Save All Changes".
+            </p>
+          </div>
+        </div>
+
+        <div style="flex-grow: 1; overflow: auto; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px">
+          <table style="width: 100%; border-collapse: collapse; min-width: 600px">
+            <thead>
+              <tr style="background-color: #f8f9fa; position: sticky; top: 0; z-index: 10">
+                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="id">ID <span class="sort-icon">↓</span></th>
+                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="name">Product Name <span class="sort-icon"></span></th>
+                <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="price">Current Price <span class="sort-icon"></span></th>
+                <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="limit">Min Price Limit <span class="sort-icon"></span></th>
+                <th style="padding: 10px; text-align: center; border-bottom: 2px solid #ddd">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="price-limits-table-body">
+              <tr>
+                <td colspan="5" style="text-align: center; padding: 20px">Loading products...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <div>
+            <span id="price-limits-status" style="color: #6c757d; font-size: 0.9em">0 products loaded</span>
+          </div>
+          <div>
+            <button style="padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer" id="price-limits-modal-cancel">Cancel</button>
+            <button style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px" id="price-limits-modal-save">
+              Save Changes
+            </button>
+          </div>
         </div>
       </div>
     </div>

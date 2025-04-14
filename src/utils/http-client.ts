@@ -10,7 +10,6 @@ export class HttpClient {
     if (!this.instance) {
       this.instance = axios.create({
         baseURL: config.api.baseUrl,
-        timeout: 30000,
       });
 
       // Add request interceptor to dynamically get auth headers for each request

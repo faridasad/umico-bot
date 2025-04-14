@@ -2,6 +2,7 @@
 // Storage keys
 const PRODUCT_OFFERS_KEY = "product_offers";
 const PRODUCT_META_KEY = "product_meta";
+const PRICE_LIMITS_KEY = "price_limits";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Check auth status
@@ -17,8 +18,14 @@ document.addEventListener("DOMContentLoaded", function () {
   setupBulkPriceButtons();
   initSchedulerUI();
 
+  // Add view JSON button to the menu
+  addViewJsonButton();
+
   // Check if we have products in localStorage and display them
   loadProductsFromLocalStorage();
+
+  // Load price limits
+  loadPriceLimits();
 
   const priceAdjustment = document.getElementById("price-adjustment");
   if (priceAdjustment) {
@@ -41,30 +48,165 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Add View JSON button to the UI
+function addViewJsonButton() {
+  const actionContainer = document.querySelector(".product-actions");
+  if (actionContainer) {
+    const viewJsonBtn = document.createElement("button");
+    viewJsonBtn.id = "view-json-btn";
+    viewJsonBtn.className = "btn btn-secondary";
+    viewJsonBtn.style.marginLeft = "10px";
+    viewJsonBtn.textContent = "View/Edit Price Limits JSON";
+    viewJsonBtn.addEventListener("click", openJsonModal);
+
+    actionContainer.appendChild(viewJsonBtn);
+  }
+}
+
+// JSON Modal Functions
+function openJsonModal() {
+  // Fetch the current JSON file content
+  fetch("/api/products/min-price-limits")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        // Format the JSON nicely
+        const jsonContent = JSON.stringify(data.limits, null, 2);
+
+        // Set the content in the textarea
+        const textarea = document.getElementById("json-content");
+        if (textarea) {
+          textarea.value = jsonContent;
+        }
+
+        // Show the modal
+        const modal = document.getElementById("json-modal");
+        if (modal) {
+          modal.style.display = "block";
+        }
+      } else {
+        showMessage("Failed to load price limits data", false);
+      }
+    })
+    .catch((error) => {
+      console.error("Error loading JSON:", error);
+      showMessage("Error loading price limits data", false);
+    });
+}
+
+function closeJsonModal() {
+  const modal = document.getElementById("json-modal");
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
+
+function saveJsonChanges() {
+  const textarea = document.getElementById("json-content");
+  if (!textarea) return;
+
+  try {
+    // Parse the JSON to validate it
+    const jsonData = JSON.parse(textarea.value);
+
+    // TODO: Add endpoint to save the entire JSON file
+    // For now, we'll show a message
+    showMessage("JSON editing capability is coming soon!", true);
+    closeJsonModal();
+  } catch (error) {
+    showMessage("Invalid JSON format. Please check your edits.", false);
+  }
+}
+
+// Load price limits from API and store in localStorage
+async function loadPriceLimits() {
+  try {
+    const response = await fetch("/api/products/min-price-limits");
+
+    if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
+        // Store the price limits in localStorage
+        localStorage.setItem(PRICE_LIMITS_KEY, JSON.stringify(data.limits));
+        console.log("Price limits loaded and stored in localStorage");
+      }
+    }
+  } catch (error) {
+    console.error("Error loading price limits:", error);
+  }
+}
+
+// Get price limit for a product from localStorage
+function getPriceLimit(productId) {
+  try {
+    const limitsJson = localStorage.getItem(PRICE_LIMITS_KEY);
+    if (limitsJson) {
+      const limits = JSON.parse(limitsJson);
+      return limits[productId] || null;
+    }
+  } catch (error) {
+    console.error("Error getting price limit from localStorage:", error);
+  }
+  return null;
+}
+
 function setupModalEvents() {
   // Close modal buttons
   document.getElementById("close-modal")?.addEventListener("click", closeUpdateModal);
   document.getElementById("modal-cancel")?.addEventListener("click", closeUpdateModal);
 
+  // Close JSON modal buttons
+  document.getElementById("close-json-modal")?.addEventListener("click", closeJsonModal);
+  document.getElementById("json-modal-cancel")?.addEventListener("click", closeJsonModal);
+  document.getElementById("json-modal-save")?.addEventListener("click", saveJsonChanges);
+
   // Save changes button
-  document.getElementById("modal-save")?.addEventListener("click", saveProductChanges);
+  document.getElementById("modal-save")?.addEventListener("click", saveMinPriceLimit);
+
+  // Set default limit button
+  document.getElementById("default-limit-btn")?.addEventListener("click", setDefaultMinPriceLimit);
+}
+
+function setDefaultMinPriceLimit() {
+  const currentPriceEl = document.getElementById("modal-product-price");
+  const minPriceLimitInput = document.getElementById("modal-min-price-limit");
+
+  if (currentPriceEl && minPriceLimitInput) {
+    const currentPrice = parseFloat(currentPriceEl.value);
+    if (!isNaN(currentPrice)) {
+      // Set to 90% of current price
+      const defaultLimit = Math.round(currentPrice * 0.9 * 100) / 100; // Round to 2 decimal places
+      minPriceLimitInput.value = defaultLimit.toFixed(2);
+    }
+  }
 }
 
 function openUpdateModal(uuid, name, retailPrice, oldPrice, qty) {
   // Get modal elements
   const modal = document.getElementById("update-modal");
   const productNameEl = document.getElementById("modal-product-name");
-  const retailPriceInput = document.getElementById("modal-retail-price");
-  const oldPriceInput = document.getElementById("modal-old-price");
-  const qtyInput = document.getElementById("modal-qty");
+  const currentPriceEl = document.getElementById("modal-current-price");
+  const minPriceLimitInput = document.getElementById("modal-min-price-limit");
   const uuidInput = document.getElementById("modal-product-uuid");
+  const priceInput = document.getElementById("modal-product-price");
+
+  // Get the current min price limit
+  const currentLimit = getPriceLimit(uuid);
 
   // Set values
   if (productNameEl) productNameEl.textContent = name;
-  if (retailPriceInput) retailPriceInput.value = retailPrice.toFixed(2);
-  if (oldPriceInput) oldPriceInput.value = oldPrice > 0 ? oldPrice.toFixed(2) : "";
-  if (qtyInput) qtyInput.value = qty.toString();
+  if (currentPriceEl) currentPriceEl.textContent = retailPrice.toFixed(2);
+  if (minPriceLimitInput) {
+    if (currentLimit !== null) {
+      minPriceLimitInput.value = currentLimit.toFixed(2);
+    } else {
+      // Default to 90% of current price if no limit is set
+      minPriceLimitInput.value = (retailPrice * 0.9).toFixed(2);
+    }
+  }
   if (uuidInput) uuidInput.value = uuid;
+  if (priceInput) priceInput.value = retailPrice.toString();
 
   // Show modal
   if (modal) modal.style.display = "block";
@@ -76,34 +218,17 @@ function closeUpdateModal() {
 }
 
 /**
- * Save the product changes
+ * Save the minimum price limit
  */
-async function saveProductChanges() {
+async function saveMinPriceLimit() {
   // Get values from form
   const uuid = document.getElementById("modal-product-uuid").value;
-  const retailPrice = parseFloat(document.getElementById("modal-retail-price").value);
-  const oldPriceInput = document.getElementById("modal-old-price");
-  const qtyInput = document.getElementById("modal-qty");
+  const minPriceLimit = parseFloat(document.getElementById("modal-min-price-limit").value);
 
   // Validate inputs
-  if (!uuid || isNaN(retailPrice)) {
-    showMessage("Invalid product or price", false);
+  if (!uuid || isNaN(minPriceLimit) || minPriceLimit < 0) {
+    showMessage("Invalid product or price limit", false);
     return;
-  }
-
-  // Prepare update data
-  const updateData = {
-    retail_price: retailPrice,
-  };
-
-  // Add old price if provided
-  if (oldPriceInput && oldPriceInput.value.trim() !== "") {
-    updateData.old_price = parseFloat(oldPriceInput.value);
-  }
-
-  // Add quantity if provided
-  if (qtyInput && qtyInput.value.trim() !== "") {
-    updateData.qty = parseInt(qtyInput.value);
   }
 
   try {
@@ -111,12 +236,12 @@ async function saveProductChanges() {
     showLoader();
 
     // Make API request
-    const response = await fetch(`/api/products/${uuid}`, {
+    const response = await fetch(`/api/products/min-price-limit/${uuid}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updateData),
+      body: JSON.stringify({ minimumPriceLimit: minPriceLimit }),
     });
 
     if (response.ok) {
@@ -126,21 +251,41 @@ async function saveProductChanges() {
         // Close modal
         closeUpdateModal();
 
-        // Refresh products
+        // Update price limit in localStorage
+        updateLocalPriceLimit(uuid, minPriceLimit);
+
+        // Refresh products table to show updated limit
         await fetchProducts();
 
-        showMessage("Product updated successfully", true);
+        showMessage("Minimum price limit updated successfully", true);
       } else {
-        showMessage(data.message || "Failed to update product", false);
+        showMessage(data.message || "Failed to update minimum price limit", false);
       }
     } else {
-      showMessage("Failed to update product", false);
+      showMessage("Failed to update minimum price limit", false);
     }
   } catch (error) {
-    console.error("Error updating product:", error);
-    showMessage("Error updating product", false);
+    console.error("Error updating minimum price limit:", error);
+    showMessage("Error updating minimum price limit", false);
   } finally {
     hideLoader();
+  }
+}
+
+// Update price limit in localStorage
+function updateLocalPriceLimit(productId, limit) {
+  try {
+    const limitsJson = localStorage.getItem(PRICE_LIMITS_KEY);
+    let limits = {};
+
+    if (limitsJson) {
+      limits = JSON.parse(limitsJson);
+    }
+
+    limits[productId] = limit;
+    localStorage.setItem(PRICE_LIMITS_KEY, JSON.stringify(limits));
+  } catch (error) {
+    console.error("Error updating price limit in localStorage:", error);
   }
 }
 
@@ -234,6 +379,9 @@ async function loadAllProducts() {
         // After loading, fetch products
         fetchProducts();
         showMessage(`Successfully loaded ${data.totalProducts} products`, true);
+
+        // Also refresh price limits
+        loadPriceLimits();
       } else {
         showMessage(data.message || "Failed to load products", false);
       }
@@ -292,36 +440,43 @@ function renderProductsTable(products) {
 
   if (products.length === 0) {
     tableBody.innerHTML = `
-          <tr>
-              <td colspan="8" style="text-align: center; padding: 20px;">No products found.</td>
-          </tr>
-      `;
+      <tr>
+        <td colspan="8" style="text-align: center; padding: 20px;">No products found.</td>
+      </tr>
+    `;
     return;
   }
+
+  // Load price limits from localStorage
+  const limitsJson = localStorage.getItem(PRICE_LIMITS_KEY);
+  const priceLimits = limitsJson ? JSON.parse(limitsJson) : {};
 
   // Add product rows
   products.forEach((product) => {
     const attributes = product.attributes;
+    const minPriceLimit = priceLimits[product.id] || null;
 
     const row = document.createElement("tr");
     row.innerHTML = `
-          <td style="border: 1px solid #ddd; padding: 8px;">${product.id}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">${attributes.product.name_az}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">${attributes.mpn || "N/A"}</td>
-          <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">${attributes.retail_price.toFixed(2)}</td>
-          <td style="border: 1px solid #ddd; padding: 8px; text-decoration: line-through;">${attributes.old_price ? attributes.old_price.toFixed(2) : "-"}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">${attributes.qty}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">${attributes.product.category_name_az}</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">
-              <button 
-                  class="btn btn-primary" 
-                  style="padding: 5px 10px; font-size: 14px;"
-                  onclick="openUpdateModal('${product.id}', '${attributes.product.name_az.replace(/'/g, "\\'")}', ${attributes.retail_price}, ${attributes.old_price || 0}, ${attributes.qty})"
-              >
-                  Update Price
-              </button>
-          </td>
-      `;
+      <td style="border: 1px solid #ddd; padding: 8px;">${product.id}</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">${attributes.product.name_az}</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">${attributes.mpn || "N/A"}</td>
+      <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">${attributes.retail_price.toFixed(2)}</td>
+      <td style="border: 1px solid #ddd; padding: 8px; ${minPriceLimit ? "color: #28a745; font-weight: bold;" : "color: #dc3545;"}">
+        ${minPriceLimit ? minPriceLimit.toFixed(2) : "Not set"}
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;">${attributes.qty}</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">${attributes.product.category_name_az}</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <button 
+          class="btn btn-primary" 
+          style="padding: 5px 10px; font-size: 14px;"
+          onclick="openUpdateModal('${product.id}', '${attributes.product.name_az.replace(/'/g, "\\'")}', ${attributes.retail_price}, ${attributes.old_price || 0}, ${attributes.qty})"
+        >
+          Set Price Limit
+        </button>
+      </td>
+    `;
 
     tableBody.appendChild(row);
   });
@@ -425,7 +580,7 @@ async function bulkUpdatePrices(isIncrease) {
 
   // Confirm with user
   const action = isIncrease ? "increase" : "decrease";
-  const confirmMsg = `Are you sure you want to ${action} all product prices by ${Math.abs(adjustment)}?`;
+  const confirmMsg = `Are you sure you want to ${action} all product prices by ${Math.abs(adjustment)}? Products with price limits won't go below their minimum price.`;
 
   if (!confirm(confirmMsg)) {
     return;
@@ -451,7 +606,13 @@ async function bulkUpdatePrices(isIncrease) {
         // Refresh products
         await fetchProducts();
 
-        showMessage(data.message, true);
+        // Detailed message including below-limit information
+        let message = data.message;
+        if (data.result && data.result.belowLimit > 0) {
+          message += ` (${data.result.belowLimit} products skipped due to price limits)`;
+        }
+
+        showMessage(message, true);
       } else {
         showMessage(data.message || "Failed to update prices", false);
       }
@@ -573,7 +734,7 @@ async function startSchedule() {
     }
 
     // Confirm with user
-    if (!confirm(`Start scheduled ${action} of ${adjustment} every ${interval} minutes?\n\nThis will run until manually stopped.`)) {
+    if (!confirm(`Start scheduled ${action} of ${adjustment} every ${interval} minutes?\n\nThis will run until manually stopped. Products with price limits won't go below their minimum price.`)) {
       return;
     }
 
@@ -878,4 +1039,593 @@ function loadScheduleSettings() {
     console.error("Error loading settings from localStorage:", error);
     return false;
   }
+}
+
+// Add these functions to products.js
+
+// Global variables for price limits table
+let allProducts = [];
+let priceLimitsTableData = [];
+let currentSortField = "id";
+let currentSortDirection = "asc";
+let currentFilter = "all";
+let searchTerm = "";
+let changedPriceLimits = new Map(); // Stores changes made in the table
+
+// Replace the view JSON button with a Price Limits Table button
+function addViewJsonButton() {
+  const actionContainer = document.querySelector(".product-actions");
+  if (actionContainer) {
+    const viewPriceLimitsBtn = document.createElement("button");
+    viewPriceLimitsBtn.id = "view-price-limits-btn";
+    viewPriceLimitsBtn.className = "btn btn-secondary";
+    viewPriceLimitsBtn.style.marginLeft = "10px";
+    viewPriceLimitsBtn.textContent = "Manage All Price Limits";
+    viewPriceLimitsBtn.addEventListener("click", openPriceLimitsModal);
+
+    actionContainer.appendChild(viewPriceLimitsBtn);
+  }
+}
+
+// Open the price limits modal
+function openPriceLimitsModal() {
+  // Start loading the data
+  showLoader();
+
+  // Reset changes tracking
+  changedPriceLimits = new Map();
+
+  // Get products from localStorage or fetch if needed
+  const offersJson = localStorage.getItem(PRODUCT_OFFERS_KEY);
+  const limitsJson = localStorage.getItem(PRICE_LIMITS_KEY);
+
+  // Parse the data
+  try {
+    allProducts = offersJson ? JSON.parse(offersJson) : [];
+    const priceLimits = limitsJson ? JSON.parse(limitsJson) : {};
+
+    // Prepare data for the table
+    priceLimitsTableData = allProducts.map((product) => {
+      const attributes = product.attributes;
+      return {
+        id: product.id,
+        name: attributes.product.name_az,
+        price: attributes.retail_price,
+        limit: priceLimits[product.id] || null,
+        originalLimit: priceLimits[product.id] || null, // Keep track of original value
+      };
+    });
+
+    // Set default sort
+    currentSortField = "id";
+    currentSortDirection = "asc";
+
+    // Render the table
+    renderPriceLimitsTable();
+
+    // Show the modal
+    const modal = document.getElementById("price-limits-modal");
+    if (modal) {
+      modal.style.display = "block";
+    }
+
+    // Update status
+    updatePriceLimitsStatus();
+
+    // Set up sort event listeners
+    setupSortListeners();
+
+    // Set up search and filter
+    setupSearchAndFilter();
+
+    // Add event listeners for batch actions
+    setupBatchActions();
+  } catch (error) {
+    console.error("Error loading data for price limits table:", error);
+    showMessage("Error loading price limits data", false);
+  } finally {
+    hideLoader();
+  }
+}
+
+// Close the price limits modal
+function closePriceLimitsModal() {
+  const modal = document.getElementById("price-limits-modal");
+  if (modal) {
+    modal.style.display = "none";
+  }
+
+  // Check if there are unsaved changes
+  if (changedPriceLimits.size > 0) {
+    if (confirm("You have unsaved changes to price limits. Discard these changes?")) {
+      changedPriceLimits = new Map();
+    } else {
+      // Reopen modal
+      modal.style.display = "block";
+      return;
+    }
+  }
+}
+
+// Render the price limits table with current sorting and filtering
+function renderPriceLimitsTable() {
+  const tableBody = document.getElementById("price-limits-table-body");
+  if (!tableBody) return;
+
+  // Clear the table
+  tableBody.innerHTML = "";
+
+  // Filter and sort the data
+  let filteredData = priceLimitsTableData;
+
+  // Apply search filter
+  if (searchTerm) {
+    const term = searchTerm.toLowerCase();
+    filteredData = filteredData.filter((item) => item.id.toLowerCase().includes(term) || item.name.toLowerCase().includes(term));
+  }
+
+  // Apply category filter
+  if (currentFilter === "set") {
+    filteredData = filteredData.filter((item) => item.limit !== null);
+  } else if (currentFilter === "unset") {
+    filteredData = filteredData.filter((item) => item.limit === null);
+  }
+
+  // Sort the data
+  filteredData.sort((a, b) => {
+    let valueA = a[currentSortField];
+    let valueB = b[currentSortField];
+
+    // Handle nulls for sorting
+    if (valueA === null && valueB !== null) return 1;
+    if (valueA !== null && valueB === null) return -1;
+    if (valueA === null && valueB === null) return 0;
+
+    // String comparison for text fields
+    if (currentSortField === "name" || currentSortField === "id") {
+      valueA = String(valueA).toLowerCase();
+      valueB = String(valueB).toLowerCase();
+    }
+
+    // Compare based on direction
+    const result = valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
+    return currentSortDirection === "asc" ? result : -result;
+  });
+
+  // If no results
+  if (filteredData.length === 0) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align: center; padding: 20px;">
+          No products found matching your filters.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  // Render each row
+  filteredData.forEach((item) => {
+    const row = document.createElement("tr");
+
+    // Check if this item has been changed
+    const hasChanged = changedPriceLimits.has(item.id);
+    if (hasChanged) {
+      row.classList.add("price-limit-changed");
+    }
+
+    // Format the current price with 2 decimal places
+    const formattedPrice = item.price.toFixed(2);
+
+    // Default limit value (90% of price)
+    const defaultLimit = (item.price * 0.9).toFixed(2);
+
+    // Current limit (either from original or changed)
+    const currentLimit = hasChanged ? changedPriceLimits.get(item.id) : item.limit;
+
+    row.innerHTML = `
+      <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">${item.id}</td>
+      <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;" title="${item.name}">${item.name.length > 40 ? item.name.substring(0, 40) + "..." : item.name}</td>
+      <td style="padding: 10px; text-align: right; border-bottom: 1px solid #ddd;">${formattedPrice}</td>
+      <td class="price-limit-cell" style="padding: 10px; text-align: right; border-bottom: 1px solid #ddd; position: relative;">
+        <input 
+          type="number" 
+          class="price-limit-input" 
+          data-product-id="${item.id}"
+          value="${currentLimit !== null ? currentLimit : ""}" 
+          placeholder="Not set"
+          step="0.01"
+          min="0"
+        />
+        <div class="quick-actions">
+          <button class="quick-action-btn set-default-limit" data-product-id="${item.id}" data-default="${defaultLimit}">90%</button>
+          <button class="quick-action-btn clear-limit" data-product-id="${item.id}">Clear</button>
+        </div>
+      </td>
+      <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">
+        <button 
+          class="btn btn-sm btn-primary save-single-limit" 
+          data-product-id="${item.id}" 
+          style="padding: 3px 8px; font-size: 12px;"
+        >
+          Save
+        </button>
+      </td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+
+  // Add listeners to inputs
+  setupInputListeners();
+
+  // Add listeners to quick action buttons
+  setupQuickActionListeners();
+
+  // Add listeners to save buttons
+  setupSaveSingleListeners();
+}
+
+// Set up listeners for the input fields
+function setupInputListeners() {
+  const inputs = document.querySelectorAll(".price-limit-input");
+  inputs.forEach((input) => {
+    input.addEventListener("change", function () {
+      const productId = this.dataset.productId;
+      const newValue = this.value.trim() === "" ? null : parseFloat(this.value);
+
+      // Get the relevant item
+      const item = priceLimitsTableData.find((p) => p.id === productId);
+
+      // Only track if value actually changed
+      if (
+        (item.originalLimit === null && newValue !== null) ||
+        (item.originalLimit !== null && newValue === null) ||
+        (item.originalLimit !== null && newValue !== null && Math.abs(item.originalLimit - newValue) > 0.001)
+      ) {
+        changedPriceLimits.set(productId, newValue);
+
+        // Highlight the row
+        const row = this.closest("tr");
+        if (row) row.classList.add("price-limit-changed");
+      } else {
+        // Value reset to original
+        changedPriceLimits.delete(productId);
+
+        // Remove highlight if no longer changed
+        const row = this.closest("tr");
+        if (row) row.classList.remove("price-limit-changed");
+      }
+
+      // Update status
+      updatePriceLimitsStatus();
+    });
+  });
+}
+
+// Set up listeners for quick actions buttons
+function setupQuickActionListeners() {
+  // Set default (90%) button
+  const defaultButtons = document.querySelectorAll(".set-default-limit");
+  defaultButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const productId = this.dataset.productId;
+      const defaultValue = parseFloat(this.dataset.default);
+
+      // Find the input and update it
+      const input = document.querySelector(`.price-limit-input[data-product-id="${productId}"]`);
+      if (input) {
+        input.value = defaultValue.toFixed(2);
+
+        // Trigger the change event
+        const event = new Event("change");
+        input.dispatchEvent(event);
+      }
+    });
+  });
+
+  // Clear button
+  const clearButtons = document.querySelectorAll(".clear-limit");
+  clearButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const productId = this.dataset.productId;
+
+      // Find the input and clear it
+      const input = document.querySelector(`.price-limit-input[data-product-id="${productId}"]`);
+      if (input) {
+        input.value = "";
+
+        // Trigger the change event
+        const event = new Event("change");
+        input.dispatchEvent(event);
+      }
+    });
+  });
+}
+
+// Set up listeners for save single buttons
+function setupSaveSingleListeners() {
+  const saveButtons = document.querySelectorAll(".save-single-limit");
+  saveButtons.forEach((button) => {
+    button.addEventListener("click", async function () {
+      const productId = this.dataset.productId;
+      const input = document.querySelector(`.price-limit-input[data-product-id="${productId}"]`);
+
+      if (!input) return;
+
+      const newValue = input.value.trim() === "" ? null : parseFloat(input.value);
+
+      try {
+        // Disable the button and show loading
+        this.disabled = true;
+        this.innerHTML = "...";
+
+        await savePriceLimit(productId, newValue);
+
+        // Update the data
+        const item = priceLimitsTableData.find((p) => p.id === productId);
+        if (item) {
+          item.limit = newValue;
+          item.originalLimit = newValue;
+        }
+
+        // Remove from changed map
+        changedPriceLimits.delete(productId);
+
+        // Remove highlight
+        const row = this.closest("tr");
+        if (row) row.classList.remove("price-limit-changed");
+
+        // Update status
+        updatePriceLimitsStatus();
+
+        // Show success
+        showMessage(`Updated price limit for product ${productId}`, true);
+      } catch (error) {
+        console.error("Error saving price limit:", error);
+        showMessage("Error saving price limit", false);
+      } finally {
+        // Reset button
+        this.disabled = false;
+        this.innerHTML = "Save";
+      }
+    });
+  });
+}
+
+// Set up sort listeners
+function setupSortListeners() {
+  const headers = document.querySelectorAll("th[data-sort]");
+  headers.forEach((header) => {
+    header.addEventListener("click", function () {
+      const field = this.dataset.sort;
+
+      // Toggle direction if same field, otherwise set to asc
+      if (field === currentSortField) {
+        currentSortDirection = currentSortDirection === "asc" ? "desc" : "asc";
+      } else {
+        currentSortField = field;
+        currentSortDirection = "asc";
+      }
+
+      // Update sort indicators
+      headers.forEach((h) => {
+        const icon = h.querySelector(".sort-icon");
+        if (h.dataset.sort === currentSortField) {
+          icon.textContent = currentSortDirection === "asc" ? "↑" : "↓";
+        } else {
+          icon.textContent = "";
+        }
+      });
+
+      // Re-render the table
+      renderPriceLimitsTable();
+    });
+  });
+}
+
+// Set up search and filter
+function setupSearchAndFilter() {
+  const searchInput = document.getElementById("price-limits-search");
+  const filterSelect = document.getElementById("price-limits-filter");
+
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      searchTerm = this.value;
+      renderPriceLimitsTable();
+    });
+  }
+
+  if (filterSelect) {
+    filterSelect.addEventListener("change", function () {
+      currentFilter = this.value;
+      renderPriceLimitsTable();
+    });
+  }
+}
+
+// Set up batch actions
+function setupBatchActions() {
+  // Batch update to 90% button
+  const batchUpdateBtn = document.getElementById("batch-update-90-percent");
+  if (batchUpdateBtn) {
+    batchUpdateBtn.addEventListener("click", function () {
+      if (confirm("Set all visible products to 90% of their current price as minimum price limit?")) {
+        const tableBody = document.getElementById("price-limits-table-body");
+        const inputs = tableBody.querySelectorAll(".price-limit-input");
+
+        inputs.forEach((input) => {
+          const productId = input.dataset.productId;
+          const product = priceLimitsTableData.find((p) => p.id === productId);
+
+          if (product) {
+            const defaultLimit = product.price * 0.9;
+            input.value = defaultLimit.toFixed(2);
+
+            // Trigger the change event
+            const event = new Event("change");
+            input.dispatchEvent(event);
+          }
+        });
+      }
+    });
+  }
+
+  // Save all button
+  const saveAllBtn = document.getElementById("save-all-price-limits");
+  if (saveAllBtn) {
+    saveAllBtn.addEventListener("click", saveAllChanges);
+  }
+
+  // Modal save button
+  const modalSaveBtn = document.getElementById("price-limits-modal-save");
+  if (modalSaveBtn) {
+    modalSaveBtn.addEventListener("click", saveAllChanges);
+  }
+
+  // Modal cancel button
+  const modalCancelBtn = document.getElementById("price-limits-modal-cancel");
+  if (modalCancelBtn) {
+    modalCancelBtn.addEventListener("click", closePriceLimitsModal);
+  }
+
+  // Modal close X button
+  const closeBtn = document.getElementById("close-price-limits-modal");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closePriceLimitsModal);
+  }
+}
+
+// Save all changes
+async function saveAllChanges() {
+  if (changedPriceLimits.size === 0) {
+    showMessage("No changes to save", false);
+    return;
+  }
+
+  if (!confirm(`Save changes to ${changedPriceLimits.size} product price limits?`)) {
+    return;
+  }
+
+  showLoader();
+
+  try {
+    let successCount = 0;
+    let failCount = 0;
+
+    // Create a copy to track what's been processed
+    const toProcess = new Map(changedPriceLimits);
+
+    // Use Promise.all with a limit on concurrent requests
+    const batchSize = 10;
+    while (toProcess.size > 0) {
+      const batch = Array.from(toProcess.entries()).slice(0, batchSize);
+
+      // Remove this batch from the map
+      batch.forEach(([id]) => toProcess.delete(id));
+
+      // Process this batch in parallel
+      const results = await Promise.allSettled(
+        batch.map(async ([id, limit]) => {
+          try {
+            await savePriceLimit(id, limit);
+
+            // Update the data
+            const item = priceLimitsTableData.find((p) => p.id === id);
+            if (item) {
+              item.limit = limit;
+              item.originalLimit = limit;
+            }
+
+            return { id, success: true };
+          } catch (error) {
+            console.error(`Error saving price limit for ${id}:`, error);
+            return { id, success: false, error };
+          }
+        })
+      );
+
+      // Count successes and failures
+      results.forEach((result) => {
+        if (result.status === "fulfilled") {
+          if (result.value.success) {
+            successCount++;
+          } else {
+            failCount++;
+          }
+        } else {
+          failCount++;
+        }
+      });
+    }
+
+    // Clear all successfully processed changes
+    changedPriceLimits.clear();
+
+    // Re-render the table
+    renderPriceLimitsTable();
+
+    // Show message
+    if (failCount === 0) {
+      showMessage(`Successfully updated ${successCount} price limits`, true);
+
+      // Also refresh price limits in localStorage
+      await loadPriceLimits();
+
+      // Close modal if all successful
+      closePriceLimitsModal();
+    } else {
+      showMessage(`Updated ${successCount} price limits, failed to update ${failCount}`, false);
+    }
+  } catch (error) {
+    console.error("Error saving price limits:", error);
+    showMessage("Error saving price limits", false);
+  } finally {
+    hideLoader();
+    updatePriceLimitsStatus();
+  }
+}
+
+// Update the status display
+function updatePriceLimitsStatus() {
+  const statusEl = document.getElementById("price-limits-status");
+  if (!statusEl) return;
+
+  let statusText = `${priceLimitsTableData.length} products loaded`;
+
+  if (changedPriceLimits.size > 0) {
+    statusText += `, ${changedPriceLimits.size} changes pending`;
+  }
+
+  statusEl.textContent = statusText;
+}
+
+// Save a single price limit
+async function savePriceLimit(productId, limit) {
+  // Get product name for the API call (helps with server-side logging)
+  const product = priceLimitsTableData.find((p) => p.id === productId);
+  const name = product ? product.name : productId;
+
+  const response = await fetch(`/api/products/min-price-limit/${productId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ minimumPriceLimit: limit }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to update price limit for ${name}`);
+  }
+
+  const data = await response.json();
+
+  if (!data.success) {
+    throw new Error(data.message || `Failed to update price limit for ${name}`);
+  }
+
+  // Update in localStorage
+  updateLocalPriceLimit(productId, limit);
+
+  return data;
 }

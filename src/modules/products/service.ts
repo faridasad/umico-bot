@@ -5,7 +5,10 @@ import { wait } from "../../utils/time";
 import { AuthService } from "../auth/service";
 import { AuthStoreService } from "../auth/store";
 import { ProductStoreService } from "./store";
-import { ProductResponse } from "./types";
+import { ProductOffer, ProductResponse } from "./types";
+
+import * as fs from "fs";
+import * as path from "path";
 
 export class ProductsService {
   private static readonly MAX_PER_PAGE = 100;
@@ -44,12 +47,86 @@ export class ProductsService {
       ProductStoreService.updateLastUpdated();
       ProductStoreService.setLoading(false);
 
+      console.log("json init");
+
+      // Save products to local JSON file with minimum price limits
+      await this.saveProductsToJsonFile();
+
+      console.log("json saved");
+
       return ProductStoreService.getStore();
     } catch (error) {
       ProductStoreService.setLoading(false);
       const err = error as Error;
       console.error("Failed to load products:", err);
       throw new Error(`Failed to load products: ${err.message}`);
+    }
+  }
+
+  static async saveProductsToJsonFile() {
+    try {
+
+      // Define file paths
+      const dataDir = path.join(__dirname, "../../data");
+      const filePath = path.join(dataDir, "products.json");
+      const backupFilePath = path.join(dataDir, "products.backup.json");
+
+      // Create data directory if it doesn't exist
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+      }
+
+      // Get current products from store
+      const currentProducts = ProductStoreService.getStore().offers;
+
+      // Prepare data to write (only id, name, and minimumPriceLimit)
+      const productsData = currentProducts.map((product) => ({
+        id: product.id,
+        name: product.attributes.product.name_az,
+        price: product.attributes.retail_price,
+        minimumPriceLimit: Math.round(product.attributes.retail_price * 0.9), // Default to 90% of price
+      }));
+
+      // Read existing file if it exists
+      let existingData = [];
+      if (fs.existsSync(filePath)) {
+        // Create backup of current file
+        fs.copyFileSync(filePath, backupFilePath);
+
+        // Read existing data
+        const fileContent = fs.readFileSync(filePath, "utf8");
+        existingData = JSON.parse(fileContent);
+      }
+
+      // Merge existing data with new data
+      const existingProductsMap = new Map();
+      existingData.forEach((product: ProductOffer) => {
+        existingProductsMap.set(product.id, product);
+      });
+
+      // Update existing products and add new ones
+      productsData.forEach((product) => {
+        if (existingProductsMap.has(product.id)) {
+          // Product exists, preserve minimumPriceLimit if it was manually set
+          const existingProduct = existingProductsMap.get(product.id);
+          product.minimumPriceLimit = existingProduct.minimumPriceLimit;
+        }
+        existingProductsMap.set(product.id, product);
+      });
+
+      // Convert map back to array
+      const mergedProducts = Array.from(existingProductsMap.values());
+
+      // Write to file
+      fs.writeFileSync(filePath, JSON.stringify(mergedProducts, null, 2));
+
+      console.log(`Wrote ${mergedProducts.length} products to ${filePath}`);
+
+      return true;
+    } catch (error) {
+      const err = error as Error;
+      console.error("Failed to write products to JSON file:", err);
+      throw new Error(`Failed to write products to JSON file: ${err.message}`);
     }
   }
 
@@ -121,6 +198,35 @@ export class ProductsService {
     }
   }
 
+  static async loadProductLimits(): Promise<Map<string, number>> {
+    try {
+      const fs = require("fs");
+      const path = require("path");
+
+      const filePath = path.join(__dirname, "../../data/products.json");
+      if (!fs.existsSync(filePath)) {
+        console.log("Products file not found, no price limits available");
+        return new Map();
+      }
+
+      const fileContent = fs.readFileSync(filePath, "utf8");
+      const products = JSON.parse(fileContent);
+
+      const limitsMap = new Map<string, number>();
+      products.forEach((product) => {
+        if (product.id && product.minimumPriceLimit) {
+          limitsMap.set(product.id, product.minimumPriceLimit);
+        }
+      });
+
+      console.log(`Loaded minimum price limits for ${limitsMap.size} products`);
+      return limitsMap;
+    } catch (error) {
+      console.error("Failed to load product limits:", error);
+      return new Map();
+    }
+  }
+
   /**
    * Update multiple products' prices with retry mechanism
    * @param adjustment The amount to adjust prices by (positive = increase, negative = decrease)
@@ -133,9 +239,13 @@ export class ProductsService {
     productIds?: string[],
     maxRetries: number = 3,
     retryDelay: number = 500
-  ): Promise<{ success: number; failed: number; total: number; failedIds: string[] }> {
+  ): Promise<{ success: number; failed: number; skipped: number; belowLimit: number; total: number; failedIds: string[]; belowLimitIds: string[] }> {
     try {
       const start = new Date();
+
+      // Load minimum price limits from the JSON file
+      const priceLimits = await this.loadProductLimits();
+      console.log(`Loaded ${priceLimits.size} price limits from file`);
 
       // If no product IDs provided, use all products in the store
       const products = ProductStoreService.getOffers();
@@ -151,8 +261,10 @@ export class ProductsService {
         success: 0,
         failed: 0,
         skipped: 0,
+        belowLimit: 0, // New status for products below minimum price limit
         total: initialIds.length,
         failedIds: [] as string[],
+        belowLimitIds: [] as string[], // New array to track products below minimum price
       };
 
       // Pre-process to filter out products from store 1044
@@ -202,13 +314,38 @@ export class ProductsService {
                 skippedIds.push(id);
                 continue;
               } else {
-                console.log(`Product ${id} (global ID: ${globalProductId}) is NOT from Velosport (${marketingName.name}), will update price`);
+                console.log(`Product ${id} (global ID: ${globalProductId}) is NOT from Velosport (${marketingName.name}), will check price`);
                 // Log the current price from global data
-                console.log(`Current global price for product ${id}: ${productDetails.default_offer.retail_price}`);
+                const currentPrice = productDetails.default_offer.retail_price;
+                console.log(`Current global price for product ${id}: ${currentPrice}`);
+
+                // Check if the new price would be below the minimum limit
+                const newPrice = currentPrice + adjustment;
+                const minimumLimit = priceLimits.get(id);
+
+                if (minimumLimit && newPrice < minimumLimit) {
+                  console.log(`New price ${newPrice} would be below minimum limit ${minimumLimit} for product ${id}, skipping`);
+                  result.belowLimit++;
+                  result.belowLimitIds.push(id);
+                  continue;
+                }
+
                 idsToUpdate.push(id);
               }
             } else {
-              console.log(`Product ${id} (global ID: ${globalProductId}) doesn't have expected seller info, will update price`);
+              console.log(`Product ${id} (global ID: ${globalProductId}) doesn't have expected seller info, will check price limit`);
+              // We still need to check minimum price limit here
+              const currentPrice = productDetails.default_offer.retail_price;
+              const newPrice = currentPrice + adjustment;
+              const minimumLimit = priceLimits.get(id);
+
+              if (minimumLimit && newPrice < minimumLimit) {
+                console.log(`New price ${newPrice} would be below minimum limit ${minimumLimit} for product ${id}, skipping`);
+                result.belowLimit++;
+                result.belowLimitIds.push(id);
+                continue;
+              }
+
               idsToUpdate.push(id);
             }
           } catch (detailsError) {
@@ -224,7 +361,9 @@ export class ProductsService {
         }
       }
 
-      console.log(`After filtering: ${idsToUpdate.length} products to update, ${skippedIds.length} products skipped, ${result.failed} products failed preliminary checks`);
+      console.log(
+        `After filtering: ${idsToUpdate.length} products to update, ${skippedIds.length} products skipped, ${result.belowLimit} products below price limit, ${result.failed} products failed preliminary checks`
+      );
 
       const batchSize = 20;
       for (let batchIndex = 0; batchIndex < idsToUpdate.length; batchIndex += batchSize) {
@@ -280,6 +419,15 @@ export class ProductsService {
               console.log(`Current global price for product ${id}: ${currentPrice}`);
               const newPrice = currentPrice + adjustment;
 
+              // Double check minimum price limit (in case it wasn't caught in pre-processing)
+              const minimumLimit = priceLimits.get(id);
+              if (minimumLimit && newPrice < minimumLimit) {
+                console.log(`New price ${newPrice} would be below minimum limit ${minimumLimit} for product ${id}, skipping update`);
+                result.belowLimit++;
+                result.belowLimitIds.push(id);
+                break;
+              }
+
               // Prepare update data
               const updateData = {
                 retail_price: newPrice,
@@ -290,7 +438,7 @@ export class ProductsService {
               result.success++;
               success = true;
               console.log(
-                `Product ${id} updated successfully with new price ${newPrice} (old price: ${currentPrice}) - success: ${result.success}, failed: ${result.failed}, skipped: ${result.skipped}`
+                `Product ${id} updated successfully with new price ${newPrice} (old price: ${currentPrice}) - success: ${result.success}, failed: ${result.failed}, skipped: ${result.skipped}, below limit: ${result.belowLimit}`
               );
 
               // Short wait between individual product updates
@@ -364,9 +512,12 @@ export class ProductsService {
       }
 
       // Log summary
-      console.log(`Bulk update complete. Success: ${result.success}, Failed: ${result.failed}, Total: ${result.total}`);
+      console.log(`Bulk update complete. Success: ${result.success}, Failed: ${result.failed}, Skipped: ${result.skipped}, Below limit: ${result.belowLimit}, Total: ${result.total}`);
       if (result.failedIds.length > 0) {
         console.log(`Failed IDs: ${result.failedIds.join(", ")}`);
+      }
+      if (result.belowLimitIds.length > 0) {
+        console.log(`Below limit IDs: ${result.belowLimitIds.join(", ")}`);
       }
 
       // human readable time taken to locale string
@@ -377,6 +528,85 @@ export class ProductsService {
     } catch (error) {
       console.error("Error in bulk update:", error);
       throw error;
+    }
+  }
+
+  static async updateMinimumPriceLimit(id: string, name: string, minimumPriceLimit: number): Promise<boolean> {
+    try {
+      const dataDir = path.join(__dirname, "../../data");
+      const filePath = path.join(dataDir, "products.json");
+      const backupFilePath = path.join(dataDir, "products.backup.json");
+
+      // Create data directory if it doesn't exist
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+      }
+
+      let products = [] as any;
+      let existingProduct = null as any;
+
+      // Read existing file if it exists
+      if (fs.existsSync(filePath)) {
+        // Create backup
+        fs.copyFileSync(filePath, backupFilePath);
+
+        // Read existing data
+        const fileContent = fs.readFileSync(filePath, "utf8");
+        products = JSON.parse(fileContent);
+
+        // Find product to update
+        existingProduct = products.find((p) => p.id === id);
+      }
+
+      if (existingProduct) {
+        // Update existing product
+        existingProduct.minimumPriceLimit = minimumPriceLimit;
+        console.log(`Updated minimum price limit for product ${id} (${name}) to ${minimumPriceLimit}`);
+      } else {
+        // Get product price from store
+        const productStore = ProductStoreService.getOffers();
+        const product = productStore.find((p) => p.id === id);
+
+        if (!product) {
+          throw new Error(`Product ${id} not found in store`);
+        }
+
+        // Add new product
+        products.push({
+          id,
+          name: product.attributes.product.name_az,
+          price: product.attributes.retail_price,
+          minimumPriceLimit,
+        });
+
+        console.log(`Added product ${id} (${name}) with minimum price limit ${minimumPriceLimit}`);
+      }
+
+      // Write updated data to file
+      fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
+
+      return true;
+    } catch (error) {
+      const err = error as Error;
+      console.error("Failed to update minimum price limit:", err);
+      throw new Error(`Failed to update minimum price limit: ${err.message}`);
+    }
+  }
+
+  static async getAllProductLimits(): Promise<any[]> {
+    try {
+      const dataDir = path.join(__dirname, "../../data");
+      const filePath = path.join(dataDir, "products.json");
+
+      if (!fs.existsSync(filePath)) {
+        return [];
+      }
+
+      const fileContent = fs.readFileSync(filePath, "utf8");
+      return JSON.parse(fileContent);
+    } catch (error) {
+      console.error("Failed to get product limits:", error);
+      return [];
     }
   }
 }

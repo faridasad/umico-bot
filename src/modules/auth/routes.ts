@@ -10,13 +10,6 @@ export async function authRoutes(
   // Simple auth trigger route - no credentials needed from client
   fastify.post('/trigger-auth', async (request, reply) => {
     try {
-      // Use credentials from server config
-      const credentials = {
-        username: config.auth.username,
-        password: config.auth.password
-      };
-      
-      const authData = await AuthService.signIn();
       return reply.code(200).send({
         success: true,
         message: 'Authentication successful',

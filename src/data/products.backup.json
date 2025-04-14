@@ -1,0 +1,4178 @@
+[
+  {
+    "id": "871472",
+    "name": "Şəhər velosipedi Start City Bike 28 Qara",
+    "price": 398.56,
+    "minimumPriceLimit": 359
+  },
+  {
+    "id": "2274892",
+    "name": "Uşaq velosipedi Winx 20",
+    "price": 164.1,
+    "minimumPriceLimit": 164.2
+  },
+  {
+    "id": "2542786",
+    "name": "Uşaq velosipedi Sweet Girl 20\", çəhrayı",
+    "price": 179.5,
+    "minimumPriceLimit": 162
+  },
+  {
+    "id": "2542781",
+    "name": "Uşaq velosipedi 1082 (çəhrayı)",
+    "price": 159.78,
+    "minimumPriceLimit": 144
+  },
+  {
+    "id": "1998509",
+    "name": "Ağıllı saat Smart Watch Black",
+    "price": 75.78,
+    "minimumPriceLimit": 68
+  },
+  {
+    "id": "2542818",
+    "name": "Uşaq velosipedi 1126, 3 yaşdan (çəhrayı)",
+    "price": 109.81,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2542773",
+    "name": "Uşaq velosipedi 16 Çəhrayı",
+    "price": 169.95,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "815686",
+    "name": "Uşaq velosipedi Champion 12\", rəngbərəng",
+    "price": 99.55,
+    "minimumPriceLimit": 90
+  },
+  {
+    "id": "815706",
+    "name": "Şəhər velosipedi Start Urban 26\", mavi",
+    "price": 399.93,
+    "minimumPriceLimit": 360
+  },
+  {
+    "id": "2542765",
+    "name": "Uşaq velosipedi WINIX MODEL 2, 16\", çəhrayı",
+    "price": 129.99,
+    "minimumPriceLimit": 126
+  },
+  {
+    "id": "2542747",
+    "name": "Uşaq velosipedi WINIX MODEL 2, 12\", çəhrayı",
+    "price": 109.49,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2420679",
+    "name": "Uşaq velosipedi 20\", 6-10 yaş (çəhrayı)",
+    "price": 199.99,
+    "minimumPriceLimit": 180
+  },
+  {
+    "id": "2505708",
+    "name": "Uşaq velosipedi 6161, qırmızı/çəhrayı",
+    "price": 119.99,
+    "minimumPriceLimit": 108
+  },
+  {
+    "id": "2542766",
+    "name": "Uşaq velosipedi Sweet Girl 16\", çəhrayı",
+    "price": 168.68,
+    "minimumPriceLimit": 152
+  },
+  {
+    "id": "2640793",
+    "name": "Velosiped fənəri UM001000808, plastik, qara/göy",
+    "price": 11.78,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2640683",
+    "name": "Velosiped fənəri UM001000807, plastik, qara/qırmızı",
+    "price": 11.83,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2519134",
+    "name": "Velosiped üçün signal, işıq effekti ilə, plastik, qırmızı/göy",
+    "price": 7.32,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2542802",
+    "name": "Uşaq velosipedi 1074 (çəhrayı)",
+    "price": 119.78,
+    "minimumPriceLimit": 108
+  },
+  {
+    "id": "2542783",
+    "name": "Uşaq velosipedi 1083, 3 yaşdan (çəhrayı)",
+    "price": 109.78,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2542754",
+    "name": "Uşaq velosipedi velosiped_025 Lada Sport, 12\", 3-5 yaş, çəhrayı",
+    "price": 109.69,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2542759",
+    "name": "Uşaq velosipedi 022, çəhrayı",
+    "price": 109.69,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2421034",
+    "name": "Nasos velosiped üçün, göy",
+    "price": 6.13,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2542775",
+    "name": "Uşaq velosipedi Stels 16 Qara",
+    "price": 169.57,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2420838",
+    "name": "Uşaq velosipedi 010, çəhrayı",
+    "price": 189.72,
+    "minimumPriceLimit": 171
+  },
+  {
+    "id": "2269755",
+    "name": "Velosiped nasosu, göy",
+    "price": 6.61,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2653132",
+    "name": "Uşaq velosipedi Chempion 20 B31, parlaq göy",
+    "price": 264.98,
+    "minimumPriceLimit": 238
+  },
+  {
+    "id": "2326995",
+    "name": "Yan təkərlər 16\", yaşıl",
+    "price": 6.48,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2653139",
+    "name": "Velosiped GT Match One Pro BMX, aliminium, təkər ölçüsü 20",
+    "price": 639.99,
+    "minimumPriceLimit": 576
+  },
+  {
+    "id": "2368558",
+    "name": "Velosiped Spear SPC-267 26\", qara",
+    "price": 479.99,
+    "minimumPriceLimit": 432
+  },
+  {
+    "id": "1244793",
+    "name": "Velosiped Mercury 520, qara/göy",
+    "price": 559.99,
+    "minimumPriceLimit": 504
+  },
+  {
+    "id": "815710",
+    "name": "Şəhər velosipedi Hiland 28\" CT700, qara",
+    "price": 559.99,
+    "minimumPriceLimit": 504
+  },
+  {
+    "id": "2244974",
+    "name": "BMX üçün peq 10x2.8 sm, 2 ədəd, göy",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2709676",
+    "name": "Skuter üçün zəng Ninebot Max G30 və bənzər modellər üçün SC-12",
+    "price": 13.94,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2269743",
+    "name": "Velosiped nasosu Air Pump, qara",
+    "price": 35.87,
+    "minimumPriceLimit": 32
+  },
+  {
+    "id": "2327591",
+    "name": "Kəmər çantası VP-20, Qara",
+    "price": 19.99,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2148818",
+    "name": "Velosiped zənciri CN-HG53, gümüşü, 9 sürət",
+    "price": 41.39,
+    "minimumPriceLimit": 37
+  },
+  {
+    "id": "2244994",
+    "name": "Sükan üçün çıxarma, 26\"/27.5\"/28\"/29\", qara",
+    "price": 22.79,
+    "minimumPriceLimit": 21
+  },
+  {
+    "id": "2244947",
+    "name": "Arxa ötürücü Shimano Alivio RD-M3100, qara",
+    "price": 82.31,
+    "minimumPriceLimit": 74
+  },
+  {
+    "id": "2420861",
+    "name": "Uşaq velosipedi WINIX 20\", çəhrayı",
+    "price": 140.89,
+    "minimumPriceLimit": 127
+  },
+  {
+    "id": "2542761",
+    "name": "Qatlanan velosiped Stels 16\", qara",
+    "price": 137.6,
+    "minimumPriceLimit": 124
+  },
+  {
+    "id": "2420819",
+    "name": "Uşaq velosipedi WINIX 16\", çəhrayı",
+    "price": 130.89,
+    "minimumPriceLimit": 118
+  },
+  {
+    "id": "2563098",
+    "name": "Velosiped şini Kenda Kriterium 700c x25",
+    "price": 31.97,
+    "minimumPriceLimit": 29
+  },
+  {
+    "id": "2420884",
+    "name": "Velosiped üçün sayrışan işıq 0008, plastik, qara",
+    "price": 5.04,
+    "minimumPriceLimit": 5
+  },
+  {
+    "id": "2046461",
+    "name": "Velosiped ön fənəri Thousand ride 7599",
+    "price": 11.69,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2688530",
+    "name": "Uşaq velosipedi Stels 20\", qara",
+    "price": 148.49,
+    "minimumPriceLimit": 134
+  },
+  {
+    "id": "2542749",
+    "name": "Uşaq velosipedi WINIX 12\", çəhrayı",
+    "price": 108.99,
+    "minimumPriceLimit": 98
+  },
+  {
+    "id": "2148841",
+    "name": "Velosiped arxa fənəri LY-6700",
+    "price": 14.69,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2148786",
+    "name": "Velosiped üçün əyləc diski, 160 mm, gümüşü",
+    "price": 20.15,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2244996",
+    "name": "Velosiped üçün çəngəl, 29\", qara",
+    "price": 52.79,
+    "minimumPriceLimit": 48
+  },
+  {
+    "id": "2148838",
+    "name": "Velosiped fənəri VP-19, qara",
+    "price": 9.89,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2563107",
+    "name": "Sürət kaseti Shimano HG200-7",
+    "price": 22.61,
+    "minimumPriceLimit": 20
+  },
+  {
+    "id": "2587207",
+    "name": "Arxa şifter Shimano Alivio M3100",
+    "price": 80.98,
+    "minimumPriceLimit": 73
+  },
+  {
+    "id": "2420636",
+    "name": "Velosiped üçün stop",
+    "price": 7.91,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2046467",
+    "name": "Velosiped üçün qanad dəsti BM-2050, qara",
+    "price": 14.99,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2683666",
+    "name": "Velosiped baqajı VP-39, alüminium, qara",
+    "price": 18.81,
+    "minimumPriceLimit": 17
+  },
+  {
+    "id": "2046466",
+    "name": "Velosiped üçün yük yeri M1 plastik, ağ",
+    "price": 18.96,
+    "minimumPriceLimit": 17
+  },
+  {
+    "id": "2148829",
+    "name": "Şifter Gidravlik MT 200 Brake, qara",
+    "price": 124.99,
+    "minimumPriceLimit": 112
+  },
+  {
+    "id": "2269779",
+    "name": "Velosiped dəbilqəsi Scull, qara",
+    "price": 34.98,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2368534",
+    "name": "Elektrik velosiped LuyangSSK 28\", boz",
+    "price": 1199.99,
+    "minimumPriceLimit": 1080
+  },
+  {
+    "id": "2678998",
+    "name": "Dağ velosipedi Phoenix, ölçü 24",
+    "price": 649.98,
+    "minimumPriceLimit": 585
+  },
+  {
+    "id": "2323639",
+    "name": "Karet Shimano ,122.5 mm",
+    "price": 45,
+    "minimumPriceLimit": 41
+  },
+  {
+    "id": "2698448",
+    "name": "Elektron velosiped Nakxus, 36V 7.8Ah, max sürət 25 km, məsafə 35-70 km, çəki limiti 100 kq - nakxus",
+    "price": 1414.12,
+    "minimumPriceLimit": 1273
+  },
+  {
+    "id": "2678992",
+    "name": "Velosiped Losk, размер 20",
+    "price": 549.97,
+    "minimumPriceLimit": 495
+  },
+  {
+    "id": "2148812",
+    "name": "Qapaq 20\", qara",
+    "price": 11.96,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "815688",
+    "name": "Uşaq velosipedi Champion 16\", rəngbərəng",
+    "price": 149.97,
+    "minimumPriceLimit": 135
+  },
+  {
+    "id": "2698481",
+    "name": "Velosiped əlcəyi, qrips ölçüsü universaldır, əlcək ölçüsü universaldır - qrips8_el",
+    "price": 19.97,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2698477",
+    "name": "Velosiped əlcəyi, qrips ölçüsü hər sükan üçün uyğundur, əlcək ölçüsü universaldır - qripsel_goy1",
+    "price": 14.97,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2244955",
+    "name": "Şifter Shimano Alivio 3x9 sürət üçün, qara",
+    "price": 71.95,
+    "minimumPriceLimit": 65
+  },
+  {
+    "id": "2148847",
+    "name": "Velosiped üçün dayaq Soldier SJ-029, tənzimlənən",
+    "price": 9.45,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2046465",
+    "name": "Velosiped üçün divar tutacaq Soldier VP-06",
+    "price": 8.46,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2244978",
+    "name": "Velosiped çərçivənin arxa üçbucağı qoruyucusu, qara",
+    "price": 2.78,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2244932",
+    "name": "Şifter trosu 20/24/26/27.5/28\" təkər ölçüsü üçün, gümüşü",
+    "price": 1.57,
+    "minimumPriceLimit": 1
+  },
+  {
+    "id": "2244931",
+    "name": "Əyləc trosu 20/24/26/27.5/28\" təkər ölçüsü üçün, gümüşü",
+    "price": 1.57,
+    "minimumPriceLimit": 1
+  },
+  {
+    "id": "2323636",
+    "name": "Velosiped üçün dayaq stayak_qoşa, qara",
+    "price": 12.18,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2323634",
+    "name": "Qoruyucu dəst dizlik_10, göy",
+    "price": 11.07,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2148827",
+    "name": "Şifter, qara",
+    "price": 15.91,
+    "minimumPriceLimit": 14
+  },
+  {
+    "id": "2491382",
+    "name": "Velosiped üçün güzgü, plastik",
+    "price": 2.08,
+    "minimumPriceLimit": 2
+  },
+  {
+    "id": "2269781",
+    "name": "Velosiped dəbilqəsi Scull, göy",
+    "price": 34.95,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2269771",
+    "name": "Velosiped əlcəyi 7, qırmızı, universal ölçü",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2269774",
+    "name": "Velosiped əlcəyi Arbike, göy, universal ölçü",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2148830",
+    "name": "Velosiped üçün pedallar, qara (pedal_6)",
+    "price": 8.95,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "815700",
+    "name": "Qatlanan velosiped Start Flex 24\", göy",
+    "price": 599.95,
+    "minimumPriceLimit": 540
+  },
+  {
+    "id": "2491360",
+    "name": "Velosiped zənciri üçün sürtgü yağı Motorex Chain Lube Dry Conditions, 100 ml",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2368556",
+    "name": "Velosiped Start Ride 26\", yaşıl",
+    "price": 389.95,
+    "minimumPriceLimit": 351
+  },
+  {
+    "id": "2148802",
+    "name": "Velosiped kamerası 20\", qara",
+    "price": 4.95,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2366641",
+    "name": "Velosiped dəbilqəsi kaska_28, qara/ağ",
+    "price": 37.95,
+    "minimumPriceLimit": 34
+  },
+  {
+    "id": "2323641",
+    "name": "Velosiped sükanı üçün telefon tutacağı acrunu_teltut, plastik, qara",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "815720",
+    "name": "Dağ velosipedi Start TX1000, göy/qara",
+    "price": 599.95,
+    "minimumPriceLimit": 540
+  },
+  {
+    "id": "815699",
+    "name": "Qatlanan velosiped Mercury Flex 24\", qara/göy",
+    "price": 699.95,
+    "minimumPriceLimit": 630
+  },
+  {
+    "id": "2244933",
+    "name": "Əyləc trosu Shimano 10, gümüşü",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "815727",
+    "name": "Dağ velosipedi Start 1904, rəngbərəng",
+    "price": 629.95,
+    "minimumPriceLimit": 567
+  },
+  {
+    "id": "2237323",
+    "name": "Velosiped dəbilqəsi kaska_rəngli_35, göy, çəhrayı, havalandırma dəlikləri ilə",
+    "price": 39.95,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "2148800",
+    "name": "Velosiped kamerası 12\", qara",
+    "price": 4.95,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "1244787",
+    "name": "Dağ velosipedi Hiland 27.5 Black",
+    "price": 649.95,
+    "minimumPriceLimit": 585
+  },
+  {
+    "id": "815690",
+    "name": "Uşaq velosipedi Start Tom 16\", rəngbərəng",
+    "price": 209.95,
+    "minimumPriceLimit": 189
+  },
+  {
+    "id": "815701",
+    "name": "Dağ velosipedi Start Echo 24\", yaşıl/qara",
+    "price": 499.95,
+    "minimumPriceLimit": 450
+  },
+  {
+    "id": "2645859",
+    "name": "Velosiped əlcəyi, qara, ölçü L",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2026113",
+    "name": "Döşəməüstü nasos Giyo 70, qızılı",
+    "price": 88.95,
+    "minimumPriceLimit": 80
+  },
+  {
+    "id": "815695",
+    "name": "Uşaq velosipedi Start Kids 16\", rəngbərəng",
+    "price": 149.95,
+    "minimumPriceLimit": 135
+  },
+  {
+    "id": "2645839",
+    "name": "Velosiped üçün təkər 26, qara/göy",
+    "price": 119.95,
+    "minimumPriceLimit": 108
+  },
+  {
+    "id": "2244993",
+    "name": "Sükan üçün çıxarma Giant, 26\"/27.5\"/28\"/29\", qara",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2653144",
+    "name": "Dağ velosipedi Chempion 26, yaşıl/qara",
+    "price": 379.95,
+    "minimumPriceLimit": 342
+  },
+  {
+    "id": "2653116",
+    "name": "Velosiped Chempion 20 B1, parlaq/yaşıl",
+    "price": 299.95,
+    "minimumPriceLimit": 270
+  },
+  {
+    "id": "2488767",
+    "name": "Velosiped dəbilqəsi uşaqlar üçün Alov, penoplast, 10 yaşa qədər",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2272784",
+    "name": "Velosiped üçün güzgü Hafny, левое",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2491386",
+    "name": "Velosiped Start 310, 24 \", metal, mavi",
+    "price": 299.95,
+    "minimumPriceLimit": 270
+  },
+  {
+    "id": "2368559",
+    "name": "Velosiped Revere Sonic 26\", göy",
+    "price": 599.94,
+    "minimumPriceLimit": 540
+  },
+  {
+    "id": "2269752",
+    "name": "Bel çantası, sarı",
+    "price": 64.95,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2244967",
+    "name": "Velosiped zənciri, gümüşü, 7-8 sürət",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2148833",
+    "name": "Velosiped zənciri, gümüşü, 9 sürət",
+    "price": 39.95,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "1953661",
+    "name": "Velosiped fənəri HJ-052, qara",
+    "price": 32.95,
+    "minimumPriceLimit": 30
+  },
+  {
+    "id": "1961879",
+    "name": "Velosiped eynəyi Santic, narıncı",
+    "price": 58.95,
+    "minimumPriceLimit": 53
+  },
+  {
+    "id": "2368561",
+    "name": "Velosiped Start Ride 26\", bənövşəyi",
+    "price": 389.95,
+    "minimumPriceLimit": 351
+  },
+  {
+    "id": "2368557",
+    "name": "Velosiped Start Ride 26\"",
+    "price": 389.95,
+    "minimumPriceLimit": 351
+  },
+  {
+    "id": "2368550",
+    "name": "Uşaq velosipedi Start Larem 16\", qara/sarı",
+    "price": 179.95,
+    "minimumPriceLimit": 162
+  },
+  {
+    "id": "2509829",
+    "name": "Velosiped üçün telefon tutacağı CD-999, 6x8.5 sm, plastik, qara",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2488797",
+    "name": "Şose velosipedi üçün pedallar Turbo BF-105, alüminium, 2 əd, qara",
+    "price": 79.95,
+    "minimumPriceLimit": 72
+  },
+  {
+    "id": "2368544",
+    "name": "Uşaq velosipedi Start Kids 16\", göy",
+    "price": 199.95,
+    "minimumPriceLimit": 180
+  },
+  {
+    "id": "2368538",
+    "name": "Şose velosipedi Giant TCR Espoir 24\", sarı",
+    "price": 1299.95,
+    "minimumPriceLimit": 1170
+  },
+  {
+    "id": "2368535",
+    "name": "Elektrik velosiped Hyper 26\", göy",
+    "price": 1199.95,
+    "minimumPriceLimit": 1080
+  },
+  {
+    "id": "2269758",
+    "name": "Velosiped üçün uşaq oturacağı, qara",
+    "price": 104.95,
+    "minimumPriceLimit": 94
+  },
+  {
+    "id": "2269780",
+    "name": "Velosiped dəbilqəsi Scull, qırmızı",
+    "price": 34.95,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2269736",
+    "name": "Velosiped əlcəyi 17, qara, ölçü M/L/XL",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2244995",
+    "name": "Sükan üçün çıxarma Soldier, 26\"/27.5\"/28\"/29\", qara",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "1998498",
+    "name": "Velosiped Start 310 24'', göy/qara",
+    "price": 298.96,
+    "minimumPriceLimit": 269
+  },
+  {
+    "id": "2269782",
+    "name": "Velosiped dəbilqəsi Kaska 35, göy",
+    "price": 39.95,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "2244968",
+    "name": "Əyləc qolları, 2 ədəd, qara/gümüşü",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2244952",
+    "name": "Qapaq Continental 28/700x23C, qara",
+    "price": 54.95,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2244941",
+    "name": "Velosiped üçün tormoz Tectro V-brake, qara",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2244939",
+    "name": "Velosiped üçün dayaq 12, qara",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2148821",
+    "name": "Oturacaq Selle Royal Lokin 2, qəhvəyi",
+    "price": 49.95,
+    "minimumPriceLimit": 45
+  },
+  {
+    "id": "1998503",
+    "name": "Uşaq velosipedi Chempion 12'', qara",
+    "price": 99.95,
+    "minimumPriceLimit": 90
+  },
+  {
+    "id": "1998496",
+    "name": "Uşaq velosipedi Prego 12'', ağ/çəhrayı",
+    "price": 98.95,
+    "minimumPriceLimit": 89
+  },
+  {
+    "id": "2274893",
+    "name": "Uşaq velosipedi Winx 16",
+    "price": 149.95,
+    "minimumPriceLimit": 135
+  },
+  {
+    "id": "2269753",
+    "name": "Corablar Santic S6401V, yaşıl, standart ölçü",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2368543",
+    "name": "Velosiped Chempion Classic 20\", göy",
+    "price": 219.95,
+    "minimumPriceLimit": 198
+  },
+  {
+    "id": "2244930",
+    "name": "Əyləc qəlibi 8, qara",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2269738",
+    "name": "Velosiped üçün su qabı tutacağı, plastik, qara",
+    "price": 12.95,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2542758",
+    "name": "Uşaq velosipedi Sweet Girl 12\", çəhrayı",
+    "price": 109.95,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2148792",
+    "name": "Velosiped üçün qripslər, qara (rolrezini_25)",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2657716",
+    "name": "Velosiped üçün baş işığı və stop, alüminium, qara",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2587225",
+    "name": "Velosiped üçün əyləc diski Shimano RT26-160 mm",
+    "price": 17.95,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2244971",
+    "name": "Şosse velosipedi üçün sükan, metal, qara",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2244981",
+    "name": "Oturacaq, 25x20.5 sm, qara/qəhvəyi",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "1953663",
+    "name": "Velosiped üçün dönmə siqnal, qara",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "1953662",
+    "name": "Velosiped üçün telefon tutacaq Inviktus, qara/narıncı",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2645841",
+    "name": "Şosse velosipedi üçün təkər Shimano WH-RS-100, qara",
+    "price": 499.95,
+    "minimumPriceLimit": 450
+  },
+  {
+    "id": "2631255",
+    "name": "Uşaq velosipedi Chempion 20, qatlanan, qara",
+    "price": 169.95,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2244962",
+    "name": "Velosiped kamerası Kenda 28x1-1.2, qara",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2274886",
+    "name": "Uşaq velosipedi Fanhx 12 Red",
+    "price": 119.95,
+    "minimumPriceLimit": 108
+  },
+  {
+    "id": "2491376",
+    "name": "Velosiped Hiland GT-700, 28\", alüminium, ağ",
+    "price": 649.95,
+    "minimumPriceLimit": 585
+  },
+  {
+    "id": "2269762",
+    "name": "Velosiped dəbilqəsi Kaska 55, göy",
+    "price": 64.95,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2269761",
+    "name": "Velosiped üçün uşaq oturacağı, boz",
+    "price": 114.95,
+    "minimumPriceLimit": 103
+  },
+  {
+    "id": "815707",
+    "name": "Şəhər velosipedi Start City Bike R2718, qara",
+    "price": 399.95,
+    "minimumPriceLimit": 360
+  },
+  {
+    "id": "2272786",
+    "name": "Velosiped üçün oturacaq, göy",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2269784",
+    "name": "Velosiped dəbilqəsi Kaska, ağ",
+    "price": 34.95,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2148795",
+    "name": "Mehtərə üçün dəst, karbon, qara",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "1998508",
+    "name": "Velosiped fənəri ağ/qırmızı",
+    "price": 8.95,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "1244792",
+    "name": "Dağ velosipedi Start 1904 29 Black/Yellow",
+    "price": 629.95,
+    "minimumPriceLimit": 567
+  },
+  {
+    "id": "2653141",
+    "name": "Velosiped Chempion 24, parlaq göy",
+    "price": 349.95,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2269776",
+    "name": "Velosiped əlcəyi 7, qara",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2327597",
+    "name": "Fənər üçün bərkitmə 1001416, qara",
+    "price": 13.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2420814",
+    "name": "Uşaqlar üçün velosiped debilqesi 1001383, qırmızı",
+    "price": 13.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2509751",
+    "name": "Velosiped nömrəsi 77-ZZ-777, plastik, 10x15 sm",
+    "price": 2.95,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2421037",
+    "name": "Velosiped üçün signal 0022, mexaniki, plastik, qızılı",
+    "price": 6.92,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2148805",
+    "name": "Velosiped kamerası 27.5\", qara",
+    "price": 6.95,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2148801",
+    "name": "Velosiped kamerası 16\", qara",
+    "price": 4.95,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2269760",
+    "name": "Beysbolka Kross, qara",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2634309",
+    "name": "Baqaj çantası, qara/qırmızı",
+    "price": 54.95,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2634311",
+    "name": "Baqaj üçün bel çantası, qara",
+    "price": 54.95,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2634306",
+    "name": "Baqaj çantası, qara/göy",
+    "price": 54.95,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2269783",
+    "name": "Velosiped dəbilqəsi Kaska 55şose, qırmızı",
+    "price": 64.95,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2269772",
+    "name": "Velosiped əlcəyi 7, göy, universal ölçü",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2269769",
+    "name": "Velosiped əlcəyi 12 Raleigh, qara, ölçü XL",
+    "price": 16.95,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2269757",
+    "name": "Velosiped əlcəyi 15, qara/qırmızı, ölçü M",
+    "price": 16.95,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2269777",
+    "name": "Velosiped əlcəyi 7, qırmızı",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2269773",
+    "name": "Velosiped əlcəyi Rio, göy, universal ölçü",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2269775",
+    "name": "Velosiped əlcəyi 7, göy",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2148828",
+    "name": "Əyləc qəlibi, qara",
+    "price": 24.95,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2148806",
+    "name": "Velosiped kamerası 29\", qara",
+    "price": 6.95,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2148819",
+    "name": "Velosiped zənciri CN-HG95, gümüşü, 10 sürət",
+    "price": 69.95,
+    "minimumPriceLimit": 63
+  },
+  {
+    "id": "2148785",
+    "name": "Velosiped fənəri Stop, qızılı",
+    "price": 16.95,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2148780",
+    "name": "Uşaq velosipedi Champion 12\", qara/qırmızı",
+    "price": 97.95,
+    "minimumPriceLimit": 88
+  },
+  {
+    "id": "1244789",
+    "name": "Dağ velosipedi Start 6061",
+    "price": 699.95,
+    "minimumPriceLimit": 630
+  },
+  {
+    "id": "815698",
+    "name": "Uşaq velosipedi Start Speed 20\", rəngbərəng",
+    "price": 229.95,
+    "minimumPriceLimit": 207
+  },
+  {
+    "id": "815697",
+    "name": "Uşaq velosipedi Start Kids 20\", rəngbərəng",
+    "price": 209.95,
+    "minimumPriceLimit": 189
+  },
+  {
+    "id": "815712",
+    "name": "Dağ velosipedi Start 700c, göy",
+    "price": 749.95,
+    "minimumPriceLimit": 675
+  },
+  {
+    "id": "2542811",
+    "name": "Uşaq velosipedi ZH-280, qara",
+    "price": 199.95,
+    "minimumPriceLimit": 180
+  },
+  {
+    "id": "2368555",
+    "name": "Velosiped Start Ride 24\"",
+    "price": 349.94,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2645884",
+    "name": "Arxa ötürücü Shimano SLX RD-M670, qara",
+    "price": 109.95,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2645857",
+    "name": "Velosiped əlcəyi, qara, ölçü M",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2645819",
+    "name": "Velosiped üçün əyləc dəstəyi C Star Support, qara",
+    "price": 18.95,
+    "minimumPriceLimit": 17
+  },
+  {
+    "id": "2542762",
+    "name": "Uşaq velosipedi XL-941, qara",
+    "price": 169.95,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2645771",
+    "name": "Baş fənəri, qara",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2491364",
+    "name": "İdman eynəyi Santic, polyarizasiya, ağ",
+    "price": 59.95,
+    "minimumPriceLimit": 54
+  },
+  {
+    "id": "2269756",
+    "name": "Velosiped əlcəyi 8, qara/göy, ölçü S",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2491388",
+    "name": "Üçtəkərli velosiped King Trike, 26\", metal, qırmızı",
+    "price": 699.95,
+    "minimumPriceLimit": 630
+  },
+  {
+    "id": "2368554",
+    "name": "Velosiped Start Ride 24\", yaşıl",
+    "price": 349.95,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2245000",
+    "name": "Trosları üçün itiağız kəlbətin, qırmızı",
+    "price": 19.95,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2244980",
+    "name": "Velosiped səbəti üçün bərkidici, 10 sm, gümüşü",
+    "price": 4.95,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2269751",
+    "name": "Bel çantası Kross, qara",
+    "price": 99.95,
+    "minimumPriceLimit": 90
+  },
+  {
+    "id": "2148791",
+    "name": "Mehtərə üçün dəst, metal, qara",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2274895",
+    "name": "Uşaq velosipedi Champion 26 Green",
+    "price": 329.95,
+    "minimumPriceLimit": 297
+  },
+  {
+    "id": "2026120",
+    "name": "Velosiped üçün qoruyucu çexol 15, boz",
+    "price": 16.95,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2148813",
+    "name": "Qapaq 12\", qara",
+    "price": 8.95,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2366643",
+    "name": "Velosiped dəbilqəsi kaska_30, tünd göy",
+    "price": 37.95,
+    "minimumPriceLimit": 34
+  },
+  {
+    "id": "2269759",
+    "name": "Velosiped üçün uşaq oturacağı, qırmızı",
+    "price": 104.95,
+    "minimumPriceLimit": 94
+  },
+  {
+    "id": "2148796",
+    "name": "Çərçivə üçün çanta Yanho, göy",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2366645",
+    "name": "Velosiped dəbilqəsi kaska_30, qırmızı",
+    "price": 34.95,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2244963",
+    "name": "Velosiped kamerası Kenda 700x35/43C, qara",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2148848",
+    "name": "Güzgü Zefal Z eye",
+    "price": 24.95,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2653147",
+    "name": "Velosiped Chempion, qara, ölçü 29",
+    "price": 399.95,
+    "minimumPriceLimit": 360
+  },
+  {
+    "id": "2653140",
+    "name": "Velosiped Chempion 24, yaşıl",
+    "price": 349.95,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2269770",
+    "name": "Velosiped əlcəyi 7, qara, universal ölçü",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2653133",
+    "name": "Velosiped Chempion 20, ölçü B1, parlaq göy",
+    "price": 299.95,
+    "minimumPriceLimit": 270
+  },
+  {
+    "id": "2653121",
+    "name": "Uşaq velosipedi Chempion 20 B2, qara/göy",
+    "price": 329.95,
+    "minimumPriceLimit": 297
+  },
+  {
+    "id": "2653145",
+    "name": "Velosiped Chempion 26, göy",
+    "price": 379.95,
+    "minimumPriceLimit": 342
+  },
+  {
+    "id": "2653122",
+    "name": "Velosiped Chempion 20 B3, parlaq yaşıl",
+    "price": 339.95,
+    "minimumPriceLimit": 306
+  },
+  {
+    "id": "815708",
+    "name": "Hibrid velosiped Start Cross, rəngbərəng",
+    "price": 449.95,
+    "minimumPriceLimit": 405
+  },
+  {
+    "id": "815687",
+    "name": "Uşaq velosipedi Start Gucio 16\", göy",
+    "price": 229.96,
+    "minimumPriceLimit": 207
+  },
+  {
+    "id": "815691",
+    "name": "Uşaq velosipedi Start Bike 20\", göy",
+    "price": 229.96,
+    "minimumPriceLimit": 207
+  },
+  {
+    "id": "2665636",
+    "name": "Velosiped mehtərəsi Kerry, alüminium, gümüşü, 750 ml",
+    "price": 11.96,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2677979",
+    "name": "İdman eynəyi, plastik, sarı",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2677982",
+    "name": "İdman eynəyi, qara - eynek_qara",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2677983",
+    "name": "İdman eynəyi, plastik, göy",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2678917",
+    "name": "İdman eynəyi, sarı - eynek_sari",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2678918",
+    "name": "İdman eynəyi, göy - eynek_goy",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2678927",
+    "name": "Velosiped mehtərəsi, qara, 550 ml",
+    "price": 19.96,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2678929",
+    "name": "Velosiped mehtərəsi, qara, 350 ml",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2678930",
+    "name": "Velosiped mehtərəsi, göy, 350 ml",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2678931",
+    "name": "Velosiped mehtərəsi, çəhrayı, 350 ml",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2678932",
+    "name": "Velosiped üçün telefon tutucusu, plastik, qara",
+    "price": 11.96,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2678936",
+    "name": "Velosiped üçün mehtərə tutan, plastik, qara",
+    "price": 6.96,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2678953",
+    "name": "Uşaq velosiped dəbilqəsi, preslənmiş penoplast, rəngbərəng",
+    "price": 33.96,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2678954",
+    "name": "Uşaq velosiped dəbilqəsi, preslənmiş penoplast, narıncı",
+    "price": 33.96,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2678958",
+    "name": "Uşaq velosiped dəbilqəsi, preslənmiş penoplast, çəhrayı",
+    "price": 33.96,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2678959",
+    "name": "Uşaq velosiped dəbilqəsi, preslənmiş penoplast, sarı",
+    "price": 33.96,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2678960",
+    "name": "Velosiped üçün yan təkərlər dəsti, metal, qara, 12\" təkərlər üçün",
+    "price": 8.96,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2678962",
+    "name": "Velosiped üçün yan təkərlər dəsti, metal, qara, 20\" təkərlər üçün",
+    "price": 11.96,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2678965",
+    "name": "Velosiped üçün yan təkərlər dəsti, metal, qara/çəhrayı, 20\" təkərlər üçün",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2678967",
+    "name": "Velosiped üçün yan təkərlər dəsti, metal, qara/qırmızı, 20\" təkərlər üçün",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2678982",
+    "name": "Velosiped üçün yan təkərlər dəsti Start, metal, qara, 20\" təkərlər üçün",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2678985",
+    "name": "Velosiped üçün stikerlər Chempion, rəngbərəng, 22 əd",
+    "price": 2.96,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2678993",
+    "name": "Velosiped Phoenix, ölçü 20",
+    "price": 549.96,
+    "minimumPriceLimit": 495
+  },
+  {
+    "id": "2678999",
+    "name": "Velosiped Phoenix, ölçü 24\", göy",
+    "price": 649.96,
+    "minimumPriceLimit": 585
+  },
+  {
+    "id": "815705",
+    "name": "Dağ velosipedi Hiland 28\" GT700, bənövşəyi",
+    "price": 649.96,
+    "minimumPriceLimit": 585
+  },
+  {
+    "id": "2698451",
+    "name": "Velosiped su qabı və tutacı uniseks, Materialı plasmas, hər ölçüyə uyğundur - su11",
+    "price": 14.96,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698452",
+    "name": "Velosiped su qabı və tutacağı, materialı plasmas, hər ölçüyə uyğundur - su12",
+    "price": 14.96,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698453",
+    "name": "Velosiped su qabı və tutacaq, material plasmas, hər ölçüyə uyğundur - su13",
+    "price": 14.96,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698455",
+    "name": "Velosiped mehtərəsi ilə termos, 350 ml və plastmas tutacaq - termos11",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2698456",
+    "name": "Velosiped üçün termos və termos tutan, 350 ml - termos12",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2698457",
+    "name": "Velosiped mehtərəsi 350 ml, termos işi şüşədir, suyu temperaturda saxlayır - termos13",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2698458",
+    "name": "Velosiped termosu və termos tutacağı, 550 ml - termos14",
+    "price": 29.96,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2698466",
+    "name": "Velosiped üçün kamer və şin, təkər ölçüsü 20 - kamsin_20",
+    "price": 16.96,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2698468",
+    "name": "Kamer və şin 24-lik, velosiped üçün - kamsin_24",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2698471",
+    "name": "Velosiped qrips və əlcəklər, universaldır - qripsel_qara",
+    "price": 14.96,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698472",
+    "name": "Velosiped əlcəyi, qrips ölçüsü hər sükan üçün uyğundur, əlcək ölçüsü universaldır - qripsel_goy",
+    "price": 14.96,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698474",
+    "name": "Velosiped əlcəyi, qrips ölçüsü hər sükan üçün uyğundur, əlcək ölçüsü universal - qripsel_qirmizi",
+    "price": 14.96,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698476",
+    "name": "Velosiped əlcəyi, qripsli, universal ölçü - qripsel_qara1",
+    "price": 14.96,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698478",
+    "name": "Velosiped əlcəyi, qrips ölçüsü hər sükan üçün uyğundur, əlcək ölçüsü universaldır - qripsel_qirmizi1",
+    "price": 14.96,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698482",
+    "name": "Velosiped əlcəyi qrips və əlcək, universaldır - qrips7_el",
+    "price": 19.96,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2148807",
+    "name": "Velosiped təkəri üçün plastır, qara (yamaq_2)",
+    "price": 4.36,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2645823",
+    "name": "Su qabı tutacağı, plastik, ağ",
+    "price": 6.43,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2509810",
+    "name": "Elektrik velosiped Hurley Malibu, 26 \", 450 Vt, qara/narıncı",
+    "price": 799.96,
+    "minimumPriceLimit": 720
+  },
+  {
+    "id": "1998501",
+    "name": "Uşaq velosipedi Start Larem 16'', mavi",
+    "price": 188.85,
+    "minimumPriceLimit": 170
+  },
+  {
+    "id": "2148781",
+    "name": "Uşaq velosipedi Prego 12\", ağ/çəhrayı",
+    "price": 97.87,
+    "minimumPriceLimit": 88
+  },
+  {
+    "id": "2148808",
+    "name": "Velosiped kamerası 28\", qara",
+    "price": 4.91,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2148803",
+    "name": "Velosiped kamerası 24\", qara",
+    "price": 4.91,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2678988",
+    "name": "Uşaq velosipedi, ölçü 16",
+    "price": 349.87,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "815709",
+    "name": "Dağ velosipedi Mercury 28-512, qırmızı/qara",
+    "price": 899.87,
+    "minimumPriceLimit": 810
+  },
+  {
+    "id": "2665634",
+    "name": "Sürət ölçən velosipedlər üçün Garmin, qara",
+    "price": 249.47,
+    "minimumPriceLimit": 225
+  },
+  {
+    "id": "2519101",
+    "name": "Velosiped ayaqqabısı 3, ölçü 39, qara/ağ",
+    "price": 149.97,
+    "minimumPriceLimit": 135
+  },
+  {
+    "id": "2269745",
+    "name": "Velosiped nasosu Kross, qara",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2148822",
+    "name": "Velosiped Qicycle 16\", qara",
+    "price": 749.96,
+    "minimumPriceLimit": 675
+  },
+  {
+    "id": "2244927",
+    "name": "Əyləc qəlibi Shimano 35, qara",
+    "price": 44.96,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "2509766",
+    "name": "Velosiped GT La Bomba Dirty Bike BMX, 24\", alüminium, boz/göy",
+    "price": 1999.96,
+    "minimumPriceLimit": 1800
+  },
+  {
+    "id": "2368560",
+    "name": "Velosiped Scwhinn 26\", göy",
+    "price": 699.96,
+    "minimumPriceLimit": 630
+  },
+  {
+    "id": "2519106",
+    "name": "Velosiped GT La Bomba Dirty Bike BMX, 26\", alüminium, yaşıl/sarı",
+    "price": 1549.97,
+    "minimumPriceLimit": 1395
+  },
+  {
+    "id": "815719",
+    "name": "Hibrid velosiped Kross EVADO 2.0, qara",
+    "price": 1149.96,
+    "minimumPriceLimit": 1035
+  },
+  {
+    "id": "2368546",
+    "name": "Uşaq velosipedi Miqilong 12\", yaşıl",
+    "price": 169.96,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2509768",
+    "name": "Velosiped GT La Bomba Dirty Bike BMX, 26\", alüminium, qara/bənövşəyi",
+    "price": 1999.96,
+    "minimumPriceLimit": 1800
+  },
+  {
+    "id": "2148804",
+    "name": "Velosiped kamerası 26\", qara",
+    "price": 4.87,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2678951",
+    "name": "Velosiped altlığı, alüminium, 15х5х10 sm",
+    "price": 14.94,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2244944",
+    "name": "Velosiped üçün sürgü qolu Shimano Deore M5100, qara",
+    "price": 269.92,
+    "minimumPriceLimit": 243
+  },
+  {
+    "id": "2652106",
+    "name": "Velosiped üçün dəst Soldier 0025, qara",
+    "price": 19.92,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2420822",
+    "name": "Uşaq velosipedi Vegas 20-ET50, çəhrayı",
+    "price": 199.92,
+    "minimumPriceLimit": 180
+  },
+  {
+    "id": "1953659",
+    "name": "Velosiped fənəri NSV, qara",
+    "price": 48.92,
+    "minimumPriceLimit": 44
+  },
+  {
+    "id": "2420824",
+    "name": "Velosiped Formula 02-28, qara/narıncı",
+    "price": 298.82,
+    "minimumPriceLimit": 269
+  },
+  {
+    "id": "2148799",
+    "name": "Velosiped dəbilqəsi Batfox, qara/boz",
+    "price": 84.92,
+    "minimumPriceLimit": 76
+  },
+  {
+    "id": "2420832",
+    "name": "Uşaq velosipedi Vegas 16-ET50, çəhrayı",
+    "price": 169.92,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2244998",
+    "name": "Velosiped üçün qripslər Wilier, penomaterial, qırmızı",
+    "price": 29.89,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "815721",
+    "name": "Şəhər velosipedi Stels Navigator 300 28\", rəngbərəng",
+    "price": 349.87,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "815692",
+    "name": "Qatlanan velosiped Mercury Flex 20\", qara/qırmızı",
+    "price": 179.94,
+    "minimumPriceLimit": 162
+  },
+  {
+    "id": "2645788",
+    "name": "Zəncir kilidi 1, qara",
+    "price": 1.88,
+    "minimumPriceLimit": 2
+  },
+  {
+    "id": "2678943",
+    "name": "Qaz tutacağı elektron velosipedlər üçün, qara/gümüşü",
+    "price": 29.89,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2488770",
+    "name": "Sürət ölçən Giyo 35, velosipedlər üçün, qara",
+    "price": 49.91,
+    "minimumPriceLimit": 45
+  },
+  {
+    "id": "2371682",
+    "name": "Sürət kasseti Shimano FreeWheel 7S 14/28, 7 sürətli, Bürünc",
+    "price": 33.9,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2645816",
+    "name": "Velosiped üçün əyləc dəstəyi Tektro Mira Support, qara",
+    "price": 33.9,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2678944",
+    "name": "Qaz tutacağı elektron velosiped üçün, ekranlı, boz",
+    "price": 33.9,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2371683",
+    "name": "Velosiped mili üçün açar Bike Original UNI Spoke Key",
+    "price": 4.91,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2368545",
+    "name": "Uşaq velosipedi Sofia 16\", bənövşəyi",
+    "price": 229.89,
+    "minimumPriceLimit": 207
+  },
+  {
+    "id": "2367326",
+    "name": "Çərçivə üçün çanta Basik, qara",
+    "price": 19.88,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2477736",
+    "name": "Velosiped üçün qanad dəsti BM-2040, qara",
+    "price": 15.77,
+    "minimumPriceLimit": 14
+  },
+  {
+    "id": "2509744",
+    "name": "Əksetdirici velosiped üçün Shimano 1, dəmir, sarı",
+    "price": 2.89,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2509742",
+    "name": "Əksetdirici velosiped üçün Shimano, dəmir, gümüşü",
+    "price": 2.89,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2323631",
+    "name": "Velosiped üçün sürət ölçən spid_12, qara",
+    "price": 14.91,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2653137",
+    "name": "Velosiped Meridian 29, qara/sarı",
+    "price": 449.91,
+    "minimumPriceLimit": 405
+  },
+  {
+    "id": "2491367",
+    "name": "Velosiped üçün yan təkər 120 mm, rezin",
+    "price": 8.85,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2645902",
+    "name": "Sükan üçün çıxarma Cube, qara",
+    "price": 34.91,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2491112",
+    "name": "Adapter SM-4820, 48 V, qara",
+    "price": 59.92,
+    "minimumPriceLimit": 54
+  },
+  {
+    "id": "2645918",
+    "name": "Ön vtulka Shimano 105 HB-5700, gümüşü",
+    "price": 59.92,
+    "minimumPriceLimit": 54
+  },
+  {
+    "id": "2491371",
+    "name": "Sürət ölçən velosipedlər üçün, qara",
+    "price": 59.92,
+    "minimumPriceLimit": 54
+  },
+  {
+    "id": "2678938",
+    "name": "Velosiped üçün qripslər Baisk, rezin, qara",
+    "price": 3.87,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2491108",
+    "name": "Nippel üçün işıqlandırma, 2 əd, çəhrayı",
+    "price": 3.9,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2368548",
+    "name": "Uşaq velosipedi Miqilong 12\", sarı",
+    "price": 154.91,
+    "minimumPriceLimit": 139
+  },
+  {
+    "id": "2488799",
+    "name": "Şose velosipedi üçün pedallar Look, alüminium, 2 əd, qara",
+    "price": 169.93,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2645869",
+    "name": "Velosiped sükanı üçün bəzək, rəngbərəng",
+    "price": 3.9,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2698444",
+    "name": "Şlanq və başlıq nasos üçün, rezin, qırmızı, 70 sm",
+    "price": 3.9,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2542753",
+    "name": "Uşaq velosipedi Sport Lada Winx 12\", çəhrayı",
+    "price": 107.94,
+    "minimumPriceLimit": 97
+  },
+  {
+    "id": "2519108",
+    "name": "Velosiped zəncirinin təmizlənməsi üçün fırça Cylion, plastik, yaşıl",
+    "price": 19.88,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2371680",
+    "name": "Velosiped şampuru Bike Original Rear Wheel Lock",
+    "price": 9.92,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2645642",
+    "name": "Velosiped üçün baqaj, alüminium, qara",
+    "price": 19.88,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2367327",
+    "name": "Çərçivə üçün çanta skuterçanta_18, Tünd göy",
+    "price": 24.39,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2323640",
+    "name": "Arxa vtulka arxatop_15, alüminium, qara",
+    "price": 23.9,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2269778",
+    "name": "Velosiped üçün dayaq baqaj_450, qara",
+    "price": 449.91,
+    "minimumPriceLimit": 405
+  },
+  {
+    "id": "2542822",
+    "name": "Uşaq velosipedi 12\" 10014, çəhrayı",
+    "price": 109.89,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2368547",
+    "name": "Uşaq velosipedi Miqilong 12\", qırmızı",
+    "price": 159.92,
+    "minimumPriceLimit": 144
+  },
+  {
+    "id": "2657717",
+    "name": "Velosiped üçün arxa fənər, qara, plastik",
+    "price": 37.94,
+    "minimumPriceLimit": 34
+  },
+  {
+    "id": "2657719",
+    "name": "Velosiped üçün sürət ölçən, ABS plastik, qara, 78x53x18 mm",
+    "price": 44.91,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "2491378",
+    "name": "Şose velosipedi üçün pedallar Turbo, alüminium, 2 əd, ağ",
+    "price": 79.94,
+    "minimumPriceLimit": 72
+  },
+  {
+    "id": "2368553",
+    "name": "Velosiped Like2bike 20\", yaşıl",
+    "price": 169.93,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2645891",
+    "name": "Ön vtulka Shimano HB-M775 36H, gümüşü",
+    "price": 79.94,
+    "minimumPriceLimit": 72
+  },
+  {
+    "id": "2368562",
+    "name": "Uşaq velosipedi Salyut 20\", çəhrayı",
+    "price": 179.94,
+    "minimumPriceLimit": 162
+  },
+  {
+    "id": "2046470",
+    "name": "Velosiped güzgüsü m1 0035",
+    "price": 4.17,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2645776",
+    "name": "Ön fənər 111, qara",
+    "price": 9.92,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2645785",
+    "name": "Disk əyləc adapteri Shimano 180",
+    "price": 24.91,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2698459",
+    "name": "Peq BMX velosipedlər üçün, 10x2,8sm, 2 ədəd - bmx_qaraayaq",
+    "price": 11.88,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2645781",
+    "name": "Disk əyləc adapteri Shimano 203",
+    "price": 24.91,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2645797",
+    "name": "Zəncir kilidi 11 sürət üçün, gümüşü",
+    "price": 4.91,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2367328",
+    "name": "Velosiped üçün qripslər, yaşıl",
+    "price": 4.91,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2688398",
+    "name": "Uşaq velosipedi Lucky Kids Winx 16\", çəhrayı",
+    "price": 129.89,
+    "minimumPriceLimit": 117
+  },
+  {
+    "id": "2657713",
+    "name": "Velosiped fənəri 1000+lümen, plastik, qara",
+    "price": 29.89,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2542767",
+    "name": "Uşaq velosipedi Sport Lada Winx 16\", çəhrayı",
+    "price": 129.89,
+    "minimumPriceLimit": 117
+  },
+  {
+    "id": "2367329",
+    "name": "Velosiped üçün qripslər, bənövşəyi",
+    "price": 4.91,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2657715",
+    "name": "Velosiped üçün fənər, alüminium, qara",
+    "price": 42.89,
+    "minimumPriceLimit": 39
+  },
+  {
+    "id": "2657723",
+    "name": "Velosiped üçün su qabı tutacağı, plastik, göy",
+    "price": 6.57,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2323642",
+    "name": "Miniatür velosiped fiquru, metal, qara",
+    "price": 16.93,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2634305",
+    "name": "Skuter üçün çanta, qara",
+    "price": 44.91,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "2323643",
+    "name": "Miniatür velosiped fiquru, metal, sarı",
+    "price": 16.93,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2367323",
+    "name": "Velosiped üçün qripslər 7, qara/boz",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2678920",
+    "name": "Velosiped üçün qripslər Qrips, qara - qrips_qara",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2678922",
+    "name": "Velosiped üçün qripslər, yaşıl, fosforlu - qrips_yasilfos",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2645906",
+    "name": "Zəncir kilidi KMC 9 sürət üçün, gümüşü",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2491381",
+    "name": "Velosiped üçün güzgü dəsti, dəmir, 2 əd",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2678921",
+    "name": "Velosiped üçün qripslər sarı fosforlu - qrips_sarifos",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2645909",
+    "name": "Kartric SL 108x68, rəngbərəng",
+    "price": 54.91,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2148832",
+    "name": "Velosiped üçün tikan dəsti, qara/sarı",
+    "price": 39.9,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "2634312",
+    "name": "Əl nsosu Giyo Air Supply, белый/черный",
+    "price": 54.91,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2491110",
+    "name": "Velosiped üçün pedal dəsti Pilot, plastik, 2 əd, qara",
+    "price": 7.94,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2645910",
+    "name": "Arxa vtulka Shimano 105 FH-5800, gümüşü",
+    "price": 109.88,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2491113",
+    "name": "Samokat üçün təkər 190 mm, plastik/rezin, qara",
+    "price": 9.87,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2698464",
+    "name": "Təkər və şin 16-lik - kamsin_16",
+    "price": 13.87,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2678952",
+    "name": "Velosiped altlığı 1, alüminium, qara",
+    "price": 9.87,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2698461",
+    "name": "Sükan adaptoru aliminium, hər ölçülü velosipedlər üçün uyğundur - sukan_adapqirmizi",
+    "price": 29.89,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2519109",
+    "name": "Velosiped üçün qripslər Wilier, göy",
+    "price": 29.89,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2698460",
+    "name": "Sükan və adaptoru, aliminium, hər ölçülü velosipedlər üçün - sukan_adapgoy",
+    "price": 29.89,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2678933",
+    "name": "Velosiped üçün stop lazer, 10 növ fərli işıqlanma",
+    "price": 17.88,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2645850",
+    "name": "Oturacaq mili, 30 sm qara",
+    "price": 17.88,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2645899",
+    "name": "Karet Shimano MT-500 PA",
+    "price": 64.91,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2645896",
+    "name": "Karet Shimano Deore XT BB-MT800",
+    "price": 64.91,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2657712",
+    "name": "Portativ nasos, dəmir, qara",
+    "price": 64.91,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2645920",
+    "name": "Arxa ötürücü Shimano SLX RD-M675, qara",
+    "price": 129.89,
+    "minimumPriceLimit": 117
+  },
+  {
+    "id": "2148784",
+    "name": "Velosiped üçün pedallar Wellgo, qara",
+    "price": 98.94,
+    "minimumPriceLimit": 89
+  },
+  {
+    "id": "2244959",
+    "name": "Velosiped üçün tormoz Shimano V-brake, qara",
+    "price": 234.91,
+    "minimumPriceLimit": 211
+  },
+  {
+    "id": "2645876",
+    "name": "Velosiped sükanı üçün kronşteyn, alüminium, qara",
+    "price": 12.87,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2657721",
+    "name": "Velosiped fənəri Mayak, qara",
+    "price": 6.87,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2631259",
+    "name": "Uşaq velosipedi Winx 12, çəhrayı",
+    "price": 119.88,
+    "minimumPriceLimit": 108
+  },
+  {
+    "id": "2244997",
+    "name": "Velosiped üçün çəngəl, 26\", qara",
+    "price": 44.37,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "2269742",
+    "name": "Velosiped fənəri BAISK 15, qara",
+    "price": 16.37,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2367330",
+    "name": "Velosiped üçün oturacaq Fortune, dəri, qara/boz",
+    "price": 16.87,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2371681",
+    "name": "Velosiped sürgü qol çıxarıcısı Bike Original Extra Manivel UNI, Shimano Isis Drive standart sürgü qol sistemi və ötürücüsü üçün",
+    "price": 6.87,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2323638",
+    "name": "Velosiped üçün dayaq stayak_20lik, qara",
+    "price": 6.87,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2272779",
+    "name": "Əyləc Shimano Sora BR-R3000 Dual-Pivot",
+    "price": 109.87,
+    "minimumPriceLimit": 99
+  },
+  {
+    "id": "2678934",
+    "name": "Velosiped güzgüsü, alüminium/plastik, qara, 2 əd",
+    "price": 18.65,
+    "minimumPriceLimit": 17
+  },
+  {
+    "id": "2698450",
+    "name": "Velosiped üçün ön fənər və siqnal, plastik, 4 saat şarj saxlama müddəti, 2 saat şarj yığma müddəti - baisk_fenerqirmizi",
+    "price": 14.87,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2742788",
+    "name": "Uşaq velosipedi Shark 18, qızlar üçün, çəhrayı",
+    "price": 159.96,
+    "minimumPriceLimit": 144
+  },
+  {
+    "id": "2698449",
+    "name": "Velosiped üçün fənər və siqnal, plastik, 4 saat şarj saxlama müddəti, 2 saat şarj yığma müddəti - baisk_fenergoy",
+    "price": 14.87,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2509797",
+    "name": "Velosiped fənəri Stop-133, plastik, qırmızı/ağ",
+    "price": 14.87,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2488793",
+    "name": "Velosiped üçün əyləc mayesi Cylion Dot5.1, 50 ml",
+    "price": 10.98,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2244946",
+    "name": "Ön ötürücü Shimano 8 Speed, gümüşü",
+    "price": 34.87,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2488772",
+    "name": "Velosiped sükan sarğısı Selle, 180x3.5 sm, qara",
+    "price": 39.87,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "2488794",
+    "name": "Velosiped sükan sarğısı CX-87, xamelyon",
+    "price": 39.87,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "2645879",
+    "name": "Ön ötürücü Shimano FD2300, gümüşü",
+    "price": 39.87,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "2244949",
+    "name": "Arxa ötürücü Shimano Tiagra RD-4700, qara",
+    "price": 164.87,
+    "minimumPriceLimit": 148
+  },
+  {
+    "id": "2698442",
+    "name": "Uşaq velosipedi Sofia 16, ölçü 16",
+    "price": 349.87,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2678925",
+    "name": "Oturacaq şimşək yaşıl, Materialı qupka, təkər ölçüsü 12,14,16,18 və 20 lik üçün uyğundur - oturacaq_balacasimsek1",
+    "price": 10.77,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2665637",
+    "name": "Oturacaq üçün çexol Baisk, qara",
+    "price": 10.77,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2678926",
+    "name": "Velosiped üçün oturacaq Şimşək, qara/qırmızı",
+    "price": 10.77,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2645848",
+    "name": "Oturacaq mili, 27.5 sm, ağ",
+    "price": 18.77,
+    "minimumPriceLimit": 17
+  },
+  {
+    "id": "2026116",
+    "name": "Əl nasosu Giyo GP-45L, qara",
+    "price": 12.86,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2148794",
+    "name": "Velosiped üçün tutacaq, qara",
+    "price": 239.87,
+    "minimumPriceLimit": 216
+  },
+  {
+    "id": "2657728",
+    "name": "Velosiped üçün telefon tutacağı, alüminium, qara",
+    "price": 14.87,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2678949",
+    "name": "Velosiped kamerası Chaoyang, rezin, qara, 24\"x4.0\"",
+    "price": 14.87,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2698446",
+    "name": "Velosiped kamerası Start, rezin, qara, 20\"x4.0\"",
+    "price": 14.87,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2678950",
+    "name": "Velosiped kamerası Start, rezin, qara, 26\"x4.0\"",
+    "price": 14.87,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2678941",
+    "name": "Velosiped üçün səbət, metal, qara",
+    "price": 18.78,
+    "minimumPriceLimit": 17
+  },
+  {
+    "id": "2244990",
+    "name": "Şosse velosipedi üçün sükan, qara",
+    "price": 54.87,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2244934",
+    "name": "Velosiped üçün sürgü qolu Shimano Special, qara",
+    "price": 54.87,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2455837",
+    "name": "Velosiped üçün yük yeri plastik, qara",
+    "price": 29.87,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2698443",
+    "name": "Uşaq velosipedi Sofia, размер 20",
+    "price": 399.87,
+    "minimumPriceLimit": 360
+  },
+  {
+    "id": "2645855",
+    "name": "Velosiped təkəri 26, qara",
+    "price": 44.87,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "1244785",
+    "name": "Dağ velosipedi Formula 29 Black/Orange",
+    "price": 399.85,
+    "minimumPriceLimit": 360
+  },
+  {
+    "id": "2491359",
+    "name": "Uşaq velosipedi Forward 16\", 4-7 yaş üçün, qırmızı",
+    "price": 169.85,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2148788",
+    "name": "Velosiped çantası telefon tutacağı ilə, qara",
+    "price": 14.71,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2269740",
+    "name": "Velosiped üçün matqab Shimano CS HG500 10 speed, gümüşü",
+    "price": 84.87,
+    "minimumPriceLimit": 76
+  },
+  {
+    "id": "2244982",
+    "name": "Velosiped üçün telefon tutacağı, qara",
+    "price": 23.87,
+    "minimumPriceLimit": 21
+  },
+  {
+    "id": "2244969",
+    "name": "Velosiped millərin üçün bəzək, 25 ədəd, rəngarəng",
+    "price": 2.87,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "1999124",
+    "name": "Stop siqnal qırmızı, 3.9х4.1х2.9 sm",
+    "price": 14.87,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2269768",
+    "name": "Ön fara velosiped üçün, qara",
+    "price": 29.87,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2509748",
+    "name": "Velosiped dayanacağı Stoper, alüminium, qara",
+    "price": 39.9,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "2272782",
+    "name": "Velosiped üçün sürgü qolu Shimano Alivio Crank FC-M430",
+    "price": 99.77,
+    "minimumPriceLimit": 90
+  },
+  {
+    "id": "2420817",
+    "name": "Velosiped üçün telefon tutacağı телефона L-XL",
+    "price": 8.55,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2026119",
+    "name": "Velosiped üçün oturacaq Baisk Gel, qara/göy",
+    "price": 24.85,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2026118",
+    "name": "Velosiped üçün oturacaq Baisk Gel, qara",
+    "price": 24.87,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2269744",
+    "name": "Velosiped üçün baqaj, göy",
+    "price": 99.87,
+    "minimumPriceLimit": 90
+  },
+  {
+    "id": "2244935",
+    "name": "Əyləc qəlibi Robe, qara",
+    "price": 6.57,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2148820",
+    "name": "Arxa vtulka Quando, qara",
+    "price": 39.77,
+    "minimumPriceLimit": 36
+  },
+  {
+    "id": "2148798",
+    "name": "Şifter üçün çexol, qara",
+    "price": 39.67,
+    "minimumPriceLimit": 35
+  },
+  {
+    "id": "2026125",
+    "name": "Kaska üçün dönmə siqnalı ‎‎LKD60P94R4VZPPOJ7I",
+    "price": 19.78,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2698447",
+    "name": "Velosiped altlığı, alüminium, qara",
+    "price": 8.87,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "1998505",
+    "name": "Velosiped Hurley Malibu 26'', narıncı",
+    "price": 444.37,
+    "minimumPriceLimit": 400
+  },
+  {
+    "id": "2274896",
+    "name": "Velosiped Hurley Malibu 26",
+    "price": 444.21,
+    "minimumPriceLimit": 400
+  },
+  {
+    "id": "2244942",
+    "name": "Arxa vtulka Center Lock, qara",
+    "price": 59.92,
+    "minimumPriceLimit": 54
+  },
+  {
+    "id": "2269764",
+    "name": "Velosiped üçün çanta Soldier, qara",
+    "price": 19.67,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2244960",
+    "name": "Velosiped kamerası Race 28\" 700x20C və 700x25C, qara",
+    "price": 19.76,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2244943",
+    "name": "Ön ötürücü Shimano Acera, qara",
+    "price": 44.81,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "2244945",
+    "name": "Ön ötürücü Shimano Tourney, qara",
+    "price": 24.87,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2026121",
+    "name": "Əyləc qəlibi Shimano R55C4, qara",
+    "price": 34.91,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2519132",
+    "name": "Velosiped üçün sükan Grand, alüminium, qara/qırmızı",
+    "price": 11.88,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2519129",
+    "name": "Velosiped üçün sükan Grand, alüminium, qara/mavi",
+    "price": 11.87,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2244929",
+    "name": "Qapaq Kenda 29\", qara",
+    "price": 54.91,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2269748",
+    "name": "Velosiped nasosu ACPop, gümüşü",
+    "price": 23.9,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2026115",
+    "name": "Velosiped çantası Baisk 221G",
+    "price": 24.91,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2148849",
+    "name": "Velosiped arxa və ön fənəri 0006, plastik, qara",
+    "price": 9.94,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2272778",
+    "name": "Velosiped kilidi, qatlanan, qara",
+    "price": 44.81,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "2505741",
+    "name": "Velosiped üçün sürgü qolu Shimano 0060, qara",
+    "price": 53.9,
+    "minimumPriceLimit": 49
+  },
+  {
+    "id": "2244948",
+    "name": "Arxa ötürücü MicroShift, qara",
+    "price": 24.91,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2244975",
+    "name": "Zəncirin bərkidilməsi Super B TB-3370, gümüşü",
+    "price": 64.91,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2244984",
+    "name": "Oturacaq Selle Royal Saba, dəri, qara",
+    "price": 64.91,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2148851",
+    "name": "Velosiped üçün pedallar 0258, qara/gümüşü, 2 əd",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2244977",
+    "name": "BMX üçün peq 10x2.8 sm, 2 ədəd, qırmızı",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2244986",
+    "name": "Oturacaq Selle Royal Seta, dəri, qara",
+    "price": 64.91,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2645845",
+    "name": "Velosiped üçün sürgü qolu 152 mm, qara",
+    "price": 7.94,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2148811",
+    "name": "Qapaq 16\", qara",
+    "price": 9.94,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2244985",
+    "name": "Oturacaq altı çanta B-Soul, qara",
+    "price": 19.88,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2244951",
+    "name": "Qapaq Kenda 700x23C, qara",
+    "price": 44.88,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "2272781",
+    "name": "Pedallar üçün tikanlar Shimano Spd Cleat Set SM-SH51",
+    "price": 44.91,
+    "minimumPriceLimit": 40
+  },
+  {
+    "id": "2505711",
+    "name": "Sürət kaseti 0265, 9 sürətli, boz",
+    "price": 29.89,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "1998507",
+    "name": "Velosiped fənəri Mayak1 LED, 2 əd, məhsul çeşiddə",
+    "price": 34.91,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2244966",
+    "name": "Velosiped üçün sürgü qolu 170 mm, gümüşü",
+    "price": 24.91,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2148850",
+    "name": "Velosiped üçün stroboskop 0005, Led, plastik, qara",
+    "price": 34.91,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2244937",
+    "name": "Oturacaq mili Seatpost Clamp, qara",
+    "price": 14.91,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2269749",
+    "name": "Velosiped zəngi, qara",
+    "price": 4.91,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2244973",
+    "name": "Çənbər lenti, 2 ədəd, göy",
+    "price": 14.91,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2244972",
+    "name": "Çənbər lenti, 2 ədəd, qırmızı",
+    "price": 14.91,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2420676",
+    "name": "Uşaq velosipedi RM-212, qırmızı",
+    "price": 179.88,
+    "minimumPriceLimit": 162
+  },
+  {
+    "id": "2148814",
+    "name": "Qapaq 24\", qara",
+    "price": 12.89,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2148823",
+    "name": "Velosiped zənciri CN-HG601-11, gümüşü, 11 sürət",
+    "price": 74.91,
+    "minimumPriceLimit": 67
+  },
+  {
+    "id": "1998504",
+    "name": "Velosiped Stels Navigator 300 Lady 28'', boz",
+    "price": 349.87,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2651426",
+    "name": "Döşəməüstü nasos Onlytop 0055, qara/göy",
+    "price": 14.91,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2244956",
+    "name": "Şifter Shimano Altus 3x8 və 3x9 sürət üçün, qara",
+    "price": 66.93,
+    "minimumPriceLimit": 60
+  },
+  {
+    "id": "2269763",
+    "name": "Velosiped üçün arxa stop 3, qara",
+    "price": 4.91,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2244988",
+    "name": "Velosipedlər üçün zəncir sürtgü yağı Cylion, 60 ml",
+    "price": 9.87,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2046464",
+    "name": "Velosiped üçün signal 0019, elektron, plastik, qara",
+    "price": 16.93,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2657709",
+    "name": "Velosiped fənəri, plastik, qara",
+    "price": 9.92,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2678964",
+    "name": "Velosiped üçün yan təkərlər dəsti, metal, qara/çəhrayı, 16\" təkərlər üçün",
+    "price": 16.93,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2678966",
+    "name": "Velosiped üçün yan təkərlər dəsti, metal, qara/qırmızı, 16\" təkərlər üçün",
+    "price": 16.93,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2678968",
+    "name": "Velosiped üçün yan təkərlər dəsti Start, metal, qara, 16\" təkərlər üçün",
+    "price": 16.93,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2678961",
+    "name": "Velosiped üçün yan təkərlər dəsti, metal, qara, 16\" təkərlər üçün",
+    "price": 9.93,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2542751",
+    "name": "Uşaq velosipedi Lada Sport, 12 sm",
+    "price": 106.7,
+    "minimumPriceLimit": 96
+  },
+  {
+    "id": "2244979",
+    "name": "Diz qoruyucuları Pro-Biker, qara",
+    "price": 34.91,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2269750",
+    "name": "Manometr Giyo GG-05",
+    "price": 24.91,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2148826",
+    "name": "Velosiped üçün pedallar, qara (qatlanan_pedal)",
+    "price": 19.88,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2148824",
+    "name": "Oturacaq mili, qara",
+    "price": 19.88,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "871463",
+    "name": "Dağ velosipedi Kross Level 2.0, Sarı",
+    "price": 1549.96,
+    "minimumPriceLimit": 1395
+  },
+  {
+    "id": "871470",
+    "name": "Dağ velosipedi Kross Level 2.0 Göy",
+    "price": 1549.96,
+    "minimumPriceLimit": 1395
+  },
+  {
+    "id": "2148836",
+    "name": "Velosiped arxa fənəri Boruit RL-1010",
+    "price": 9.96,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2563084",
+    "name": "Velosiped şini Kenda Small Block Eight 27.5x2.10",
+    "price": 45.96,
+    "minimumPriceLimit": 41
+  },
+  {
+    "id": "2678991",
+    "name": "Velosiped Losk, ölçü 20",
+    "price": 549.96,
+    "minimumPriceLimit": 495
+  },
+  {
+    "id": "2645632",
+    "name": "Əl hava nasosu başlığı, qırmızı",
+    "price": 2.96,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2244970",
+    "name": "Velosiped çantası telefon tutacağı ilə, 18x10sm, qara",
+    "price": 14.01,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2727979",
+    "name": "Portativ dinamik F80 Black",
+    "price": 23.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "871469",
+    "name": "Hibrid velosiped Kross Evado 2.0 Qara-göy",
+    "price": 1199.95,
+    "minimumPriceLimit": 1080
+  },
+  {
+    "id": "2237321",
+    "name": "Velosiped Like 2 bike 20",
+    "price": 169.95,
+    "minimumPriceLimit": 153
+  },
+  {
+    "id": "2274887",
+    "name": "Uşaq velosipedi Fanhx 12 Blue",
+    "price": 119.95,
+    "minimumPriceLimit": 108
+  },
+  {
+    "id": "2366639",
+    "name": "Velosiped dəbilqəsi kaska_28, qara/göy",
+    "price": 34.95,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2663182",
+    "name": "Velosiped su qabı, qara, 750 ml",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2371684",
+    "name": "Qoruma dəsti skeytbord üçün Nextreme JUNIOR GRG-043, tənzimlənən diz yastıqları/dirsək yastıqları və biləklər, uşaqlar üçün, qara",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2663204",
+    "name": "Velosiped su qabı və tutacağı, plastik, 750 ml",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "868889",
+    "name": "İkitəkərli uşaq velosipedi Hiland 20 Çəhrayı",
+    "price": 349.86,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2420823",
+    "name": "Uşaqlar üçün velosiped Like 2Bike 20\" yaşıl",
+    "price": 139.93,
+    "minimumPriceLimit": 126
+  },
+  {
+    "id": "2367331",
+    "name": "Uşaq skuteri Mavi",
+    "price": 69.92,
+    "minimumPriceLimit": 63
+  },
+  {
+    "id": "2368551",
+    "name": "Velosiped Formula 02 28\", qara/narıncı",
+    "price": 349.9,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2367332",
+    "name": "Uşaq skuteri Qırmızı",
+    "price": 69.92,
+    "minimumPriceLimit": 63
+  },
+  {
+    "id": "2367333",
+    "name": "Uşaq skuteri Rəngbərəng",
+    "price": 69.92,
+    "minimumPriceLimit": 63
+  },
+  {
+    "id": "2367335",
+    "name": "Uşaq skuteri Göy",
+    "price": 69.92,
+    "minimumPriceLimit": 63
+  },
+  {
+    "id": "815689",
+    "name": "Uşaq velosipedi Sofia 16\", çəhrayı",
+    "price": 219.87,
+    "minimumPriceLimit": 198
+  },
+  {
+    "id": "2148793",
+    "name": "Velosiped fənəri Stop, yumru, qara",
+    "price": 16.92,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2665640",
+    "name": "Trosları kəsən itiağız kəlbətin velosiped üçün, qara/boz",
+    "price": 99.92,
+    "minimumPriceLimit": 90
+  },
+  {
+    "id": "2657725",
+    "name": "Velosiped su qabı tutacağı, alüminium, qara",
+    "price": 19.87,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2657727",
+    "name": "Su qabı tutacağı velosiped üçün, plastik, qara",
+    "price": 19.87,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2645804",
+    "name": "Əyləc diskini bərkitmək üçün boltlar dəsti, 6 əd",
+    "price": 2.88,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2587241",
+    "name": "Velosiped üçün arxa əyləc kaliperi Shimano TX805",
+    "price": 32.88,
+    "minimumPriceLimit": 30
+  },
+  {
+    "id": "2323645",
+    "name": "Velosiped zəncirini təmizləmək üçün vasitə, 300 ml",
+    "price": 8.76,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2491369",
+    "name": "Velosiped üçün oturacaq Selle Royal, dəri, ağ",
+    "price": 64.9,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2678924",
+    "name": "Oturacaq enli, dəri, gel - oturacaq_gelyeke",
+    "price": 24.9,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2645637",
+    "name": "Keçidici Nipel 1, qızılı",
+    "price": 1.95,
+    "minimumPriceLimit": 2
+  },
+  {
+    "id": "1244778",
+    "name": "Sitibayk Stels Pilot 750 Blue",
+    "price": 429.88,
+    "minimumPriceLimit": 387
+  },
+  {
+    "id": "2698463",
+    "name": "Təkər və şin 12-lik - kamsin_12",
+    "price": 10.91,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2657722",
+    "name": "Velosiped kilidi zəncirli, qara, 1 m",
+    "price": 17.93,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2491111",
+    "name": "Velosiped üçün signal, metal, qızılı",
+    "price": 11.87,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2491085",
+    "name": "Velosiped fənəri 2800, lüminessent, dəmir",
+    "price": 49.9,
+    "minimumPriceLimit": 45
+  },
+  {
+    "id": "2678989",
+    "name": "Uşaq velosipedi Forever, ölçü 20",
+    "price": 379.93,
+    "minimumPriceLimit": 342
+  },
+  {
+    "id": "2148817",
+    "name": "Qapaq 28\", qara",
+    "price": 17.93,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2148831",
+    "name": "Velosiped təkəri üçün plastır, qara",
+    "price": 6.92,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2367337",
+    "name": "Sürgü qolu velosiped üçün 13, qara",
+    "price": 16.57,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2678986",
+    "name": "Uşaq velosipedi Toyou, ölçü 16",
+    "price": 349.84,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2678995",
+    "name": "Uşaq velosipedi Diamondback, размер 20",
+    "price": 349.84,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2148815",
+    "name": "Qapaq 27.5\", qara",
+    "price": 21.87,
+    "minimumPriceLimit": 20
+  },
+  {
+    "id": "2645889",
+    "name": "Arxa ötürücü Shimano Deore XT-RD773, gümüşü",
+    "price": 149.9,
+    "minimumPriceLimit": 135
+  },
+  {
+    "id": "2148816",
+    "name": "Qapaq 29\", qara",
+    "price": 21.68,
+    "minimumPriceLimit": 20
+  },
+  {
+    "id": "2509740",
+    "name": "Müdafiə dəsti uşaqlar üçün, göy",
+    "price": 34.9,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2366637",
+    "name": "Velosiped dəbilqəsi kaska_25, boz/göy",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2366636",
+    "name": "Velosiped dəbilqəsi kaska_25, qırmızı",
+    "price": 29.95,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2366640",
+    "name": "Velosiped dəbilqəsi kaska_28, qara/yaşıl",
+    "price": 34.95,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2269785",
+    "name": "Velosiped dəbilqəsi Kaska 55şose, göy",
+    "price": 64.95,
+    "minimumPriceLimit": 58
+  },
+  {
+    "id": "2367324",
+    "name": "Uşaq velosipedi Chempion 20\", qara/qırmızı",
+    "price": 189.95,
+    "minimumPriceLimit": 171
+  },
+  {
+    "id": "2274890",
+    "name": "Velosiped üçün kamera Kenda 700x28/32",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2509792",
+    "name": "Elektrik velosiped Turon, 24 \", 250 Vt, qara/mavi",
+    "price": 1199.95,
+    "minimumPriceLimit": 1080
+  },
+  {
+    "id": "2272777",
+    "name": "Velosiped üçün oturacaq Baisk Black/Blue",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2631257",
+    "name": "Uşaq velosipedi Chempion 16, qatlanan, qara",
+    "price": 159.95,
+    "minimumPriceLimit": 144
+  },
+  {
+    "id": "2509807",
+    "name": "Velosiped GT Agressor MTB, 29\", alüminium",
+    "price": 1399.95,
+    "minimumPriceLimit": 1260
+  },
+  {
+    "id": "2509764",
+    "name": "Velosiped nömrəsi 799-NN-099, plastik, 10x15 sm",
+    "price": 2.95,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2509758",
+    "name": "Velosiped nömrəsi 90-BB-090, plastik, 10x15 sm",
+    "price": 2.95,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2631260",
+    "name": "Uşaq velosipedi Chempion 20, qara/göy",
+    "price": 159.95,
+    "minimumPriceLimit": 144
+  },
+  {
+    "id": "2519100",
+    "name": "Velosiped ayaqqabısı 2, ölçü 42, qara/yaşıl",
+    "price": 154.95,
+    "minimumPriceLimit": 139
+  },
+  {
+    "id": "2366646",
+    "name": "Velosiped dəbilqəsi kaska_12, qırmızı",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2519099",
+    "name": "Velosiped ayaqqabısı 1, ölçü 42, qara/narıncı",
+    "price": 154.95,
+    "minimumPriceLimit": 139
+  },
+  {
+    "id": "2368540",
+    "name": "Uşaq velosipedi Start Bike 20\", narıncı",
+    "price": 239.95,
+    "minimumPriceLimit": 216
+  },
+  {
+    "id": "2366650",
+    "name": "Velosiped dəbilqəsi kaska_12, tünd göy",
+    "price": 14.95,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2244950",
+    "name": "Kartric Neco, qara",
+    "price": 12.95,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2244938",
+    "name": "Pedal üçün qayış, göy",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2274891",
+    "name": "Velosiped üçün kamera Kenda 700x23/25",
+    "price": 9.95,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "1244783",
+    "name": "Dağ velosipedi Hiland 28 White",
+    "price": 699.95,
+    "minimumPriceLimit": 630
+  },
+  {
+    "id": "2742791",
+    "name": "Velosiped üçün telefon tutacaqı Baisk",
+    "price": 19.96,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2742792",
+    "name": "Arxa ötürücü Shimano, 6 və 7 sürət üçün",
+    "price": 22.96,
+    "minimumPriceLimit": 21
+  },
+  {
+    "id": "2742794",
+    "name": "Oturacaq gel, Velosiped üçün - otur_gelboyuk",
+    "price": 27.96,
+    "minimumPriceLimit": 25
+  },
+  {
+    "id": "2742795",
+    "name": "Oturacaq gel, materialı gel, hər təkər ölçülü velosipedlər üçün uyğundur - otur_gelnazik",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2742797",
+    "name": "Velosiped dəbilqəsi Kaska, materialı preslənmiş penaplas, universaldır, uşaq və böyüklər üçün uyğundur - kaskaa1",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2742798",
+    "name": "Velosiped dəbilqəsi Kaska, uşaqlar və böyüklər üçün, preslənmiş penoplast material - kaskaa2",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2742805",
+    "name": "Velosiped dəbilqəsi kaska, materialı preslənmiş penaplas, universaldır, uşaq və böyüklər üçün uyğundur - kaskaa3",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2742806",
+    "name": "Velosiped dəbilqəsi Kaska, universaldır, uşaq və böyüklər üçün uyğundur, materialı preslənmiş penaplas - kaskaa4",
+    "price": 24.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2742810",
+    "name": "Şəhər velosipedi Start Mystical, dəmir, 24 lük, 9-15 yaş üçün - 24_qirimiz",
+    "price": 349.96,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2742812",
+    "name": "Velosiped Mystical 24, dəmir, təkər ölçüsü 24 lük, 9-15 yaş aralığı üçün - 24_qara",
+    "price": 349.96,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2742814",
+    "name": "Velosiped Start Mystical, 24\", dəmir, 9-15 yaş - 24_goy",
+    "price": 349.96,
+    "minimumPriceLimit": 315
+  },
+  {
+    "id": "2742816",
+    "name": "Dağ velosipedi Start Light 26, aliminium, ölçü 26-lıq - start_light26",
+    "price": 499.96,
+    "minimumPriceLimit": 450
+  },
+  {
+    "id": "2640687",
+    "name": "Velosiped üçün qripslər Riderace, göy",
+    "price": 2.27,
+    "minimumPriceLimit": 2
+  },
+  {
+    "id": "2640686",
+    "name": "Velosiped üçün qripslər Riderace, qara",
+    "price": 2.27,
+    "minimumPriceLimit": 2
+  },
+  {
+    "id": "2645812",
+    "name": "Velosiped üçün əyləc dəstəyi Shimano Tourney Support, qara",
+    "price": 34.87,
+    "minimumPriceLimit": 31
+  },
+  {
+    "id": "2640790",
+    "name": "Karet Shimano BB-UN300, 123x68 mm",
+    "price": 36.13,
+    "minimumPriceLimit": 33
+  },
+  {
+    "id": "2657720",
+    "name": "Velosiped üçün sürət ölçən işıqlandırma ilə, qara",
+    "price": 20.37,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2366644",
+    "name": "Velosiped dəbilqəsi kaska_28, qırmızı/ağ",
+    "price": 30.27,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2719144",
+    "name": "Elektrikli skuter üçün təkər Xiaomi M365/Pro/Pro2/1s və bənzər modellər üçün SC-45",
+    "price": 22.96,
+    "minimumPriceLimit": 21
+  },
+  {
+    "id": "2700356",
+    "name": "Velosiped arxa fənəri pvr, Led, plastik, qara",
+    "price": 20.57,
+    "minimumPriceLimit": 19
+  },
+  {
+    "id": "2455431",
+    "name": "Velosiped fənəri FL-3510, Led, plastik, qara",
+    "price": 20.57,
+    "minimumPriceLimit": 19
+  },
+  {
+    "id": "2587200",
+    "name": "Sürət kaseti Shimano FreeWheel 7S 14/34",
+    "price": 20.17,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2421022",
+    "name": "Velosiped üçün tutacaq 0039, qara/qırmızı",
+    "price": 20.57,
+    "minimumPriceLimit": 19
+  },
+  {
+    "id": "2645837",
+    "name": "Su qabı tutacağı, plastik, yaşıl",
+    "price": 5.52,
+    "minimumPriceLimit": 5
+  },
+  {
+    "id": "2366638",
+    "name": "Velosiped dəbilqəsi kaska_28, qara/qırmızı",
+    "price": 31.18,
+    "minimumPriceLimit": 28
+  },
+  {
+    "id": "2366642",
+    "name": "Velosiped dəbilqəsi kaska_28, boz",
+    "price": 31.18,
+    "minimumPriceLimit": 28
+  },
+  {
+    "id": "2549400",
+    "name": "Velosiped çantası SL-6800",
+    "price": 11.48,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2421031",
+    "name": "Velosiped üçün signal 0020, pnevmatik, plastik, qırmızı",
+    "price": 9.86,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2327589",
+    "name": "Velosiped üçün dayaq Soldier SJ-039, tənzimlənən",
+    "price": 8.32,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2455434",
+    "name": "Velosiped eynəyi Free Soldier plastik, qara",
+    "price": 27.24,
+    "minimumPriceLimit": 25
+  },
+  {
+    "id": "2455433",
+    "name": "Velosiped eynəyi 0031, plastik, qara",
+    "price": 27.24,
+    "minimumPriceLimit": 25
+  },
+  {
+    "id": "2455440",
+    "name": "Velosiped üçün ön disk əyləci F180/R160 0261",
+    "price": 8.96,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2645628",
+    "name": "Sükan üçün hündürlük artırıcı, 15 sm, qara",
+    "price": 13.4,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2663200",
+    "name": "Velosiped su qabı, plastik, qırmızı, 750 ml",
+    "price": 8.96,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2663198",
+    "name": "Velosiped su qabı, plastik, sarı, 750 ml",
+    "price": 8.96,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2491368",
+    "name": "Velosiped üçün yan təkər 110 mm, rezin, qırmızı",
+    "price": 5.62,
+    "minimumPriceLimit": 5
+  },
+  {
+    "id": "2651443",
+    "name": "Velosiped fənəri 0002, Led, sensorlu, plastik, qara",
+    "price": 10.67,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2420912",
+    "name": "Velosiped güzgüsü 0034, 2 əd",
+    "price": 6.73,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2519127",
+    "name": "Velosiped üçün oturacaq Saddle, qızlar üçün, çəhrayı",
+    "price": 7.34,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2509749",
+    "name": "Təkər topu velosiped üçün Arxaox_Prom, alüminium, 17.5x2.5 sm",
+    "price": 7.34,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2645844",
+    "name": "Velosiped üçün sürgü qolu 170 mm, qara",
+    "price": 10.76,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2420904",
+    "name": "Velosiped üçün təkərdən tutacaq 0052, qara",
+    "price": 8.55,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2645832",
+    "name": "Su qabı tutacağı 1, plastik, ağ",
+    "price": 7.14,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2645826",
+    "name": "Su qabı tutacağı, plastik, göy",
+    "price": 7.14,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2657465",
+    "name": "Kamera şinlər üçün 8\" 1/2 x 2 (8,5 düym)",
+    "price": 8.96,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2421027",
+    "name": "Velosiped kilidi kod ilə 0033",
+    "price": 8.96,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2420888",
+    "name": "Velosiped üçün dayaq Soldier 0038",
+    "price": 8.47,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2327594",
+    "name": "Velosiped üçün arxa disk əyləci F160/R140 0260",
+    "price": 8.05,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2657724",
+    "name": "Velosiped su qabı tutacağı, plastik, qırmızı",
+    "price": 5.77,
+    "minimumPriceLimit": 5
+  },
+  {
+    "id": "2326996",
+    "name": "Yan təkərlər 20\", yaşıl",
+    "price": 8.05,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2327592",
+    "name": "Skuter təkəri üçün kamera 0307, 10x2.125",
+    "price": 7.14,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2683670",
+    "name": "Velosiped kamerası Kenda VP-50, 700x28/32",
+    "price": 7.14,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2645801",
+    "name": "Velosiped təkəri üçün plastır, narıncı",
+    "price": 7.14,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2488795",
+    "name": "Velosiped üçün qripslər, rezin, qara",
+    "price": 4.87,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2366648",
+    "name": "Oturacaq xamıtı 3, qara",
+    "price": 4.87,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2645791",
+    "name": "Zəncir kilidi 9 sürət üçün, gümüşü",
+    "price": 4.41,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2645800",
+    "name": "Zəncir kilidi 6-7-8 sürət üçün, gümüşü",
+    "price": 4.41,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2645795",
+    "name": "Zəncir kilidi 10 sürət üçün, gümüşü",
+    "price": 4.41,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2645806",
+    "name": "Skuter podşipniki 608RS",
+    "price": 2.49,
+    "minimumPriceLimit": 2
+  },
+  {
+    "id": "2652032",
+    "name": "Velosiped ön fənəri 7500",
+    "price": 17.34,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2455568",
+    "name": "Velosiped ön fənəri West Biking FL-3510",
+    "price": 19.16,
+    "minimumPriceLimit": 17
+  },
+  {
+    "id": "1953665",
+    "name": "Velosiped üçün dönmə siqnal,qara",
+    "price": 32.29,
+    "minimumPriceLimit": 29
+  },
+  {
+    "id": "2420890",
+    "name": "Velosiped üçün oturacaq Saddle 0051, qara/boz",
+    "price": 10.72,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2651420",
+    "name": "Skuter üçün təkər 0302, 10x2.125",
+    "price": 35.52,
+    "minimumPriceLimit": 32
+  },
+  {
+    "id": "2269741",
+    "name": "Velosiped üçün matqab Shimano MF-TZ500 7 speed, qara",
+    "price": 30.27,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2421044",
+    "name": "Velosiped üçün matqab Shimano 0062, qara/qızılı",
+    "price": 30.27,
+    "minimumPriceLimit": 27
+  },
+  {
+    "id": "2244965",
+    "name": "Velosiped zənciri KMC X8 8 Speed, qara",
+    "price": 36.33,
+    "minimumPriceLimit": 33
+  },
+  {
+    "id": "2505740",
+    "name": "Şinlər skuterlər üçün 8 1/2*2",
+    "price": 31.17,
+    "minimumPriceLimit": 28
+  },
+  {
+    "id": "2269767",
+    "name": "Velosiped üçün ön fənər, yaşıl",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2323637",
+    "name": "Qoruyucu dəst dizlik_13, qara",
+    "price": 15.47,
+    "minimumPriceLimit": 14
+  },
+  {
+    "id": "2420812",
+    "name": "Velosiped üçün dəst 1001454",
+    "price": 22.96,
+    "minimumPriceLimit": 21
+  },
+  {
+    "id": "1953664",
+    "name": "Velosiped fənəri siqnal ilə, qara",
+    "price": 13,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2046473",
+    "name": "Velosiped üçün multialət Riderace VP-17, 200 q",
+    "price": 9.56,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2244940",
+    "name": "Arxa vtulka 135 mm, gümüşü",
+    "price": 17.96,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "1998506",
+    "name": "Velosiped arxa fənəri Night Riding Turn Signal",
+    "price": 14.81,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2272780",
+    "name": "Arxa vtulka Top_15",
+    "price": 16.96,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2148810",
+    "name": "Yan təkərlər 16\", ağ",
+    "price": 6.27,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2046469",
+    "name": "Velosiped üçün səbət plastik, qara",
+    "price": 15.52,
+    "minimumPriceLimit": 14
+  },
+  {
+    "id": "2046471",
+    "name": "Velosiped üçün yan təkərlər dəsti 0264, qara/ağ, 12/16/18/20",
+    "price": 12.49,
+    "minimumPriceLimit": 11
+  },
+  {
+    "id": "2477737",
+    "name": "Velosiped qanadı 1001437",
+    "price": 16.13,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "1953660",
+    "name": "Velosiped üçün alətlər dəsti, qara",
+    "price": 20.66,
+    "minimumPriceLimit": 19
+  },
+  {
+    "id": "2269747",
+    "name": "Velosiped üçün LED lent, rəngbərəng",
+    "price": 6.43,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2244928",
+    "name": "Arxa vtulka Shunfeng Aluminium 12, gümüşü",
+    "price": 13.1,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2274885",
+    "name": "Velosiped üçün qabaq disk əyləci F160/R140 0260",
+    "price": 8.96,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2244953",
+    "name": "Amortizator 125 mm, qara",
+    "price": 13.4,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2026117",
+    "name": "Döşəməüstü nasos ‎KFI-GT-5.2lk-75383, qara/gümüşü",
+    "price": 17.04,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2026123",
+    "name": "Velosiped üçün stop siqnal ET-136",
+    "price": 11.66,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2026114",
+    "name": "Əl nasosu Giyo T19, qara",
+    "price": 17.04,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2148797",
+    "name": "Velosiped fənəri, qara",
+    "price": 4.96,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2046474",
+    "name": "Velosiped üçün yan təkərlər dəsti 0263, qara/qırmızı, 12/16/18/20",
+    "price": 5.96,
+    "minimumPriceLimit": 5
+  },
+  {
+    "id": "2026122",
+    "name": "Velosiped üçün su tutacağı 5, qara",
+    "price": 5.12,
+    "minimumPriceLimit": 5
+  },
+  {
+    "id": "2323630",
+    "name": "Baqaj üçün rezin ipi, qara, 65 sm",
+    "price": 4.96,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2244991",
+    "name": "Sükan üçün çıxarma, 20\", gümüşü",
+    "price": 7.34,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2148782",
+    "name": "Velosiped üçün signal, ağ",
+    "price": 3.66,
+    "minimumPriceLimit": 3
+  },
+  {
+    "id": "2323635",
+    "name": "Yan təkərlər 20\", qırmızı",
+    "price": 7.34,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2323633",
+    "name": "Yan təkərlər 16\", göy",
+    "price": 7.34,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2269746",
+    "name": "Velosiped üçün səbət, qara",
+    "price": 9.76,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2244954",
+    "name": "Şifter Shimano 3x7 sürət üçün, qara",
+    "price": 49.46,
+    "minimumPriceLimit": 45
+  },
+  {
+    "id": "2323632",
+    "name": "Yan təkərlər 16\", qırmızı",
+    "price": 7.47,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2272783",
+    "name": "Altıbucaqlı yığılan açarlar dəsti 15 in 1 Black",
+    "price": 4.17,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2244987",
+    "name": "Velosipedlər üçün zəncir sürtgü yağı Wolf's, 50 ml",
+    "price": 4.87,
+    "minimumPriceLimit": 4
+  },
+  {
+    "id": "2148837",
+    "name": "Əl nasosu Giyo, 230 mm",
+    "price": 10.96,
+    "minimumPriceLimit": 10
+  },
+  {
+    "id": "2148809",
+    "name": "Yan təkərlər 12\", ağ",
+    "price": 6.83,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2244961",
+    "name": "Velosiped kamerası Kenda 29x1.9/2.3, qara",
+    "price": 8.45,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2046460",
+    "name": "Velosiped arxa fənəri 0010, plastik, qara",
+    "price": 6.96,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2244964",
+    "name": "Velosiped kamerası Kenda 26x1.9/2.125, qara",
+    "price": 8.45,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2244992",
+    "name": "Sükan üçün çıxarma, 28\", gümüşü",
+    "price": 8.45,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2272785",
+    "name": "Velosiped üçün telefon tutacağı, Black",
+    "price": 7.94,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2237322",
+    "name": "Velosiped sükan üçün buynuz, metal, qara",
+    "price": 6.96,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "1953658",
+    "name": "Velosiped kilidi kod ilə, qara",
+    "price": 7.96,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2327595",
+    "name": "Skuter təkəri üçün kamera 0309, 8.5x2",
+    "price": 7.14,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2148825",
+    "name": "Velosiped üçün pedallar, qara",
+    "price": 6.67,
+    "minimumPriceLimit": 6
+  },
+  {
+    "id": "2244926",
+    "name": "Velosiped üçün sürgü qolu Prowheel 25, qara",
+    "price": 30.96,
+    "minimumPriceLimit": 28
+  },
+  {
+    "id": "2148835",
+    "name": "Fənər velosiped üçün FY-1820",
+    "price": 14.21,
+    "minimumPriceLimit": 13
+  },
+  {
+    "id": "2046475",
+    "name": "Velosiped baqajı SLB-01 qara, 50 kq",
+    "price": 24.39,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2148840",
+    "name": "Velosiped alət dəsti (təmir üçün dəst + nasos) Giyo VP-16, 13 əd",
+    "price": 23.96,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2244957",
+    "name": "Şifter Shimano Altus SL M315, qara",
+    "price": 51.27,
+    "minimumPriceLimit": 46
+  },
+  {
+    "id": "2709671",
+    "name": "Elektrikli skuter üçün şin Sanroch SC-19",
+    "price": 46.96,
+    "minimumPriceLimit": 42
+  },
+  {
+    "id": "2709670",
+    "name": "Elektrikli skuter üçün şin Nedong SC-20",
+    "price": 37.34,
+    "minimumPriceLimit": 34
+  },
+  {
+    "id": "2726100",
+    "name": "Skuter üçün çanta SC-05-3L",
+    "price": 38.86,
+    "minimumPriceLimit": 35
+  },
+  {
+    "id": "2269739",
+    "name": "Skuter zəngi, qara",
+    "price": 8.96,
+    "minimumPriceLimit": 8
+  },
+  {
+    "id": "2509772",
+    "name": "Velosiped odometri 300, LED 3-1-də",
+    "price": 31.88,
+    "minimumPriceLimit": 29
+  },
+  {
+    "id": "2640797",
+    "name": "Velosiped fənəri LY-17, Led, plastik, qara",
+    "price": 17.09,
+    "minimumPriceLimit": 15
+  },
+  {
+    "id": "2657470",
+    "name": "Oğurluqa qarşı kilid kodlu",
+    "price": 12.81,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2683627",
+    "name": "Velosiped üçün təmizlik dəsti VP-22, 6 əd, sarı",
+    "price": 17.56,
+    "minimumPriceLimit": 16
+  },
+  {
+    "id": "2488796",
+    "name": "Velosiped üçün signal Fifa, pnevmatik, metal, qırmızı",
+    "price": 13.62,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2587230",
+    "name": "Velosiped üçün ön əyləc kaliperi Shimano TX805",
+    "price": 32.31,
+    "minimumPriceLimit": 29
+  },
+  {
+    "id": "2519102",
+    "name": "Velosiped üçün telefon tutacağı, plastik, sarı",
+    "price": 10.49,
+    "minimumPriceLimit": 9
+  },
+  {
+    "id": "2640670",
+    "name": "Velosiped ön fənəri STG 7588",
+    "price": 13.69,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2327588",
+    "name": "Velosiped eynəyi CoolChange SL-01",
+    "price": 24.98,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2645648",
+    "name": "Baqajın bərkidilməsi üçün kəmər, rezin, 1.5 m",
+    "price": 7.79,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2651423",
+    "name": "Skuter üçün təkər 0303, 8.5x2",
+    "price": 29.28,
+    "minimumPriceLimit": 26
+  },
+  {
+    "id": "2269766",
+    "name": "Ön fənər və arxa stop velosiped üçün QX-T0603, qara/boz",
+    "price": 24.48,
+    "minimumPriceLimit": 22
+  },
+  {
+    "id": "2327593",
+    "name": "Velosiped dəbilqəsi 0059, qara",
+    "price": 31.2,
+    "minimumPriceLimit": 28
+  },
+  {
+    "id": "2148846",
+    "name": "Arxa şifter Shimano Acera RD-M360-SGS",
+    "price": 39.18,
+    "minimumPriceLimit": 35
+  },
+  {
+    "id": "2420806",
+    "name": "Təkər kilidi+tros 1001428, qara",
+    "price": 6.09,
+    "minimumPriceLimit": 5
+  },
+  {
+    "id": "2026124",
+    "name": "Velosiped fənəri + Stop siqnal 158-2",
+    "price": 8.19,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2455437",
+    "name": "Veloçanta 0064, qara",
+    "price": 13.69,
+    "minimumPriceLimit": 12
+  },
+  {
+    "id": "2148844",
+    "name": "Əyləc qəlibləri Shimano B-05S-RX",
+    "price": 19.98,
+    "minimumPriceLimit": 18
+  },
+  {
+    "id": "2148852",
+    "name": "Velosiped kilidi açar ilə 0032",
+    "price": 7.76,
+    "minimumPriceLimit": 7
+  },
+  {
+    "id": "2587244",
+    "name": "Şifterlər Shimano Alivio M3100",
+    "price": 68.98,
+    "minimumPriceLimit": 62
+  },
+  {
+    "id": "2587204",
+    "name": "Şifterlər Shimano Altus M2010",
+    "price": 59.98,
+    "minimumPriceLimit": 54
+  }
+]
