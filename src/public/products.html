@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Management - Business Store Control Panel</title>
+    <title>Məhsulların idarəsi - Umico İdarə Paneli</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <style>
       .price-limit-changed {
@@ -64,11 +64,9 @@
     <div class="container">
       <div class="dashboard-container">
         <div class="header">
-          <h1>Product Management</h1>
+          <h1>Məhsul idarəsi</h1>
           <div class="header-buttons">
-            <button id="login-btn" class="btn btn-primary">Sign In</button>
-            <button id="logout-btn" class="btn btn-secondary hidden">Sign Out</button>
-            <a href="/" class="btn btn-secondary">Back to Dashboard</a>
+            <a href="/" class="btn btn-secondary">Əsas səhifə</a>
           </div>
         </div>
 
@@ -77,62 +75,61 @@
         </div>
 
         <div class="product-actions" style="margin: 20px 0">
-          <button id="load-products-btn" class="btn btn-primary">Load Products</button>
+          <button id="load-products-btn" class="btn btn-primary" style="margin-bottom: 15px;">Məhsulları yüklə</button>
           <div class="loader hidden" id="loader" style="display: inline-block; margin-left: 10px"></div>
-          <span id="products-count" style="margin-left: 10px">0 products</span>
-          <small style="display: block; margin-top: 5px; color: #666">Products will be stored in browser cache</small>
+          <span id="products-count" style="margin-left: 10px">0 məhsul</span>
         </div>
 
         <div style="background-color: #f8f9fa; padding: 15px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ddd">
-          <h3 style="margin-top: 0">Bulk Price Update</h3>
+          <h3 style="margin-top: 0">Məhsulların qiymətini topluca dəyiş</h3>
           <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px">
-            <label for="price-adjustment" style="margin-bottom: 0">Adjustment Amount:</label>
+            <label for="price-adjustment" style="margin-bottom: 0">Tənzimləmə qiyməti</label>
             <input type="number" id="price-adjustment" step="0.01" value="0.01" style="width: 100px; padding: 5px" />
 
-            <button id="decrease-all-prices" class="btn btn-danger" style="margin-left: 10px">Decrease All Prices</button>
+            <button id="decrease-all-prices" class="btn btn-danger" style="margin-left: 10px">Hamısını aşağı sal</button>
 
-            <button id="increase-all-prices" class="btn btn-success">Increase All Prices</button>
+            <button id="increase-all-prices" class="btn btn-success">Hamısını qaldır</button>
           </div>
-          <p style="font-size: 12px; color: #666; margin-top: 8px">This will update all displayed products. The operation might take some time if you have many products.</p>
+          <p style="font-size: 12px; color: #666; margin-top: 8px">Bu, göstərilən bütün məhsulları yeniləyəcək. Çox məhsulunuz varsa, əməliyyat bir az vaxt apara bilər.</p>
         </div>
 
         <div style="background-color: #f0f8ff; padding: 15px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #b8d8fb">
-          <h3 style="margin-top: 0">Scheduled Price Updates</h3>
+          <h3 style="margin-top: 0">Planlaşdırılmış Qiymət Yeniləmələri</h3>
 
           <div id="schedule-setup" style="margin-top: 10px">
             <div style="display: flex; align-items: center; gap: 10px">
-              <label for="update-interval" style="margin-bottom: 0">Minutes between updates:</label>
+              <label for="update-interval" style="margin-bottom: 0">Yeniləmələr arasındakı dəqiqələr:</label>
               <input type="number" id="update-interval" min="1" max="1440" step="1" value="60" style="width: 80px; padding: 5px" />
             </div>
 
             <div style="margin-top: 10px">
-              <label style="margin-right: 15px"> <input type="radio" name="price-action" value="increase" checked /> Increase prices </label>
-              <label> <input type="radio" name="price-action" value="decrease" /> Decrease prices </label>
+              <label style="margin-right: 15px"> <input type="radio" name="price-action" value="increase" checked /> Qiymətləri artırın </label>
+              <label> <input type="radio" name="price-action" value="decrease" /> Qiymətləri azaldın </label>
             </div>
 
-            <div style="margin-top: 15px; display: flex; align-items: center;">
-              <button id="start-schedule-btn" class="btn btn-primary">Start Schedule</button>
-              <button id="stop-schedule-btn" class="btn btn-danger" style="margin-left: 10px" disabled>Stop Schedule</button>
+            <div style="margin-top: 15px; display: flex; align-items: center">
+              <button id="start-schedule-btn" class="btn btn-primary">İntervalı başladın</button>
+              <button id="stop-schedule-btn" class="btn btn-danger" style="margin-left: 10px" disabled>İntervalı dayandırın</button>
             </div>
           </div>
 
           <div id="schedule-status" style="margin-top: 15px; padding: 10px; border-radius: 4px; background-color: #e9f5ff; display: none">
             <div style="display: flex; justify-content: space-between; align-items: center">
-              <p style="margin: 0"><strong>Status:</strong> <span id="schedule-status-text">Not active</span></p>
+              <p style="margin: 0"><strong>Status:</strong> <span id="schedule-status-text">Aktiv deyil</span></p>
               <span id="schedule-indicator" style="display: none; width: 10px; height: 10px; border-radius: 50%; background-color: #28a745"></span>
             </div>
 
-            <p style="margin: 8px 0 0 0"><strong>Last Update:</strong> <span id="last-update-time">Never</span></p>
+            <p style="margin: 8px 0 0 0"><strong>Son yeniləmə:</strong> <span id="last-update-time">heç vaxt</span></p>
 
-            <p style="margin: 8px 0 0 0"><strong>Next Update:</strong> <span id="next-update-time">-</span></p>
+            <p style="margin: 8px 0 0 0"><strong>Növbəti Yeniləmə:</strong> <span id="next-update-time">-</span></p>
 
-            <p style="margin: 8px 0 0 0"><strong>Update Size:</strong> <span id="update-amount">0.01</span> (<span id="update-direction">increase</span>)</p>
+            <p style="margin: 8px 0 0 0"><strong>Yeniləmə Ölçüsü:</strong> <span id="update-amount">0.01</span> (<span id="update-direction">artır</span>)</p>
           </div>
 
           <div style="margin-top: 10px; padding: 8px; background-color: #fff8e1; border-radius: 4px; font-size: 13px">
             <p style="margin: 0">
-              <strong>Note:</strong> When a schedule is active, bulk price updates are disabled. The next update will occur after the specified minutes have passed from the completion of the previous
-              update.
+              <strong>Qeyd:</strong> İnterval aktiv olduqda, toplu qiymət yeniləmələri deaktiv edilir. Növbəti yeniləmə əvvəlki yeniləmənin tamamlanmasından müəyyən dəqiqələr keçdikdən sonra baş
+              verəcək.
             </p>
           </div>
         </div>
@@ -165,31 +162,31 @@
     <div style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 100" id="update-modal">
       <div style="background-color: white; width: 90%; max-width: 500px; margin: 100px auto; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px">
-          <h2 style="margin: 0">Product Price Limits</h2>
+          <h2 style="margin: 0">Məhsulun Qiymət Limitləri</h2>
           <button style="background: none; border: none; font-size: 24px; cursor: pointer" id="close-modal">&times;</button>
         </div>
 
         <div style="margin-bottom: 15px">
-          <p><strong>Product:</strong> <span id="modal-product-name"></span></p>
-          <p><strong>Current Price:</strong> <span id="modal-current-price"></span></p>
+          <p><strong>Məhsul:</strong> <span id="modal-product-name"></span></p>
+          <p><strong>Hazırkı qiymət:</strong> <span id="modal-current-price"></span></p>
         </div>
 
         <div style="margin-bottom: 15px">
-          <label for="modal-min-price-limit" style="display: block; margin-bottom: 5px">Minimum Price Limit:</label>
+          <label for="modal-min-price-limit" style="display: block; margin-bottom: 5px">Minimum Qiymət Limiti:</label>
           <input type="number" id="modal-min-price-limit" step="0.01" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
-          <small style="color: #666; display: block; margin-top: 5px">Products won't be updated below this price during bulk price operations</small>
+          <small style="color: #666; display: block; margin-top: 5px">Toplu qiymət əməliyyatları zamanı məhsullar bu qiymətdən aşağı yenilənməyəcək</small>
         </div>
 
         <div style="margin-bottom: 15px">
-          <button id="default-limit-btn" class="btn btn-secondary" style="font-size: 0.9em">Set to 90% of Current Price</button>
+          <button id="default-limit-btn" class="btn btn-secondary" style="font-size: 0.9em">Cari Qiymətin 90%-nə təyin edin</button>
         </div>
 
         <input type="hidden" id="modal-product-uuid" />
         <input type="hidden" id="modal-product-price" />
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px">
-          <button style="padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-cancel">Cancel</button>
-          <button style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-save">Save Limit</button>
+          <button style="padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-cancel">Ləğv et</button>
+          <button style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer" id="modal-save">Yadda saxla</button>
         </div>
       </div>
     </div>
@@ -211,7 +208,7 @@
         "
       >
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px">
-          <h2 style="margin: 0">Manage All Price Limits</h2>
+          <h2 style="margin: 0">Bütün Qiymət Limitlərini idarə edin</h2>
           <button style="background: none; border: none; font-size: 24px; cursor: pointer" id="close-price-limits-modal">&times;</button>
         </div>
 
@@ -219,17 +216,18 @@
           <div style="display: flex; align-items: center; margin-bottom: 10px; gap: 10px">
             <input type="text" id="price-limits-search" placeholder="Search by name or ID..." style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px" />
             <select id="price-limits-filter" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px">
-              <option value="all">All Products</option>
-              <option value="set">With Price Limits</option>
-              <option value="unset">Without Price Limits</option>
+              <option value="all">Bütün Məhsullar</option>
+              <option value="set">Qiymət Limitləri ilə</option>
+              <option value="unset">Qiymət Limitsiz</option>
             </select>
-            <button id="batch-update-90-percent" class="btn btn-secondary" style="white-space: nowrap">Set All to 90% of Price</button>
-            <button id="save-all-price-limits" class="btn btn-primary">Save All Changes</button>
+            <button id="batch-update-90-percent" class="btn btn-secondary" style="white-space: nowrap">Hamısını Qiymətin 90%-nə təyin edin</button>
+            <button id="save-all-price-limits" class="btn btn-primary">Bütün Dəyişiklikləri Saxla</button>
           </div>
 
           <div style="background-color: #f8f9fa; padding: 10px; border-radius: 4px; font-size: 0.9em; margin-bottom: 10px">
             <p style="margin: 0">
-              <strong>Tip:</strong> Modify multiple limits at once by editing the values in the table below. Changes are highlighted and will be saved when you click "Save All Changes".
+              <strong>İpucu:</strong> Aşağıdakı cədvəldəki dəyərləri redaktə etməklə birdən çox limiti dəyişdirin. Dəyişikliklər vurğulanır və "Bütün Dəyişiklikləri Saxla" düyməsini kliklədiyiniz
+              zaman yadda saxlanılacaq.
             </p>
           </div>
         </div>
@@ -239,15 +237,15 @@
             <thead>
               <tr style="background-color: #f8f9fa; position: sticky; top: 0; z-index: 10">
                 <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="id">ID <span class="sort-icon">↓</span></th>
-                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="name">Product Name <span class="sort-icon"></span></th>
-                <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="price">Current Price <span class="sort-icon"></span></th>
-                <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="limit">Min Price Limit <span class="sort-icon"></span></th>
-                <th style="padding: 10px; text-align: center; border-bottom: 2px solid #ddd">Actions</th>
+                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="name">Məhsul adı <span class="sort-icon"></span></th>
+                <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="price">Hazırkı qiymət <span class="sort-icon"></span></th>
+                <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd; cursor: pointer" data-sort="limit">Min. Qiymət limiti <span class="sort-icon"></span></th>
+                <th style="padding: 10px; text-align: center; border-bottom: 2px solid #ddd">Əməliyyatlar</th>
               </tr>
             </thead>
             <tbody id="price-limits-table-body">
               <tr>
-                <td colspan="5" style="text-align: center; padding: 20px">Loading products...</td>
+                <td colspan="5" style="text-align: center; padding: 20px">Məhsullar yüklənir...</td>
               </tr>
             </tbody>
           </table>
@@ -255,12 +253,12 @@
 
         <div style="display: flex; justify-content: space-between; align-items: center">
           <div>
-            <span id="price-limits-status" style="color: #6c757d; font-size: 0.9em">0 products loaded</span>
+            <span id="price-limits-status" style="color: #6c757d; font-size: 0.9em">0 məhsul yükləndi</span>
           </div>
           <div>
-            <button style="padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer" id="price-limits-modal-cancel">Cancel</button>
+            <button style="padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer" id="price-limits-modal-cancel">Ləğv</button>
             <button style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px" id="price-limits-modal-save">
-              Save Changes
+              Yadda saxla
             </button>
           </div>
         </div>

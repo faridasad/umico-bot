@@ -27,3 +27,14 @@ export interface TokenRefreshResponse {
   refresh_token?: string; // May not always be returned
   expires_in: number;
 }
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export interface Session {
+  id: string;
+  username: string;
+  createdAt: Date;
+}

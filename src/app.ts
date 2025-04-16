@@ -1,5 +1,5 @@
 import fastify, { FastifyInstance } from 'fastify';
-import { requireAuth } from './modules/auth/middleware';
+import { authMiddleware, requireAuth } from './modules/auth/middleware';
 import path from "path"
 import { authRoutes } from './modules/auth/routes';
 import fastifyStatic from '@fastify/static';
@@ -31,6 +31,7 @@ export function buildApp(): FastifyInstance {
     async (instance) => {
       // Apply auth check to all routes in this plugin
       instance.addHook('onRequest', requireAuth);
+      instance.addHook('preHandler', authMiddleware);
       
       // Protected routes go here
       instance.get('/dashboard', async () => {

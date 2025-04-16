@@ -2,7 +2,7 @@
 
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import { ProductsService } from "./service";
-import { requireAuth } from "../auth/middleware";
+import { authMiddleware, requireAuth } from "../auth/middleware";
 import { AuthService } from "../auth/service";
 import { AuthStoreService } from "../auth/store";
 import * as fs from 'fs';

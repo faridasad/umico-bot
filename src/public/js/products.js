@@ -56,7 +56,7 @@ function addViewJsonButton() {
     viewJsonBtn.id = "view-json-btn";
     viewJsonBtn.className = "btn btn-secondary";
     viewJsonBtn.style.marginLeft = "10px";
-    viewJsonBtn.textContent = "View/Edit Price Limits JSON";
+    viewJsonBtn.textContent = "Qiymət limitlərinə baxın/redaktə edin";
     viewJsonBtn.addEventListener("click", openJsonModal);
 
     actionContainer.appendChild(viewJsonBtn);
@@ -85,12 +85,12 @@ function openJsonModal() {
           modal.style.display = "block";
         }
       } else {
-        showMessage("Failed to load price limits data", false);
+        showMessage("Qiymət limitləri datasını yükləmək alınmadı", false);
       }
     })
     .catch((error) => {
       console.error("Error loading JSON:", error);
-      showMessage("Error loading price limits data", false);
+      showMessage("Qiymət limitləri datasını yükləmə xətası", false);
     });
 }
 
@@ -227,7 +227,7 @@ async function saveMinPriceLimit() {
 
   // Validate inputs
   if (!uuid || isNaN(minPriceLimit) || minPriceLimit < 0) {
-    showMessage("Invalid product or price limit", false);
+    showMessage("Yanlış məhsul və ya qiymət limiti", false);
     return;
   }
 
@@ -257,16 +257,16 @@ async function saveMinPriceLimit() {
         // Refresh products table to show updated limit
         await fetchProducts();
 
-        showMessage("Minimum price limit updated successfully", true);
+        showMessage("Minimum qiymət limiti uğurla yeniləndi", true);
       } else {
-        showMessage(data.message || "Failed to update minimum price limit", false);
+        showMessage(data.message || "Minimum qiymət limitini yeniləmək alınmadı", false);
       }
     } else {
-      showMessage("Failed to update minimum price limit", false);
+      showMessage("Minimum qiymət limitini yeniləmək alınmadı", false);
     }
   } catch (error) {
     console.error("Error updating minimum price limit:", error);
-    showMessage("Error updating minimum price limit", false);
+    showMessage("Minimum qiymət limitini yeniləyərkən xəta baş verdi", false);
   } finally {
     hideLoader();
   }
@@ -306,7 +306,7 @@ function loadProductsFromLocalStorage() {
         updateProductsCount(offers.length);
 
         const lastUpdated = new Date(meta.lastUpdated);
-        showMessage(`Loaded ${offers.length} products from cache (${lastUpdated.toLocaleString()})`, true);
+        showMessage(`Keşdən ${offers.length} məhsul yükləndi (${lastUpdated.toLocaleString()})`, true);
       }
     }
   } catch (error) {
@@ -378,19 +378,19 @@ async function loadAllProducts() {
       if (data.success) {
         // After loading, fetch products
         fetchProducts();
-        showMessage(`Successfully loaded ${data.totalProducts} products`, true);
+        showMessage(`${data.totalProducts} məhsul uğurla yükləndi`, true);
 
         // Also refresh price limits
         loadPriceLimits();
       } else {
-        showMessage(data.message || "Failed to load products", false);
+        showMessage(data.message || "Məhsulları yükləmək alınmadı", false);
       }
     } else {
-      showMessage("Failed to load products", false);
+      showMessage("Məhsulları yükləmək alınmadı", false);
     }
   } catch (error) {
     console.error("Error loading products:", error);
-    showMessage("Error loading products", false);
+    showMessage("Məhsulları yükləmə xətası", false);
   }
 }
 
@@ -414,10 +414,10 @@ async function fetchProducts() {
           totalProducts: data.totalProducts,
         });
       } else {
-        showMessage("Failed to fetch products", false);
+        showMessage("Məhsulları yükləmə xətası", false);
       }
     } else {
-      showMessage("Failed to fetch products", false);
+      showMessage("Məhsulları yükləmə xətası", false);
     }
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -441,7 +441,7 @@ function renderProductsTable(products) {
   if (products.length === 0) {
     tableBody.innerHTML = `
       <tr>
-        <td colspan="8" style="text-align: center; padding: 20px;">No products found.</td>
+        <td colspan="8" style="text-align: center; padding: 20px;">Məhsul tapılmadı.</td>
       </tr>
     `;
     return;
@@ -569,7 +569,7 @@ async function bulkUpdatePrices(isIncrease) {
 
   let adjustment = parseFloat(adjustmentInput.value);
   if (isNaN(adjustment)) {
-    showMessage("Please enter a valid adjustment amount", false);
+    showMessage("Lütfən, düzgün düzəliş məbləği daxil edin", false);
     return;
   }
 
@@ -580,7 +580,7 @@ async function bulkUpdatePrices(isIncrease) {
 
   // Confirm with user
   const action = isIncrease ? "increase" : "decrease";
-  const confirmMsg = `Are you sure you want to ${action} all product prices by ${Math.abs(adjustment)}? Products with price limits won't go below their minimum price.`;
+  const confirmMsg = `Bütün məhsul qiymətlərini ${Math.abs(adjustment)} ilə ${action} etmək istədiyinizə əminsiniz? Qiymət məhdudiyyəti olan məhsullar minimum qiymətindən aşağı düşməyəcək.`;
 
   if (!confirm(confirmMsg)) {
     return;
@@ -599,29 +599,34 @@ async function bulkUpdatePrices(isIncrease) {
       body: JSON.stringify({ adjustment }),
     });
 
+    console.log(response);
+    
+
     if (response.ok) {
       const data = await response.json();
 
+      console.log(data);
+
       if (data.success) {
         // Refresh products
-        await fetchProducts();
+        // await fetchProducts();
 
         // Detailed message including below-limit information
         let message = data.message;
         if (data.result && data.result.belowLimit > 0) {
-          message += ` (${data.result.belowLimit} products skipped due to price limits)`;
+          message += ` (${data.result.belowLimit} məhsul qiymət limitlərinə görə buraxıldı)`;
         }
 
         showMessage(message, true);
       } else {
-        showMessage(data.message || "Failed to update prices", false);
+        showMessage(data.message || "Qiymətləri yeniləmək alınmadı", false);
       }
     } else {
-      showMessage("Failed to update prices", false);
+      showMessage("Qiymətləri yeniləmək alınmadı", false);
     }
   } catch (error) {
     console.error("Error updating prices:", error);
-    showMessage("Error updating prices", false);
+    showMessage("Qiymətləri yeniləmək alınmadı", false);
   } finally {
     hideLoader();
   }
@@ -714,12 +719,12 @@ async function startSchedule() {
 
     // Validate inputs
     if (interval < 1 || interval > 1440) {
-      showMessage("Interval must be between 1 and 1440 minutes", false);
+      showMessage("Interval 1 ilə 1440 dəqiqə arasında olmalıdır", false);
       return;
     }
 
     if (adjustment <= 0) {
-      showMessage("Adjustment amount must be greater than zero", false);
+      showMessage("Tənzimləmə məbləği sıfırdan böyük olmalıdır", false);
       return;
     }
 
@@ -734,7 +739,11 @@ async function startSchedule() {
     }
 
     // Confirm with user
-    if (!confirm(`Start scheduled ${action} of ${adjustment} every ${interval} minutes?\n\nThis will run until manually stopped. Products with price limits won't go below their minimum price.`)) {
+    if (
+      !confirm(
+        `Hər ${interval} dəqiqədən bir planlaşdırılmış ${action} ${adjustment} başlasın?\n\nBu, əl ilə dayandırılana qədər davam edəcək. Qiymət məhdudiyyəti olan məhsullar minimum qiymətindən aşağı düşməyəcək.`
+      )
+    ) {
       return;
     }
 
@@ -772,14 +781,14 @@ async function startSchedule() {
 
         checkScheduleStatus(); // Update UI
       } else {
-        showMessage(data.message || "Failed to start schedule", false);
+        showMessage(data.message || "İntervalı başlatmaq alınmadı", false);
       }
     } else {
-      showMessage("Failed to start schedule", false);
+      showMessage("İntervalı başlatmaq alınmadı", false);
     }
   } catch (error) {
     console.error("Error starting schedule:", error);
-    showMessage("Error starting schedule", false);
+    showMessage("İntervalı başlatmaq alınmadı", false);
   } finally {
     hideLoader();
   }
@@ -819,14 +828,14 @@ async function stopSchedule() {
 
         checkScheduleStatus(); // Update UI
       } else {
-        showMessage(data.message || "Failed to stop schedule", false);
+        showMessage(data.message || "İntervalı başlatmaq alınmadı", false);
       }
     } else {
-      showMessage("Failed to stop schedule", false);
+      showMessage("İntervalı başlatmaq alınmadı", false);
     }
   } catch (error) {
     console.error("Error stopping schedule:", error);
-    showMessage("Error stopping schedule", false);
+    showMessage("İntervalı başlatmaq alınmadı", false);
   } finally {
     hideLoader();
   }
@@ -854,7 +863,7 @@ function updateScheduleUI(schedule, isActive) {
   if (isActive && schedule) {
     // Status text
     if (statusText) {
-      statusText.textContent = schedule.isCurrentlyExecuting ? `Active (Updating Now)` : `Active (${schedule.interval} min intervals)`;
+      statusText.textContent = schedule.isCurrentlyExecuting ? `Aktiv (İndi Yenilənir)` : `Aktivdir (${schedule.interval} dəq interval)`;
       statusText.style.color = "#28a745";
     }
 
@@ -867,10 +876,10 @@ function updateScheduleUI(schedule, isActive) {
       if (!schedule.isCurrentlyExecuting) {
         startCountdown(nextUpdateEl, nextTime);
       } else {
-        nextUpdateEl.textContent += " (update in progress)";
+        nextUpdateEl.textContent += " (güncəlləmə davam edir)";
       }
     } else if (nextUpdateEl) {
-      nextUpdateEl.textContent = "Calculating after current update completes...";
+      nextUpdateEl.textContent = "Cari yeniləmə tamamlandıqdan sonra hesablanır...";
     }
 
     // Last update time
@@ -878,17 +887,17 @@ function updateScheduleUI(schedule, isActive) {
       if (schedule.lastRunTime) {
         lastUpdateEl.textContent = formatDateTime(new Date(schedule.lastRunTime));
       } else {
-        lastUpdateEl.textContent = "First update in progress...";
+        lastUpdateEl.textContent = "İlk yeniləmə davam edir...";
       }
     }
   } else {
     // Reset all fields for inactive state
     if (statusText) {
-      statusText.textContent = "Not active";
+      statusText.textContent = "Aktiv deyil";
       statusText.style.color = "#6c757d";
     }
     if (nextUpdateEl) nextUpdateEl.textContent = "-";
-    if (lastUpdateEl) lastUpdateEl.textContent = "Never";
+    if (lastUpdateEl) lastUpdateEl.textContent = "heç vaxt";
   }
 }
 
@@ -917,7 +926,7 @@ function startCountdown(element, targetTime) {
 
     if (timeDiff <= 0) {
       // Time has passed
-      element.textContent = formatDateTime(new Date(targetTime)) + " (due now)";
+      element.textContent = formatDateTime(new Date(targetTime)) + " (indiyə)";
       clearInterval(countdownInterval);
 
       // Check status again after a short delay to get updated time
@@ -1019,8 +1028,19 @@ function loadScheduleSettings() {
 
     // Apply adjustment amount
     const adjustmentInput = document.getElementById("price-adjustment");
+    const updateAmout = document.getElementById("update-amount");
+
     if (adjustmentInput && settings.adjustment) {
       adjustmentInput.value = settings.adjustment;
+    }
+
+    if (updateAmout && settings.adjustment) {
+      updateAmout.textContent = settings.adjustment;
+    }
+
+    const updateDirection = document.getElementById("update-direction");
+    if (updateDirection) {
+      updateDirection.textContent = settings.action;
     }
 
     // Apply action (increase/decrease)
@@ -1060,7 +1080,7 @@ function addViewJsonButton() {
     viewPriceLimitsBtn.id = "view-price-limits-btn";
     viewPriceLimitsBtn.className = "btn btn-secondary";
     viewPriceLimitsBtn.style.marginLeft = "10px";
-    viewPriceLimitsBtn.textContent = "Manage All Price Limits";
+    viewPriceLimitsBtn.textContent = "Bütün Qiymət Limitlərini idarə edin";
     viewPriceLimitsBtn.addEventListener("click", openPriceLimitsModal);
 
     actionContainer.appendChild(viewPriceLimitsBtn);
@@ -1122,7 +1142,7 @@ function openPriceLimitsModal() {
     setupBatchActions();
   } catch (error) {
     console.error("Error loading data for price limits table:", error);
-    showMessage("Error loading price limits data", false);
+    showMessage("Qiymət limitləri datasını yükləmə xətası", false);
   } finally {
     hideLoader();
   }
@@ -1137,7 +1157,7 @@ function closePriceLimitsModal() {
 
   // Check if there are unsaved changes
   if (changedPriceLimits.size > 0) {
-    if (confirm("You have unsaved changes to price limits. Discard these changes?")) {
+    if (confirm("Qiymət limitlərində yadda saxlanmamış dəyişiklikləriniz var. Bu dəyişikliklər ləğv edilsin?")) {
       changedPriceLimits = new Map();
     } else {
       // Reopen modal
@@ -1197,7 +1217,7 @@ function renderPriceLimitsTable() {
     tableBody.innerHTML = `
       <tr>
         <td colspan="5" style="text-align: center; padding: 20px;">
-          No products found matching your filters.
+          Filtrlərinizə uyğun məhsul tapılmadı.
         </td>
       </tr>
     `;
@@ -1380,10 +1400,10 @@ function setupSaveSingleListeners() {
         updatePriceLimitsStatus();
 
         // Show success
-        showMessage(`Updated price limit for product ${productId}`, true);
+        showMessage(`${productId} məhsulu üçün yenilənmiş qiymət limiti`, true);
       } catch (error) {
         console.error("Error saving price limit:", error);
-        showMessage("Error saving price limit", false);
+        showMessage("Qiymət limitini yadda saxlamaq xətası", false);
       } finally {
         // Reset button
         this.disabled = false;
@@ -1450,7 +1470,7 @@ function setupBatchActions() {
   const batchUpdateBtn = document.getElementById("batch-update-90-percent");
   if (batchUpdateBtn) {
     batchUpdateBtn.addEventListener("click", function () {
-      if (confirm("Set all visible products to 90% of their current price as minimum price limit?")) {
+      if (confirm("Bütün görünən məhsulları minimum qiymət limiti olaraq cari qiymətinin 90%-nə təyin edin?")) {
         const tableBody = document.getElementById("price-limits-table-body");
         const inputs = tableBody.querySelectorAll(".price-limit-input");
 
@@ -1503,7 +1523,7 @@ async function saveAllChanges() {
     return;
   }
 
-  if (!confirm(`Save changes to ${changedPriceLimits.size} product price limits?`)) {
+  if (!confirm(`${changedPriceLimits.size} məhsul qiymət limitlərinə edilən dəyişikliklər yadda saxlanılsın?`)) {
     return;
   }
 
@@ -1567,7 +1587,7 @@ async function saveAllChanges() {
 
     // Show message
     if (failCount === 0) {
-      showMessage(`Successfully updated ${successCount} price limits`, true);
+      showMessage(`${successCount} qiymət limitləri uğurla yeniləndi`, true);
 
       // Also refresh price limits in localStorage
       await loadPriceLimits();
@@ -1575,11 +1595,11 @@ async function saveAllChanges() {
       // Close modal if all successful
       closePriceLimitsModal();
     } else {
-      showMessage(`Updated ${successCount} price limits, failed to update ${failCount}`, false);
+      showMessage(`${successCount} qiymət limitləri yeniləndi, ${failCount} yenilənmədi`, false);
     }
   } catch (error) {
     console.error("Error saving price limits:", error);
-    showMessage("Error saving price limits", false);
+    showMessage("Qiymət limitlərini yadda saxlamaq xətası", false);
   } finally {
     hideLoader();
     updatePriceLimitsStatus();
@@ -1591,10 +1611,10 @@ function updatePriceLimitsStatus() {
   const statusEl = document.getElementById("price-limits-status");
   if (!statusEl) return;
 
-  let statusText = `${priceLimitsTableData.length} products loaded`;
+  let statusText = `${priceLimitsTableData.length} məhsul yükləndi`;
 
   if (changedPriceLimits.size > 0) {
-    statusText += `, ${changedPriceLimits.size} changes pending`;
+    statusText += `, ${changedPriceLimits.size} dəyişiklikləri gözlənilir`;
   }
 
   statusEl.textContent = statusText;
@@ -1615,13 +1635,13 @@ async function savePriceLimit(productId, limit) {
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to update price limit for ${name}`);
+    throw new Error(`${name} üçün qiymət limitini yeniləmək alınmadı`);
   }
 
   const data = await response.json();
 
   if (!data.success) {
-    throw new Error(data.message || `Failed to update price limit for ${name}`);
+    throw new Error(data.message || `${name} üçün qiymət limitini yeniləmək alınmadı`);
   }
 
   // Update in localStorage

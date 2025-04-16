@@ -1,3 +1,7 @@
+import { Session } from "./types";
+import { FastifyRequest, FastifyReply } from "fastify";
+import crypto from "crypto";
+
 // src/stores/auth-store.ts
 export interface AuthStore {
   accessToken?: string;
@@ -14,8 +18,8 @@ export interface AuthStore {
 // In-memory store for simplicity; in a production app, consider more secure options
 const authStore: AuthStore = {
   // Set default values
-  username: '994998000187-761',
-  password: '1Xc1Vu1m',
+  username: "994998000187-761",
+  password: "1Xc1Vu1m",
 };
 
 export class AuthStoreService {
@@ -75,3 +79,37 @@ export class AuthStoreService {
     };
   }
 }
+
+export class SessionStore {
+  private sessions: Map<string, Session> = new Map();
+
+  createSession(username: string): Session {
+    // Generate a random session ID
+    const id = crypto.randomBytes(16).toString("hex");
+    const session: Session = {
+      id,
+      username,
+      createdAt: new Date(),
+    };
+
+    this.sessions.set(id, session);
+    return session;
+  }
+
+  getSession(id: string): Session | undefined {
+    return this.sessions.get(id);
+  }
+
+  removeSession(id: string): boolean {
+    return this.sessions.delete(id);
+  }
+}
+
+// Create a single instance of the session store
+export const sessionStore = new SessionStore();
+
+// Hardcoded credentials (for demonstration only)
+// In a real application, you would use a secure database with hashed passwords
+export const VALID_CREDENTIALS = [
+  { username: "994998000187-761", password: "1Xc1Vu1m" },
+];

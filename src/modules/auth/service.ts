@@ -1,12 +1,15 @@
 import axios from "axios";
-import { SignInRequest, SignInResponse, TokenRefreshResponse } from "./types";
+import { LoginRequest, SignInRequest, SignInResponse, TokenRefreshResponse } from "./types";
 import { config } from "../../config";
-import { AuthStoreService } from "./store";
+import { AuthStoreService, sessionStore, VALID_CREDENTIALS } from "./store";
+import { FastifyRequest, FastifyReply } from "fastify";
+import crypto from "crypto";
+import { HttpClient } from "../../utils/http-client";
 
 export class AuthService {
   private static credentials: SignInRequest | null = {
     username: config.auth.username,
-    password: config.auth.password
+    password: config.auth.password,
   };
 
   static async signIn(): Promise<void> {
@@ -39,17 +42,14 @@ export class AuthService {
   static async refreshToken(): Promise<boolean> {
     try {
       const authStore = AuthStoreService.getStore();
-      
+
       if (!authStore.refreshToken) {
         throw new Error("No refresh token available");
       }
 
       // Create a clean axios instance that doesn't use our interceptors
       // to avoid circular dependencies when refreshing
-      const response = await axios.post<TokenRefreshResponse>(
-        `${config.api.baseUrl}/auth/refresh`,
-        { refresh_token: authStore.refreshToken }
-      );
+      const response = await axios.post<TokenRefreshResponse>(`${config.api.baseUrl}/auth/refresh`, { refresh_token: authStore.refreshToken });
 
       const { access_token, refresh_token, expires_in } = response.data;
 
@@ -82,5 +82,65 @@ export class AuthService {
 
   static clearAuth(): void {
     AuthStoreService.clearStore();
+  }
+
+  async login(req: FastifyRequest<{ Body: LoginRequest }>, reply: FastifyReply) {
+    const { username, password } = req.body;
+
+    // Check if credentials are valid
+    const isValid = VALID_CREDENTIALS.some((cred) => cred.username === username && cred.password === password);
+
+    await AuthService.signIn();
+
+    // Get the new token after authentication
+    const newToken = AuthStoreService.getStore().accessToken;
+    console.log("New access token:", newToken ? newToken.slice(-10) : "none");
+
+    // Explicitly update the token in the Axios instance
+    if (newToken) {
+      HttpClient.updateToken(newToken);
+      console.log("HTTP client headers updated with new token");
+    }
+
+    if (!isValid) {
+      return reply.code(401).send({
+        success: false,
+        message: "Invalid username or password",
+      });
+    }
+
+    // Create a new session
+    const session = sessionStore.createSession(username);
+
+    return {
+      success: true,
+      message: "Authentication successful",
+      username: session.username,
+      sessionToken: session.id,
+    };
+  }
+
+  /**
+   * Signs out a user by removing their session
+   */
+  async logout(req: FastifyRequest, reply: FastifyReply) {
+    const sessionToken = req.headers.authorization?.replace("Bearer ", "");
+
+    if (sessionToken) {
+      sessionStore.removeSession(sessionToken);
+    }
+
+    return {
+      success: true,
+      message: "Signed out successfully",
+    };
+  }
+
+  /**
+   * Validates a session token
+   */
+  validateSession(sessionToken: string): boolean {
+    const session = sessionStore.getSession(sessionToken);
+    return !!session;
   }
 }

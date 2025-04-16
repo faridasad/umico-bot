@@ -10,9 +10,72 @@ async function initDashboard() {
   // Set up action buttons (disabling them if not authenticated)
   setupActionButtons();
 
-  // Check for authenticated state and fetch data if authenticated
-  if (AuthService.isAuthenticated()) {
-    fetchDashboardData();
+  const currentUserElement = document.getElementById("current-user");
+  const logoutButton = document.getElementById("logout-btn");
+
+  // Check if user is logged in
+  const sessionToken = localStorage.getItem("sessionToken");
+  const username = localStorage.getItem("username");
+
+  if (!sessionToken) {
+    // Redirect to login page if no session exists
+    window.location.href = "/login.html";
+    return;
+  }
+
+  // Update UI with username
+  if (username) {
+    currentUserElement.textContent = `Welcome, ${username}`;
+  }
+
+  // Verify session with server
+  verifySession();
+
+  // Handle logout
+  logoutButton.addEventListener("click", logout);
+
+  // Functions
+  async function verifySession() {
+    try {
+      const response = await fetch("/auth/status", {
+        method: "POST",
+        body: JSON.stringify({ sessionToken }),
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+
+      const data = await response.json();
+
+      if (!data.isAuthenticated) {
+        // Session is invalid, redirect to login
+        localStorage.removeItem("sessionToken");
+        localStorage.removeItem("username");
+        window.location.href = "/login.html";
+      }
+    } catch (error) {
+      console.error("Error verifying session:", error);
+    }
+  }
+
+  async function logout() {
+    try {
+      await fetch("/auth/logout", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionToken}`,
+        },
+      });
+
+      // Clear session data
+      localStorage.removeItem("sessionToken");
+      localStorage.removeItem("username");
+
+      // Redirect to login page
+      window.location.href = "/login.html";
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   }
 }
 

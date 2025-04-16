@@ -1,6 +1,6 @@
 // src/modules/scheduler/routes.ts
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
-import { requireAuth } from "../auth/middleware";
+import { authMiddleware, requireAuth } from "../auth/middleware";
 import { schedulerService } from "./service";
 
 export async function schedulerRoutes(fastify: FastifyInstance, options: FastifyPluginOptions): Promise<void> {

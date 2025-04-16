@@ -1,51 +1,108 @@
 <!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Store Control Panel</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umico - Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <style>
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .username {
+      margin-right: 15px;
+      font-weight: bold;
+    }
+
+    .logout-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .module-card {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .module-card h3 {
+      margin-top: 0;
+    }
+
+    .module-card p {
+      color: #666;
+    }
+
+    .module-card a {
+      display: block;
+      text-align: center;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 4px;
+      margin-top: 15px;
+    }
+  </style>
+  <body>
     <div class="container">
-        <div class="dashboard-container" id="dashboard-section">
-            <div class="header">
-                <h1>Business Control Dashboard</h1>
-                <div class="auth-buttons">
-                    <button id="login-btn" class="btn btn-primary">Sign In</button>
-                    <button id="logout-btn" class="btn btn-secondary hidden">Sign Out</button>
-                </div>
-            </div>
-            
-            <div class="auth-status">
-                <p id="auth-status-message">Status: Not authenticated</p>
-            </div>
-            
-            <div class="modules-container">
-                <h2>Actions</h2>
-                <div class="module-cards" id="module-cards">
-                    <!-- Authentication card -->
-                    <div class="card">
-                        <h3>Authentication</h3>
-                        <p>Current status: <span id="auth-status">Not authenticated</span></p>
-                    </div>
-                    
-                    <!-- Locked cards (only available when authenticated) -->
-                    <div class="card locked" data-requires-auth="true">
-                        <h3>Product Management</h3>
-                        <p>Change prices, update inventory</p>
-                        <p class="auth-required-message">Authentication required</p>
-                        <button class="btn btn-primary action-btn hidden">Manage Products</button>
-                    </div>
-                    
-                    <!-- Additional modules will be added here -->
-                </div>
-            </div>
+      <div class="dashboard-container" id="dashboard-section">
+        <div class="header">
+          <h1>Umico Dashboard</h1>
+          <div class="user-info">
+            <span class="username" id="current-user">Xoşgəldin, User</span>
+            <button id="logout-btn" class="logout-btn">Çıx</button>
+          </div>
         </div>
+
+        <div class="auth-status">
+          <p id="auth-status-message">Status: Not authenticated</p>
+        </div>
+
+        <div class="module-grid">
+          <div class="module-card">
+            <h3>Məhsul idarəsi</h3>
+            <p>Məhsullara bax və idarə et</p>
+            <a href="/products.html">Məhsullar</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="/js/auth.js"></script>
     <script src="/js/dashboard.js"></script>
-</body>
+  </body>
 </html>

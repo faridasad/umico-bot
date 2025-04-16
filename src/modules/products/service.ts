@@ -47,12 +47,8 @@ export class ProductsService {
       ProductStoreService.updateLastUpdated();
       ProductStoreService.setLoading(false);
 
-      console.log("json init");
-
       // Save products to local JSON file with minimum price limits
       await this.saveProductsToJsonFile();
-
-      console.log("json saved");
 
       return ProductStoreService.getStore();
     } catch (error) {

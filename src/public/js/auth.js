@@ -3,6 +3,13 @@
 let isAuthenticated = false;
 
 document.addEventListener("DOMContentLoaded", function () {
+  const sessionToken = localStorage.getItem("sessionToken");
+  if (!sessionToken) {
+    // Redirect to login page if no session exists
+    window.location.href = "/login.html";
+    return;
+  }
+
   // Check if user is already authenticated
   checkAuthStatus();
 
@@ -24,10 +31,20 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 async function checkAuthStatus() {
   try {
-    const response = await fetch("/auth/status");
+    const response = await fetch("/auth/status", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sessionToken: localStorage.getItem("sessionToken") }),
+    });
     const data = await response.json();
 
     isAuthenticated = data.isAuthenticated;
+    if (!isAuthenticated) {
+      window.location.href = "/login.html";
+      return;
+    }
     updateAuthUI(isAuthenticated);
   } catch (error) {
     console.error("Error checking auth status:", error);
