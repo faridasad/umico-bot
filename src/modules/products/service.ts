@@ -61,7 +61,6 @@ export class ProductsService {
 
   static async saveProductsToJsonFile() {
     try {
-
       // Define file paths
       const dataDir = path.join(__dirname, "../../data");
       const filePath = path.join(dataDir, "products.json");

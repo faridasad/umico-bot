@@ -1,7 +1,6 @@
 {
   "name": "umico-bot",
   "version": "1.0.0",
-  "main": "dist/server.js",
   "scripts": {
     "dev": "tsx src/server.ts",
     "test": "jest"
@@ -19,6 +18,7 @@
     "axios": "^1.8.4",
     "cheerio": "^1.0.0",
     "fastify": "^5.2.2",
+    "https-proxy-agent": "^7.0.6",
     "nanoid": "^5.1.5",
     "nodemailer": "^6.10.0"
   },

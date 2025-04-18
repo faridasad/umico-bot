@@ -1,6 +1,6 @@
 export const config = {
   server: {
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3761,
     host: process.env.HOST || "0.0.0.0",
   },
   api: {

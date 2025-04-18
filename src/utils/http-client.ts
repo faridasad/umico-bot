@@ -2,6 +2,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { AuthStoreService } from "../modules/auth/store";
 import { config } from "../config";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
 export class HttpClient {
   private static instance: AxiosInstance;
@@ -9,6 +10,8 @@ export class HttpClient {
   static getInstance(): AxiosInstance {
     if (!this.instance) {
       this.instance = axios.create({
+        /* httpAgent: new HttpsProxyAgent("http://193.105.123.195:8123"),
+        httpsAgent: new HttpsProxyAgent("http://193.105.123.195:8123"), */
         baseURL: config.api.baseUrl,
       });
 
